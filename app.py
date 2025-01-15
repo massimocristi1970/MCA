@@ -62,7 +62,7 @@ def main():
                 with tab2:
                     selected_categories = ['Expenses', 'Debt Repayments', 'Special Outflow', 'Failed Payment']
                     expenses = data[data['subcategory'].isin(selected_categories)]
-                    expenses_grouped = expenses.groupby('personal_finance_category.detailed')['amount'].sum().reset_index()
+                    expenses_grouped = expenses.groupby('personal_finance_category.primary')['amount'].sum().reset_index()
                     expenses_grouped = expenses_grouped.sort_values(by='amount', ascending=False).reset_index(drop=True)
                     st.write("Total Expenses", expenses_grouped)
 
@@ -106,11 +106,11 @@ def main():
 
                         # Filter expenses 10 days before the loan date
                         expenses_before_loan = expenses[(expenses['date'] > start_date_10_before) & (expenses['date'] <= start_date)]
-                        expenses_grouped_before_loan = expenses_before_loan.groupby('personal_finance_category.detailed')['amount'].sum().reset_index()
+                        expenses_grouped_before_loan = expenses_before_loan.groupby('personal_finance_category.primary')['amount'].sum().reset_index()
 
                         # Filter expenses between the start date (loan date) and the end date (next 10 days)
                         expenses_after_loan = expenses[(expenses['date'] > start_date) & (expenses['date'] <= end_date)]
-                        expenses_grouped_after_loan = expenses_after_loan.groupby('personal_finance_category.detailed')['amount'].sum().reset_index()
+                        expenses_grouped_after_loan = expenses_after_loan.groupby('personal_finance_category.primary')['amount'].sum().reset_index()
 
                         grouped_expenses.append({
                             'Loan Date': start_date,
