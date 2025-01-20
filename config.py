@@ -13,6 +13,12 @@ thresholds = {
 }
 months_threshold = 6 
 
+# Define sector risks for each industry
+retail_risk = 1
+manufacturing_risk = 0
+tech_risk = 0
+healthcare_risk = 0
+
 # Define industry-specific thresholds
 industry_thresholds = {
     'Retail': {
@@ -24,7 +30,7 @@ industry_thresholds = {
         'Cash Flow Volatility': 0.2,
         'Gross Burn Rate': 15000,
         'Directors Score': 60,
-        'Sector Risk': 0
+        'Sector Risk': retail_risk
     },
     'Manufacturing': {
         'Debt Service Coverage Ratio': 1.5, 
@@ -35,7 +41,7 @@ industry_thresholds = {
         'Cash Flow Volatility': 0.15,
         'Gross Burn Rate': 20000,
         'Directors Score': 65,
-        'Sector Risk': 0
+        'Sector Risk': manufacturing_risk
     },
     'Tech': {
         'Debt Service Coverage Ratio': 1.3, 
@@ -46,7 +52,7 @@ industry_thresholds = {
         'Cash Flow Volatility': 0.3,
         'Gross Burn Rate': 50000,
         'Directors Score': 70,
-        'Sector Risk': 0
+        'Sector Risk': tech_risk
     },
     'Healthcare': {
         'Debt Service Coverage Ratio': 1.7, 
@@ -57,7 +63,7 @@ industry_thresholds = {
         'Cash Flow Volatility': 0.1,
         'Gross Burn Rate': 25000,
         'Directors Score': 67,
-        'Sector Risk': 0
+        'Sector Risk': healthcare_risk
     }
 }
 
