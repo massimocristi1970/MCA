@@ -5,7 +5,7 @@ from model_utils import predict_score
 from data_processing import process_json_data, categorize_transactions, calculate_monthly_summary
 from financial_metrics import calculate_metrics, avg_revenue
 from score_calculation import calculate_weighted_score, calculate_industry_score
-from config import thresholds, weights, calculate_risk, industry_thresholds as industry_thresholds_config
+from config import weights, calculate_risk, industry_thresholds as industry_thresholds_config
 from analysis import plot_revenue_vs_expense, plot_outflow_transactions, plot_transaction_graphs, plot_loan_vs_expense_graph
 import json
 
@@ -51,7 +51,7 @@ def main():
                     st.write(f"Repayment Probability: {probability_score:.2f}")
 
                     # Calculate the revised score based on industry thresholds
-                    industry_d_score = calculate_industry_score(metrics, directors_score, sector_risk, thresholds)
+                    industry_d_score = calculate_industry_score(metrics, directors_score, sector_risk, industry_thresholds)
                     st.write(f"Financial Score: {industry_d_score}")
 
                     monthly_avg_revenue = avg_revenue(data)
