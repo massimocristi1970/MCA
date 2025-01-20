@@ -48,17 +48,17 @@ def plot_loan_vs_expense_graph(data, loan_dates):
     st.pyplot(fig)
 
 
-def plot_transaction_graphs(data, input_date):
-    input_date = pd.to_datetime(input_date)
-    filtered_data = data[data['date'] >= input_date]
+def plot_transaction_graphs(data):
+    # input_date = pd.to_datetime(input_date)
+    # filtered_data = data[data['date'] >= input_date]
 
     # Group data by day for inflow and outflow
-    daily_data = filtered_data.groupby(filtered_data['date'].dt.date).agg(
-        Daily_Inflow=('amount', lambda x: x[filtered_data['is_revenue']].sum()),
-        Daily_Outflow=('amount', lambda x: x[filtered_data['is_expense']].sum())
+    daily_data = data.groupby(data['date'].dt.date).agg(
+        Daily_Inflow=('amount', lambda x: x[data['is_revenue']].sum()),
+        Daily_Outflow=('amount', lambda x: x[data['is_expense']].sum())
     ).reset_index()
 
-    fig, ax = plt.subplots(figsize=(10,6))
+    fig, ax = plt.subplots(figsize=(10, 6))
     ax.plot(daily_data['date'], daily_data['Daily_Inflow'], label='Daily Inflow', color='green')
     ax.plot(daily_data['date'], daily_data['Daily_Outflow'], label='Daily Outflow', color='red')
 
@@ -68,8 +68,9 @@ def plot_transaction_graphs(data, input_date):
     ax.legend()
 
     st.pyplot(fig)
+
     # Group data by day for Revenue vs Expenses
-    revenue_expense_data = filtered_data.groupby(filtered_data['date'].dt.date).agg(
-        Revenue=('amount', lambda x: x[filtered_data['is_revenue']].sum()),
-        Expenses=('amount', lambda x: x[filtered_data['is_expense']].sum())
+    revenue_expense_data = data.groupby(data['date'].dt.date).agg(
+        Revenue=('amount', lambda x: x[data['is_revenue']].sum()),
+        Expenses=('amount', lambda x: x[data['is_expense']].sum())
     ).reset_index()

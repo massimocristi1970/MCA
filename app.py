@@ -19,10 +19,9 @@ def main():
     requested_loan = st.number_input("Enter the requested loan amount:", min_value=0.0)
     industry = st.selectbox("Select Industry", list(industry_thresholds_config.keys()))
     industry_thresholds = industry_thresholds_config[industry]
+    sector_risk = industry_thresholds['Sector Risk']
     directors_score = st.number_input("Director Score", min_value=0)
-    sector_risk = st.radio('Sector Risk', ['High', 'Low'], index=1)
-    sector_risk = 0 if sector_risk == 'Low' else 1
-    input_date = st.date_input("Select Date", pd.to_datetime("2022-01-01"))
+    # input_date = st.date_input("Select Date", pd.to_datetime("2022-01-01"))
     uploaded_file = st.file_uploader("Upload a JSON file", type="json")
     
     if uploaded_file:
@@ -71,7 +70,7 @@ def main():
                     st.write("Revenue vs Expenses Graph")
                     plot_revenue_vs_expense(monthly_summary)
 
-                    plot_transaction_graphs(data, input_date)
+                    plot_transaction_graphs(data)
 
                     # Filter loans received
                     loans_received = data[data['subcategory'] == 'Loans'][['date', 'amount']]
@@ -83,14 +82,15 @@ def main():
                     # Calculate the total revenue for the entire dataset
                     total_revenue = round(data.loc[data['is_revenue'], 'amount'].sum() or 0, 2)
 
-                    # Find revenue during the loan period (match loan dates with revenue dates)
-                    loans_with_revenue['Revenue'] = loans_with_revenue['date'].apply(
-                        lambda loan_date: round(data.loc[(data['is_revenue']) & (data['date'] == loan_date), 'amount'].sum() or 0, 2)
+                    # Find cumulative revenue up to and including the loan date
+                    loans_with_revenue['cumulative_revenue'] = loans_with_revenue['date'].apply(
+                        lambda loan_date: round(data.loc[(data['is_revenue']) & (data['date'] <= loan_date), 'amount'].sum() or 0, 2)
                     )
 
-                    # Display loans and corresponding revenue
-                    st.write("Loans Received with Revenue During Loan Period")
+                    # Display loans and corresponding cumulative revenue up to that loan date
+                    st.write("Loans Received with Cumulative Revenue Up to Loan Date")
                     st.write(loans_with_revenue)
+
 
                     # Loan inflow vs Expense
                     plot_loan_vs_expense_graph(data, loans_received['date'])
@@ -131,20 +131,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
