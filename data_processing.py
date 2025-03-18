@@ -15,6 +15,8 @@ def process_json_data(json_data):
             'balances.available',
             'balances.current',
             'amount',
+            'merchant_name',
+            'website',
             'authorized_date',
             'category',
             'date',
