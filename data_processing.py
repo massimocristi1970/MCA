@@ -17,6 +17,7 @@ def process_json_data(json_data):
             'amount',
             'merchant_name',
             'website',
+            'name_y',
             'authorized_date',
             'category',
             'date',
@@ -34,14 +35,14 @@ def process_json_data(json_data):
         # Function to map transaction category using regex
         category_patterns = {
             "Income": [
-                r"INCOME_(WAGES|OTHER_INCOME|DIVIDENDS|INTEREST_EARNED|RETIREMENT_PENSION|TAX_REFUND|UNEMPLOYMENT)"
+                r"INCOME_(WAGES|OTHER_INCOME|DIVIDENDS|INTEREST_EARNED|RETIREMENT_PENSION|UNEMPLOYMENT)"
             ],
             "Loans": [r"TRANSFER_IN_CASH_ADVANCES_AND_LOANS"],
             "Debt Repayments": [
                 r"LOAN_PAYMENTS_(CREDIT_CARD_PAYMENT|PERSONAL_LOAN_PAYMENT|OTHER_PAYMENT|CAR_PAYMENT|MORTGAGE_PAYMENT|STUDENT_LOAN_PAYMENT)"
             ],
             "Special Inflow": [
-                r"INCOME_(DIVIDENDS|INTEREST_EARNED|RETIREMENT_PENSION|TAX_REFUND|UNEMPLOYMENT)",
+                r"INCOME_(DIVIDENDS|INTEREST_EARNED|RETIREMENT_PENSION|TAX_REFUND|UNEMPLOYMENT|TAX_REFUND)",
                 r"TRANSFER_IN_(INVESTMENT_AND_RETIREMENT_FUNDS|SAVINGS|ACCOUNT_TRANSFER|OTHER_TRANSFER_IN|DEPOSIT)"
             ],
             "Special Outflow": [
