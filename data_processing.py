@@ -49,8 +49,19 @@ def process_json_data(json_data):
                 r"TRANSFER_OUT_(INVESTMENT_AND_RETIREMENT_FUNDS|SAVINGS|OTHER_TRANSFER_OUT|WITHDRAWAL|ACCOUNT_TRANSFER)"
             ],
             "Failed Payment": [
-                r"BANK_FEES_(INSUFFICIENT_FUNDS|LATE_PAYMENT)"
-            ],
+    r"BANK_FEES_(INSUFFICIENT_FUNDS|LATE_PAYMENT)",
+    r"Unp",
+    r"Unpaid",
+    r"returned",
+    r"reversal",
+    r"chargeback",
+    r"RETURNED DD",
+    r"direct debit",
+    r"rejected",
+    r"payment fee",
+    r"returned payment"
+],
+
             "Expenses": [
                 r"BANK_FEES_.*",
                 r"ENTERTAINMENT_.*",
@@ -98,7 +109,7 @@ def calculate_monthly_summary(data):
 # Function to categorize transactions
 def categorize_transactions(data):
     data['is_revenue'] = data['subcategory'].str.strip().isin(['Income', 'Special Inflow'])
-    data['is_expense'] = data['subcategory'].str.strip().isin(['Expenses'])
+    data['is_expense'] = data['subcategory'].str.strip().isin(['Expenses', 'Special Outflow'])
     data['is_debt_repayment'] = data['subcategory'].str.strip().isin(['Debt Repayments'])
     data['is_debt'] = data['subcategory'].str.strip().isin(['Loans'])
     return data
