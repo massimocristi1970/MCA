@@ -304,15 +304,15 @@ industry_thresholds = dict(sorted({
 weights = {
     'Debt Service Coverage Ratio': 20,  
     'Net Income': 15,                   
-    'Operating Margin': 10,             
-    'Expense-to-Revenue Ratio': 5,     
-    'Revenue Growth Rate': 10,           
+    'Operating Margin': 8,             
+    'Expense-to-Revenue Ratio': 7,     
+    'Revenue Growth Rate': 5,           
     'Debt Repayment Coverage Ratio': 5,
-    'Cash Flow Volatility': 10,          
-    'Gross Burn Rate': 5,               
+    'Cash Flow Volatility': 12,          
+    'Gross Burn Rate': 3,               
     'Months': 5,                       
-    'Directors Score': 10,
-    'Sector Risk': 5
+    'Directors Score': 12,
+    'Sector Risk': 8
 }
 
 
