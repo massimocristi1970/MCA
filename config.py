@@ -316,30 +316,13 @@ weights = {
 }
 
 
-def calculate_risk_with_term(requested_loan, monthly_average_revenue, repayment_split=0.1):
-    estimated_monthly_repayment = monthly_average_revenue * repayment_split
-    estimated_term_months = requested_loan / estimated_monthly_repayment
-
-    # Loan-to-revenue risk level
-    loan_ratio = requested_loan / monthly_average_revenue
-    if loan_ratio <= 0.7:
-        risk_level = "Low Risk"
-    elif loan_ratio <= 1.2:
-        risk_level = "Medium Risk"
+def calculate_risk(requested_loan, monthly_average_revenue):
+    if requested_loan <= monthly_average_revenue:
+        return 'Low Risk', f"Requested loan amount of {requested_loan} is less than or equal to 100% of the average monthly revenue ({monthly_average_revenue}), classified as Low Risk."
+    elif monthly_average_revenue < requested_loan <= (1.5 * monthly_average_revenue):
+        return 'Medium Risk', f"Requested loan amount of {requested_loan} is between 100% and 150% of the average monthly revenue ({monthly_average_revenue}), classified as Medium Risk."
     else:
-        risk_level = "High Risk"
-
-    # Term check
-    if estimated_term_months <= 6:
-        term_risk = "Acceptable"
-    elif estimated_term_months <= 9:
-        term_risk = "Borderline"
-    else:
-        term_risk = "Too Long"
-
-    message = (
-        f"Loan is {risk_level} based on loan-to-revenue ratio ({loan_ratio:.2f}). "
-        f"Estimated repayment term: {estimated_term_months:.1f} months ({term_risk})."
+        return 'High Risk', f"Requested loan amount of {requested_loan} is greater than 150% of the average monthly revenue ({monthly_average_revenue}), classified as High Risk."
     )
     
     return risk_level, estimated_term_months, term_risk, message
