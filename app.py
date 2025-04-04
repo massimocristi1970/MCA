@@ -15,7 +15,7 @@ scaler = joblib.load('scaler.pkl')
 
 # Streamlit App
 def main():
-    st.title("Business Finance & Application Analyzer")
+    st.title("Business Finance Application Scorecard")
     requested_loan = st.number_input("Enter the requested loan amount:", min_value=0.0)
     industry = st.selectbox("Select Industry", list(industry_thresholds_config.keys()))
     industry_thresholds = industry_thresholds_config[industry]
