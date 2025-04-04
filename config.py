@@ -469,9 +469,13 @@ weights = {
 
 
 def calculate_risk(requested_loan, monthly_average_revenue):
-    if requested_loan <= monthly_average_revenue:
-        return 'Low Risk', f"Requested loan amount of {requested_loan} is less than or equal to 100% of the average monthly revenue ({monthly_average_revenue}), classified as Low Risk."
-    elif monthly_average_revenue < requested_loan <= (1.5 * monthly_average_revenue):
-        return 'Medium Risk', f"Requested loan amount of {requested_loan} is between 100% and 150% of the average monthly revenue ({monthly_average_revenue}), classified as Medium Risk."
+    if requested_loan <= 0.7 * monthly_average_revenue:
+        return 'Low Risk', f"Requested loan amount of {requested_loan} is less than or equal to 70% of the average monthly revenue ({monthly_average_revenue}), classified as Low Risk."
+    elif 0.7 * monthly_average_revenue < requested_loan <= monthly_average_revenue:
+        return 'Moderate Low Risk', f"Requested loan amount of {requested_loan} is between 70% and 100% of the average monthly revenue ({monthly_average_revenue}), classified as Moderate Low Risk."
+    elif monthly_average_revenue < requested_loan <= 1.2 * monthly_average_revenue:
+        return 'Medium Risk', f"Requested loan amount of {requested_loan} is between 100% and 120% of the average monthly revenue ({monthly_average_revenue}), classified as Medium Risk."
+    elif 1.2 * monthly_average_revenue < requested_loan <= 1.5 * monthly_average_revenue:
+        return 'Moderate High Risk', f"Requested loan amount of {requested_loan} is between 120% and 150% of the average monthly revenue ({monthly_average_revenue}), classified as Moderate High Risk."
     else:
         return 'High Risk', f"Requested loan amount of {requested_loan} is greater than 150% of the average monthly revenue ({monthly_average_revenue}), classified as High Risk."
