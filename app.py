@@ -1,3 +1,4 @@
+import io
 import pandas as pd
 import streamlit as st
 import joblib
@@ -18,16 +19,16 @@ def main():
     st.title("Business Finance Application Scorecard")
     requested_loan = st.number_input("Enter the requested loan amount:", min_value=0.0)
     industry = st.selectbox("Select Industry", list(industry_thresholds_config.keys()))
-    industry_thresholds = industry_thresholds_config[industry]
-    sector_risk = industry_thresholds['Sector Risk']
+    selected_thresholds = industry_thresholds_config[industry]
+    sector_risk = selected_thresholds['Sector Risk']
     directors_score = st.number_input("Director Score", min_value=0)
     # input_date = st.date_input("Select Date", pd.to_datetime("2022-01-01"))
-    uploaded_file = st.file_uploader("Upload a JSON file", type="json")
+    uploaded_file = st.file_uploader("Upload a JSON file", type=["json"])
     
     if uploaded_file:
         try:
             # Load and process JSON data
-            json_data = json.load(uploaded_file)
+            json_data = json.load(io.StringIO(uploaded_file.getvalue().decode("utf-8")))
             data = process_json_data(json_data)
             if data is not None:
                 # Create tabs for different sections
@@ -44,14 +45,14 @@ def main():
                     st.write("Calculated Financial Metrics", metrics)
 
                     # Calculate the weighted score
-                    revised_weighted_d_score = calculate_weighted_score(metrics, directors_score, sector_risk, industry_thresholds, weights)
+                    revised_weighted_d_score = calculate_weighted_score(metrics, directors_score, sector_risk, selected_thresholds, weights)
                     st.write(f"Weighted Score: {revised_weighted_d_score}")
 
                     probability_score = predict_score(model, metrics, directors_score, sector_risk, scaler)
                     st.write(f"Repayment Probability: {probability_score:.2f}")
 
                     # Calculate the revised score based on industry thresholds
-                    industry_d_score = calculate_industry_score(metrics, directors_score, sector_risk, industry_thresholds)
+                    industry_d_score = calculate_industry_score(metrics, directors_score, sector_risk, selected_thresholds)
                     st.write(f"Financial Score: {industry_d_score}")
 
                     monthly_avg_revenue = avg_revenue(data)
