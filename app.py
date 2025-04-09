@@ -1,10 +1,9 @@
-import io
 import pandas as pd
 import streamlit as st
 import joblib
 from model_utils import predict_score
-from data_processing import process_json_data, categorize_transactions, calculate_monthly_summary
-from financial_metrics import calculate_metrics, avg_revenue
+from data_processing import process_json_data, categorize_transactions, calculate_monthly_summary, summarize_monthly_revenue, count_bounced_payments
+from financial_metrics import calculate_metrics, avg_revenue, process_balance_report
 from score_calculation import calculate_weighted_score, calculate_industry_score
 from config import weights, calculate_risk, industry_thresholds as industry_thresholds_config
 from analysis import plot_revenue_vs_expense, plot_outflow_transactions, plot_transaction_graphs, plot_loan_vs_expense_graph
@@ -16,19 +15,19 @@ scaler = joblib.load('scaler.pkl')
 
 # Streamlit App
 def main():
-    st.title("Business Finance Application Scorecard")
+    st.title("Financial Metrics Scoring Tool")
     requested_loan = st.number_input("Enter the requested loan amount:", min_value=0.0)
     industry = st.selectbox("Select Industry", list(industry_thresholds_config.keys()))
-    selected_thresholds = industry_thresholds_config[industry]
-    sector_risk = selected_thresholds['Sector Risk']
+    industry_thresholds = industry_thresholds_config[industry]
+    sector_risk = industry_thresholds['Sector Risk']
     directors_score = st.number_input("Director Score", min_value=0)
     # input_date = st.date_input("Select Date", pd.to_datetime("2022-01-01"))
-    uploaded_file = st.file_uploader("Upload a JSON file", type=["json"])
+    uploaded_file = st.file_uploader("Upload a JSON file", type="json")
     
     if uploaded_file:
         try:
             # Load and process JSON data
-            json_data = json.load(io.StringIO(uploaded_file.getvalue().decode("utf-8")))
+            json_data = json.load(uploaded_file)
             data = process_json_data(json_data)
             if data is not None:
                 # Create tabs for different sections
@@ -44,15 +43,25 @@ def main():
                     metrics = calculate_metrics(data)
                     st.write("Calculated Financial Metrics", metrics)
 
+                    # Balance Report
+                    report = process_balance_report(data)
+                    st.write("Monthly Balance Report",report)
+
+                    revenue_report = summarize_monthly_revenue(data)
+                    st.write("Report", revenue_report)
+
+                    bounced_payments = count_bounced_payments(data, description_column='name_y', date_column='authorized_date')
+                    st.write("Bounced Payments", bounced_payments)
+
                     # Calculate the weighted score
-                    revised_weighted_d_score = calculate_weighted_score(metrics, directors_score, sector_risk, selected_thresholds, weights)
+                    revised_weighted_d_score = calculate_weighted_score(metrics, directors_score, sector_risk, industry_thresholds, weights)
                     st.write(f"Weighted Score: {revised_weighted_d_score}")
 
                     probability_score = predict_score(model, metrics, directors_score, sector_risk, scaler)
                     st.write(f"Repayment Probability: {probability_score:.2f}")
 
                     # Calculate the revised score based on industry thresholds
-                    industry_d_score = calculate_industry_score(metrics, directors_score, sector_risk, selected_thresholds)
+                    industry_d_score = calculate_industry_score(metrics, directors_score, sector_risk, industry_thresholds)
                     st.write(f"Financial Score: {industry_d_score}")
 
                     monthly_avg_revenue = avg_revenue(data)
@@ -91,7 +100,6 @@ def main():
                     # Display loans and corresponding cumulative revenue up to that loan date
                     st.write("Loans Received with Cumulative Revenue Up to Loan Date")
                     st.write(loans_with_revenue)
-
 
                     # Loan inflow vs Expense
                     plot_loan_vs_expense_graph(data, loans_received['date'])

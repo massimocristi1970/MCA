@@ -92,3 +92,49 @@ def avg_revenue(data):
     monthly_average_revenue = round(total_revenue/company_age_months , 2)
     return monthly_average_revenue
 
+
+def process_balance_report(data):
+    if data.empty:
+        return pd.DataFrame()
+
+    required_columns = ['authorized_date', 'balances.available', 'amount_1']
+    for col in required_columns:
+        if col not in data.columns:
+            raise ValueError(f"Missing required column: {col}")
+
+    data['authorized_date'] = pd.to_datetime(data['authorized_date'], errors='coerce')
+    data = data.dropna(subset=['authorized_date'])
+
+    data = data.sort_values(by='authorized_date', ascending=False).reset_index(drop=True)
+
+    data['amount_1'] = pd.to_numeric(data['amount_1'], errors='coerce').fillna(0)
+    data['balances.available'] = pd.to_numeric(data['balances.available'], errors='coerce').fillna(0)
+
+    if data.empty:
+        return pd.DataFrame()
+
+    current_balance = data.loc[0, 'balances.available']
+    updated_balances = [current_balance]
+
+    for index in range(1, len(data)):
+        current_balance += data.loc[index, 'amount_1']
+        updated_balances.append(current_balance)
+
+    data['balances.available'] = updated_balances
+
+    data['month_end'] = data['authorized_date'].dt.to_period('M')
+    data['day'] = data['authorized_date'].dt.date
+
+    month_last = data.groupby('month_end').first()
+    month_first = data.groupby('month_end').last()
+
+    monthly_balances = pd.DataFrame({
+        'Month End Balance': month_last['balances.available'],
+        'Months First Day Balance': month_first['balances.available'],
+    })
+
+    negative_days = data[data['balances.available'] < 0].groupby('month_end')['day'].nunique()
+    monthly_balances['Negative Balance Days'] = negative_days
+    monthly_balances['Negative Balance Days'] = monthly_balances['Negative Balance Days'].fillna(0).astype(int)
+
+    return monthly_balances
