@@ -30,9 +30,9 @@ def process_json_data(json_data):
 
         data = data[selected_columns]
         data["date"] = pd.to_datetime(data["date"], errors='coerce')
-        data["authorized_date"] = pd.to_datetime(data["authorized_date"], errors='coerce')
+        data["date"] = pd.to_datetime(data["date"], errors='coerce')
         # Sort transactions in descending order by date
-        data = data.sort_values(by='authorized_date', ascending=False)
+        data = data.sort_values(by='date', ascending=False)
 
         # Apply balance updates
         current_balance = data.iloc[0]['balances.available']
@@ -101,7 +101,7 @@ def process_json_data(json_data):
         return None
 
 
-def count_bounced_payments(data, description_column='description', date_column='authorized_date'):
+def count_bounced_payments(data, description_column='description', date_column='date'):
     """
     Identifies and categorizes problem payments based on keywords in descriptions.
     Returns full rows of matching problem payments or a zero-row if none found.
@@ -160,7 +160,7 @@ def categorize_transactions(data):
 
 # Function to calculate all metrics
 def summarize_monthly_revenue(data):
-    data['Date'] = pd.to_datetime(data['authorized_date'])
+    data['Date'] = pd.to_datetime(data['date'])
     data['Month'] = data['Date'].dt.to_period('M')
     categorized_df = categorize_transactions(data)
 

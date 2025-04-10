@@ -97,15 +97,15 @@ def process_balance_report(data):
     if data.empty:
         return pd.DataFrame()
 
-    required_columns = ['authorized_date', 'balances.available', 'amount_1']
+    required_columns = ['date', 'balances.available', 'amount_1']
     for col in required_columns:
         if col not in data.columns:
             raise ValueError(f"Missing required column: {col}")
 
-    data['authorized_date'] = pd.to_datetime(data['authorized_date'], errors='coerce')
-    data = data.dropna(subset=['authorized_date'])
+    data['date'] = pd.to_datetime(data['date'], errors='coerce')
+    data = data.dropna(subset=['date'])
 
-    data = data.sort_values(by='authorized_date', ascending=False).reset_index(drop=True)
+    data = data.sort_values(by='date', ascending=False).reset_index(drop=True)
 
     data['amount_1'] = pd.to_numeric(data['amount_1'], errors='coerce').fillna(0)
     data['balances.available'] = pd.to_numeric(data['balances.available'], errors='coerce').fillna(0)
@@ -122,8 +122,8 @@ def process_balance_report(data):
 
     data['balances.available'] = updated_balances
 
-    data['month_end'] = data['authorized_date'].dt.to_period('M')
-    data['day'] = data['authorized_date'].dt.date
+    data['month_end'] = data['date'].dt.to_period('M')
+    data['day'] = data['date'].dt.date
 
     month_last = data.groupby('month_end').first()
     month_first = data.groupby('month_end').last()
