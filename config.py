@@ -307,7 +307,6 @@ weights = {
     'Operating Margin': 8,             
     'Expense-to-Revenue Ratio': 7,     
     'Revenue Growth Rate': 5,           
-    'Debt Repayment Coverage Ratio': 5,
     'Cash Flow Volatility': 12,          
     'Gross Burn Rate': 3,               
     'Months': 5,                       
