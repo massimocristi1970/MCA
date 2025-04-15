@@ -389,10 +389,6 @@ def process_json_data(json_data):
                         return category
             return "Unknown"
 
-        data['subcategory'] = data['personal_finance_category.detailed'].apply(map_transaction_category)
-
-        return data
-
     except Exception as e:
         st.error(f"Error processing JSON data: {e}")
         return None
