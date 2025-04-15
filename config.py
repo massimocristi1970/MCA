@@ -1917,6 +1917,18 @@ industry_thresholds = dict(sorted({
     },
 }.items()))
 
+weights = {
+    'Debt Service Coverage Ratio': 18,  
+    'Net Income': 14,                   
+    'Operating Margin': 8,             
+    'Expense-to-Revenue Ratio': 7,     
+    'Revenue Growth Rate': 5,           
+    'Cash Flow Volatility': 11,          
+    'Gross Burn Rate': 3,               
+    'Months': 5,                       
+    'Directors Score': 15,
+    'Sector Risk': 8
+}
 
 def calculate_risk(requested_loan, monthly_average_revenue):
     if requested_loan <= 0.7 * monthly_average_revenue:
