@@ -30,7 +30,7 @@ def process_json_data(json_data):
 
         data = data[selected_columns]
         data["date"] = pd.to_datetime(data["date"], errors='coerce')
-        data["date"] = pd.to_datetime(data["date"], errors='coerce')
+        
         # Sort transactions in descending order by date
         data = data.sort_values(by='date', ascending=False)
 
