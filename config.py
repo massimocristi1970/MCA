@@ -196,7 +196,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.02,
         'Cash Flow Volatility': 0.25,
         'Gross Burn Rate': 20000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 1,
     },
     'Accounting and Auditing Firms': {
@@ -207,7 +207,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.03,
         'Cash Flow Volatility': 0.10,
         'Gross Burn Rate': 15000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 0,
     },
     'Advertising Agencies': {
@@ -218,7 +218,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.02,
         'Cash Flow Volatility': 0.25,
         'Gross Burn Rate': 20000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 1,
     },
     'Agricultural Equipment Suppliers': {
@@ -229,7 +229,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.02,
         'Cash Flow Volatility': 0.18,
         'Gross Burn Rate': 18000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 1,
     },
     'Agricultural Research Centres': {
@@ -240,7 +240,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.03,
         'Cash Flow Volatility': 0.10,
         'Gross Burn Rate': 15000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 0,
     },
     'Allied Health Services (e.g., Physiotherapy, Speech Therapy, Occupational Therapy)': {
@@ -251,7 +251,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.03,
         'Cash Flow Volatility': 0.10,
         'Gross Burn Rate': 15000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 0,
     },
     'Amusement Parks and Theme Parks': {
@@ -262,7 +262,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.02,
         'Cash Flow Volatility': 0.25,
         'Gross Burn Rate': 20000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 1,
     },
     'Architectural Design Firms': {
@@ -273,7 +273,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.03,
         'Cash Flow Volatility': 0.10,
         'Gross Burn Rate': 15000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 0,
     },
     'Art Galleries and Studios': {
@@ -284,7 +284,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.02,
         'Cash Flow Volatility': 0.25,
         'Gross Burn Rate': 20000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 1,
     },
     'Artisan Manufacturing (e.g., Bespoke Furniture)': {
@@ -295,7 +295,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.02,
         'Cash Flow Volatility': 0.18,
         'Gross Burn Rate': 18000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 1,
     },
     'Auto Detailing and Car Wash Services': {
@@ -306,7 +306,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.02,
         'Cash Flow Volatility': 0.18,
         'Gross Burn Rate': 18000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 1,
     },
     'Auto Repair Shops': {
@@ -317,7 +317,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.02,
         'Cash Flow Volatility': 0.18,
         'Gross Burn Rate': 18000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 1,
     },
     'Automotive Parts Retailers': {
@@ -328,7 +328,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.02,
         'Cash Flow Volatility': 0.18,
         'Gross Burn Rate': 18000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 1,
     },
     'Bars, Pubs, and Nightclubs': {
@@ -339,7 +339,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.02,
         'Cash Flow Volatility': 0.25,
         'Gross Burn Rate': 20000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 1,
     },
     'Beauty Salons and Spas': {
@@ -350,7 +350,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.02,
         'Cash Flow Volatility': 0.25,
         'Gross Burn Rate': 20000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 1,
     },
     'Bed and Breakfasts': {
@@ -361,7 +361,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.02,
         'Cash Flow Volatility': 0.25,
         'Gross Burn Rate': 20000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 1,
     },
     'Biotechnology Firms': {
@@ -372,7 +372,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.04,
         'Cash Flow Volatility': 0.15,
         'Gross Burn Rate': 20000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 0,
     },
     'Biotechnology Research Firms': {
@@ -383,7 +383,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.04,
         'Cash Flow Volatility': 0.15,
         'Gross Burn Rate': 20000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 0,
     },
     'Blockchain Solutions': {
@@ -394,7 +394,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.02,
         'Cash Flow Volatility': 0.25,
         'Gross Burn Rate': 20000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 1,
     },
     'Bowling Alleys and Arcades': {
@@ -405,7 +405,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.02,
         'Cash Flow Volatility': 0.25,
         'Gross Burn Rate': 20000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 1,
     },
     'Branding Agencies': {
@@ -416,7 +416,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.02,
         'Cash Flow Volatility': 0.25,
         'Gross Burn Rate': 20000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 1,
     },
     'Brick-and-Mortar Retail Stores': {
@@ -427,7 +427,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.02,
         'Cash Flow Volatility': 0.18,
         'Gross Burn Rate': 18000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 1,
     },
     'Business and Management Consulting': {
@@ -438,7 +438,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.03,
         'Cash Flow Volatility': 0.10,
         'Gross Burn Rate': 15000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 0,
     },
     'Cable and Satellite TV Providers': {
@@ -449,7 +449,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.02,
         'Cash Flow Volatility': 0.18,
         'Gross Burn Rate': 18000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 1,
     },
     'Car Dealerships': {
@@ -460,7 +460,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.02,
         'Cash Flow Volatility': 0.18,
         'Gross Burn Rate': 18000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 1,
     },
     'Car Rental Agencies': {
@@ -471,7 +471,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.02,
         'Cash Flow Volatility': 0.18,
         'Gross Burn Rate': 18000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 1,
     },
     'Carbon Offset Providers': {
@@ -482,7 +482,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.04,
         'Cash Flow Volatility': 0.15,
         'Gross Burn Rate': 20000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 0,
     },
     'Casinos and Gambling Establishments': {
@@ -493,7 +493,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.02,
         'Cash Flow Volatility': 0.25,
         'Gross Burn Rate': 20000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 1,
     },
     'Cloud Computing Providers': {
@@ -504,7 +504,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.04,
         'Cash Flow Volatility': 0.15,
         'Gross Burn Rate': 20000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 0,
     },
     'Commercial Construction Firms': {
@@ -515,7 +515,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.02,
         'Cash Flow Volatility': 0.18,
         'Gross Burn Rate': 18000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 1,
     },
     'Commercial Real Estate Services': {
@@ -526,7 +526,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.03,
         'Cash Flow Volatility': 0.10,
         'Gross Burn Rate': 15000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 0,
     },
     'Concert Venues and Music Festivals': {
@@ -537,7 +537,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.02,
         'Cash Flow Volatility': 0.25,
         'Gross Burn Rate': 20000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 1,
     },
     'Concerts and Festivals': {
@@ -548,7 +548,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.02,
         'Cash Flow Volatility': 0.25,
         'Gross Burn Rate': 20000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 1,
     },
     'Convenience Stores': {
@@ -559,7 +559,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.03,
         'Cash Flow Volatility': 0.10,
         'Gross Burn Rate': 15000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 0,
     },
     'Corporate Events': {
@@ -570,7 +570,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.02,
         'Cash Flow Volatility': 0.25,
         'Gross Burn Rate': 20000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 1,
     },
     'Corporate and Professional Training Providers': {
@@ -581,7 +581,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.03,
         'Cash Flow Volatility': 0.10,
         'Gross Burn Rate': 15000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 0,
     },
     'Courier and Delivery Services': {
@@ -592,7 +592,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.03,
         'Cash Flow Volatility': 0.10,
         'Gross Burn Rate': 15000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 0,
     },
     'Crop Production Farms': {
@@ -603,7 +603,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.02,
         'Cash Flow Volatility': 0.18,
         'Gross Burn Rate': 18000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 1,
     },
     'Cultural Festivals and Events': {
@@ -614,7 +614,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.02,
         'Cash Flow Volatility': 0.25,
         'Gross Burn Rate': 20000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 1,
     },
     'Cybersecurity Firms': {
@@ -625,7 +625,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.03,
         'Cash Flow Volatility': 0.10,
         'Gross Burn Rate': 15000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 0,
     },
     'Dairy and Poultry Farms': {
@@ -636,7 +636,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.02,
         'Cash Flow Volatility': 0.18,
         'Gross Burn Rate': 18000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 1,
     },
     'Data Analytics and Big Data Solutions': {
@@ -647,7 +647,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.04,
         'Cash Flow Volatility': 0.15,
         'Gross Burn Rate': 20000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 0,
     },
     'Defence Contractors': {
@@ -658,7 +658,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.03,
         'Cash Flow Volatility': 0.10,
         'Gross Burn Rate': 15000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 0,
     },
     'Department Stores': {
@@ -669,7 +669,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.02,
         'Cash Flow Volatility': 0.25,
         'Gross Burn Rate': 20000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 1,
     },
     'Diagnostic Labs': {
@@ -680,7 +680,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.03,
         'Cash Flow Volatility': 0.10,
         'Gross Burn Rate': 15000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 0,
     },
     'Dropshipping Businesses': {
@@ -691,7 +691,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.02,
         'Cash Flow Volatility': 0.25,
         'Gross Burn Rate': 20000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 1,
     },
     'E-Commerce Retailers': {
@@ -702,7 +702,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.02,
         'Cash Flow Volatility': 0.25,
         'Gross Burn Rate': 20000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 1,
     },
     'Electric Power Generation and Distribution': {
@@ -713,7 +713,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.03,
         'Cash Flow Volatility': 0.10,
         'Gross Burn Rate': 15000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 0,
     },
     'Electrical Contractors': {
@@ -724,7 +724,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.02,
         'Cash Flow Volatility': 0.18,
         'Gross Burn Rate': 18000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 1,
     },
     'Energy Efficiency Consulting': {
@@ -735,7 +735,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.04,
         'Cash Flow Volatility': 0.15,
         'Gross Burn Rate': 20000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 0,
     },
     'Engineering Services': {
@@ -746,7 +746,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.03,
         'Cash Flow Volatility': 0.10,
         'Gross Burn Rate': 15000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 0,
     },
     'Environmental Consulting Firms': {
@@ -757,7 +757,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.03,
         'Cash Flow Volatility': 0.10,
         'Gross Burn Rate': 15000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 0,
     },
     'Environmental Testing Laboratories': {
@@ -768,7 +768,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.03,
         'Cash Flow Volatility': 0.10,
         'Gross Burn Rate': 15000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 0,
     },
     'Event Planning and Management Firms': {
@@ -779,7 +779,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.02,
         'Cash Flow Volatility': 0.25,
         'Gross Burn Rate': 20000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 1,
     },
     'Exam Preparation Services': {
@@ -790,7 +790,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.03,
         'Cash Flow Volatility': 0.10,
         'Gross Burn Rate': 15000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 0,
     },
     'Fashion and Apparel Stores': {
@@ -801,7 +801,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.02,
         'Cash Flow Volatility': 0.25,
         'Gross Burn Rate': 20000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 1,
     },
     'Financial Planning and Advisory Firms': {
@@ -812,7 +812,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.03,
         'Cash Flow Volatility': 0.10,
         'Gross Burn Rate': 15000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 0,
     },
     'Fintech Companies (Digital Payments, Peer-to-Peer Lending, Crowdfunding Platforms)': {
@@ -823,7 +823,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.04,
         'Cash Flow Volatility': 0.15,
         'Gross Burn Rate': 20000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 0,
     },
     'Fisheries and Aquaculture': {
@@ -834,7 +834,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.02,
         'Cash Flow Volatility': 0.18,
         'Gross Burn Rate': 18000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 1,
     },
     'Fitness Centres and Gyms': {
@@ -845,7 +845,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.02,
         'Cash Flow Volatility': 0.25,
         'Gross Burn Rate': 20000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 1,
     },
     'Food Processing Plants': {
@@ -856,7 +856,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.02,
         'Cash Flow Volatility': 0.18,
         'Gross Burn Rate': 18000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 1,
     },
     'Food and Beverage Production': {
@@ -867,7 +867,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.03,
         'Cash Flow Volatility': 0.10,
         'Gross Burn Rate': 15000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 0,
     },
     'Freight and Logistics Providers': {
@@ -878,7 +878,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.03,
         'Cash Flow Volatility': 0.10,
         'Gross Burn Rate': 15000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 0,
     },
     'Furniture and Home Goods Production': {
@@ -889,7 +889,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.02,
         'Cash Flow Volatility': 0.18,
         'Gross Burn Rate': 18000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 1,
     },
     'Government Contractors': {
@@ -900,7 +900,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.03,
         'Cash Flow Volatility': 0.10,
         'Gross Burn Rate': 15000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 0,
     },
     'Graphic Design Firms': {
@@ -911,7 +911,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.02,
         'Cash Flow Volatility': 0.25,
         'Gross Burn Rate': 20000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 1,
     },
     'Greenhouses and Nurseries': {
@@ -922,7 +922,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.02,
         'Cash Flow Volatility': 0.18,
         'Gross Burn Rate': 18000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 1,
     },
     'Grocery Stores and Supermarkets': {
@@ -933,7 +933,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.03,
         'Cash Flow Volatility': 0.10,
         'Gross Burn Rate': 15000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 0,
     },
     'HR Services and Outsourcing': {
@@ -944,7 +944,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.03,
         'Cash Flow Volatility': 0.10,
         'Gross Burn Rate': 15000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 0,
     },
     'HVAC Installation and Repair Services': {
@@ -955,7 +955,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.02,
         'Cash Flow Volatility': 0.18,
         'Gross Burn Rate': 18000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 1,
     },
     'Hair Removal Services': {
@@ -966,7 +966,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.02,
         'Cash Flow Volatility': 0.25,
         'Gross Burn Rate': 20000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 1,
     },
     'Health IT Solutions': {
@@ -977,7 +977,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.04,
         'Cash Flow Volatility': 0.15,
         'Gross Burn Rate': 20000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 0,
     },
     'Health Insurance Providers': {
@@ -988,7 +988,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.03,
         'Cash Flow Volatility': 0.10,
         'Gross Burn Rate': 15000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 0,
     },
     'Heavy Manufacturing (e.g., Steel, Machinery)': {
@@ -999,7 +999,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.02,
         'Cash Flow Volatility': 0.18,
         'Gross Burn Rate': 18000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 1,
     },
     'Home Renovation and Remodeling Services': {
@@ -1010,7 +1010,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.02,
         'Cash Flow Volatility': 0.18,
         'Gross Burn Rate': 18000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 1,
     },
     'Hospitals': {
@@ -1021,7 +1021,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.03,
         'Cash Flow Volatility': 0.10,
         'Gross Burn Rate': 15000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 0,
     },
     'Hotels and Motels': {
@@ -1032,7 +1032,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.02,
         'Cash Flow Volatility': 0.25,
         'Gross Burn Rate': 20000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 1,
     },
     'Household Products Manufacturing': {
@@ -1043,7 +1043,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.03,
         'Cash Flow Volatility': 0.10,
         'Gross Burn Rate': 15000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 0,
     },
     'IT Consulting': {
@@ -1054,7 +1054,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.03,
         'Cash Flow Volatility': 0.10,
         'Gross Burn Rate': 15000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 0,
     },
     'IT Services and Support': {
@@ -1065,7 +1065,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.03,
         'Cash Flow Volatility': 0.10,
         'Gross Burn Rate': 15000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 0,
     },
     'Internet Service Providers': {
@@ -1076,7 +1076,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.02,
         'Cash Flow Volatility': 0.18,
         'Gross Burn Rate': 18000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 1,
     },
     'Language Schools': {
@@ -1087,7 +1087,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.03,
         'Cash Flow Volatility': 0.10,
         'Gross Burn Rate': 15000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 0,
     },
     'Legal Services (Law Firms)': {
@@ -1098,7 +1098,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.03,
         'Cash Flow Volatility': 0.10,
         'Gross Burn Rate': 15000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 0,
     },
     'Livestock Farms': {
@@ -1109,7 +1109,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.02,
         'Cash Flow Volatility': 0.18,
         'Gross Burn Rate': 18000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 1,
     },
     'Marketing and Advertising Agencies': {
@@ -1120,7 +1120,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.04,
         'Cash Flow Volatility': 0.15,
         'Gross Burn Rate': 20000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 0,
     },
     'Massage Therapy Studios': {
@@ -1131,7 +1131,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.02,
         'Cash Flow Volatility': 0.25,
         'Gross Burn Rate': 20000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 1,
     },
     'Media Buying Agencies': {
@@ -1142,7 +1142,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.02,
         'Cash Flow Volatility': 0.25,
         'Gross Burn Rate': 20000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 1,
     },
     'Medical Device Manufacturers': {
@@ -1153,7 +1153,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.04,
         'Cash Flow Volatility': 0.15,
         'Gross Burn Rate': 20000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 0,
     },
     'Medical Practices (e.g., GPs, Clinics, Dentists)': {
@@ -1164,7 +1164,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.03,
         'Cash Flow Volatility': 0.10,
         'Gross Burn Rate': 15000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 0,
     },
     'Metal Fabrication': {
@@ -1175,7 +1175,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.02,
         'Cash Flow Volatility': 0.18,
         'Gross Burn Rate': 18000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 1,
     },
     'Mineral Mining Companies': {
@@ -1186,7 +1186,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.02,
         'Cash Flow Volatility': 0.25,
         'Gross Burn Rate': 20000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 1,
     },
     'Movie Theatres and Cinemas': {
@@ -1197,7 +1197,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.02,
         'Cash Flow Volatility': 0.25,
         'Gross Burn Rate': 20000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 1,
     },
     'Museums and Exhibition Spaces': {
@@ -1208,7 +1208,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.02,
         'Cash Flow Volatility': 0.25,
         'Gross Burn Rate': 20000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 1,
     },
     'Natural Gas Distribution': {
@@ -1219,7 +1219,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.03,
         'Cash Flow Volatility': 0.10,
         'Gross Burn Rate': 15000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 0,
     },
     'Network Infrastructure Services': {
@@ -1230,7 +1230,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.03,
         'Cash Flow Volatility': 0.10,
         'Gross Burn Rate': 15000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 0,
     },
     'Nursing Homes and Elder Care Facilities': {
@@ -1241,7 +1241,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.03,
         'Cash Flow Volatility': 0.10,
         'Gross Burn Rate': 15000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 0,
     },
     'Oil and Gas Drilling Firms': {
@@ -1252,7 +1252,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.02,
         'Cash Flow Volatility': 0.25,
         'Gross Burn Rate': 20000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 1,
     },
     'Online Education Platforms': {
@@ -1263,7 +1263,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.04,
         'Cash Flow Volatility': 0.15,
         'Gross Burn Rate': 20000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 0,
     },
     'Organic Farming Operations': {
@@ -1274,7 +1274,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.02,
         'Cash Flow Volatility': 0.18,
         'Gross Burn Rate': 18000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 1,
     },
     'PR and Communications Firms': {
@@ -1285,7 +1285,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.04,
         'Cash Flow Volatility': 0.15,
         'Gross Burn Rate': 20000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 0,
     },
     'Performing Arts Companies': {
@@ -1296,7 +1296,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.02,
         'Cash Flow Volatility': 0.25,
         'Gross Burn Rate': 20000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 1,
     },
     'Personal Care Product Suppliers': {
@@ -1307,7 +1307,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.03,
         'Cash Flow Volatility': 0.10,
         'Gross Burn Rate': 15000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 0,
     },
     'Personal Training Services': {
@@ -1318,7 +1318,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.02,
         'Cash Flow Volatility': 0.25,
         'Gross Burn Rate': 20000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 1,
     },
     'Pet Food and Supplies': {
@@ -1329,7 +1329,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.03,
         'Cash Flow Volatility': 0.10,
         'Gross Burn Rate': 15000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 0,
     },
     'Pharmaceutical Research Labs': {
@@ -1340,7 +1340,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.04,
         'Cash Flow Volatility': 0.15,
         'Gross Burn Rate': 20000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 0,
     },
     'Pharmacies': {
@@ -1351,7 +1351,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.03,
         'Cash Flow Volatility': 0.10,
         'Gross Burn Rate': 15000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 0,
     },
     'Plastic and Chemical Manufacturing': {
@@ -1362,7 +1362,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.02,
         'Cash Flow Volatility': 0.18,
         'Gross Burn Rate': 18000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 1,
     },
     'Pollution Control Services': {
@@ -1373,7 +1373,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.03,
         'Cash Flow Volatility': 0.10,
         'Gross Burn Rate': 15000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 0,
     },
     'Pop-up Shops': {
@@ -1384,7 +1384,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.02,
         'Cash Flow Volatility': 0.25,
         'Gross Burn Rate': 20000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 1,
     },
     'Print and Digital Media Companies': {
@@ -1395,7 +1395,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.02,
         'Cash Flow Volatility': 0.25,
         'Gross Burn Rate': 20000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 1,
     },
     'Product Testing Laboratories': {
@@ -1406,7 +1406,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.03,
         'Cash Flow Volatility': 0.10,
         'Gross Burn Rate': 15000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 0,
     },
     'Property Management Firms': {
@@ -1417,7 +1417,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.03,
         'Cash Flow Volatility': 0.10,
         'Gross Burn Rate': 15000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 0,
     },
     'Public Relations Agencies': {
@@ -1428,7 +1428,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.02,
         'Cash Flow Volatility': 0.25,
         'Gross Burn Rate': 20000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 1,
     },
     'Public Safety Services (e.g., Fire, Police Support Services)': {
@@ -1439,7 +1439,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.03,
         'Cash Flow Volatility': 0.10,
         'Gross Burn Rate': 15000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 0,
     },
     'Public Transportation Operators': {
@@ -1450,7 +1450,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.03,
         'Cash Flow Volatility': 0.10,
         'Gross Burn Rate': 15000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 0,
     },
     'Public Utilities': {
@@ -1461,7 +1461,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.03,
         'Cash Flow Volatility': 0.10,
         'Gross Burn Rate': 15000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 0,
     },
     'Quarrying Operations': {
@@ -1472,7 +1472,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.02,
         'Cash Flow Volatility': 0.25,
         'Gross Burn Rate': 20000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 1,
     },
     'Real Estate Appraisal and Valuation Services': {
@@ -1483,7 +1483,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.03,
         'Cash Flow Volatility': 0.10,
         'Gross Burn Rate': 15000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 0,
     },
     'Real Estate Investment Trusts (REITs)': {
@@ -1494,7 +1494,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.03,
         'Cash Flow Volatility': 0.10,
         'Gross Burn Rate': 15000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 0,
     },
     'Recycling and Composting Providers': {
@@ -1505,7 +1505,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.03,
         'Cash Flow Volatility': 0.10,
         'Gross Burn Rate': 15000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 0,
     },
     'Renewable Energy Providers (Solar, Wind, Hydro)': {
@@ -1516,7 +1516,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.04,
         'Cash Flow Volatility': 0.15,
         'Gross Burn Rate': 20000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 0,
     },
     'Research Institutions': {
@@ -1527,7 +1527,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.03,
         'Cash Flow Volatility': 0.10,
         'Gross Burn Rate': 15000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 0,
     },
     'Residential Construction Firms': {
@@ -1538,7 +1538,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.02,
         'Cash Flow Volatility': 0.18,
         'Gross Burn Rate': 18000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 1,
     },
     'Residential Real Estate Agencies': {
@@ -1549,7 +1549,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.03,
         'Cash Flow Volatility': 0.10,
         'Gross Burn Rate': 15000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 0,
     },
     'Resorts and Spas': {
@@ -1560,7 +1560,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.02,
         'Cash Flow Volatility': 0.25,
         'Gross Burn Rate': 20000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 1,
     },
     'Restaurants and Cafes': {
@@ -1571,7 +1571,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.02,
         'Cash Flow Volatility': 0.25,
         'Gross Burn Rate': 20000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 1,
     },
     'Ride-Sharing and Delivery Apps': {
@@ -1582,7 +1582,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.04,
         'Cash Flow Volatility': 0.15,
         'Gross Burn Rate': 20000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 0,
     },
     'Roofing and Plumbing Contractors': {
@@ -1593,7 +1593,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.02,
         'Cash Flow Volatility': 0.18,
         'Gross Burn Rate': 18000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 1,
     },
     'SaaS Platforms (Software as a Service)': {
@@ -1604,7 +1604,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.04,
         'Cash Flow Volatility': 0.15,
         'Gross Burn Rate': 20000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 0,
     },
     'Sand and Gravel Extraction': {
@@ -1615,7 +1615,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.02,
         'Cash Flow Volatility': 0.25,
         'Gross Burn Rate': 20000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 1,
     },
     'Schools and Universities (Private or Charter)': {
@@ -1626,7 +1626,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.03,
         'Cash Flow Volatility': 0.10,
         'Gross Burn Rate': 15000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 0,
     },
     'Shipping Companies': {
@@ -1637,7 +1637,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.03,
         'Cash Flow Volatility': 0.10,
         'Gross Burn Rate': 15000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 0,
     },
     'Software Development': {
@@ -1648,7 +1648,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.04,
         'Cash Flow Volatility': 0.15,
         'Gross Burn Rate': 20000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 0,
     },
     'Solar Panel Installers': {
@@ -1659,7 +1659,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.04,
         'Cash Flow Volatility': 0.15,
         'Gross Burn Rate': 20000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 0,
     },
     'Specialty Retailers (e.g., Electronics, Books, Home Décor)': {
@@ -1670,7 +1670,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.02,
         'Cash Flow Volatility': 0.18,
         'Gross Burn Rate': 18000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 1,
     },
     'Sports Arenas and Teams': {
@@ -1681,7 +1681,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.02,
         'Cash Flow Volatility': 0.25,
         'Gross Burn Rate': 20000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 1,
     },
     'Supply Chain Management Solutions': {
@@ -1692,7 +1692,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.03,
         'Cash Flow Volatility': 0.10,
         'Gross Burn Rate': 15000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 0,
     },
     'Sustainable Packaging Providers': {
@@ -1703,7 +1703,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.04,
         'Cash Flow Volatility': 0.15,
         'Gross Burn Rate': 20000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 0,
     },
     'Tax Preparation Services': {
@@ -1714,7 +1714,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.03,
         'Cash Flow Volatility': 0.10,
         'Gross Burn Rate': 15000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 0,
     },
     'Telecommunications Equipment Suppliers': {
@@ -1725,7 +1725,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.02,
         'Cash Flow Volatility': 0.18,
         'Gross Burn Rate': 18000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 1,
     },
     'Textile and Apparel Manufacturing': {
@@ -1736,7 +1736,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.02,
         'Cash Flow Volatility': 0.18,
         'Gross Burn Rate': 18000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 1,
     },
     'Tour Operators': {
@@ -1747,7 +1747,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.02,
         'Cash Flow Volatility': 0.25,
         'Gross Burn Rate': 20000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 1,
     },
     'Towing Services': {
@@ -1758,7 +1758,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.02,
         'Cash Flow Volatility': 0.18,
         'Gross Burn Rate': 18000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 1,
     },
     'Trade Shows': {
@@ -1769,7 +1769,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.02,
         'Cash Flow Volatility': 0.25,
         'Gross Burn Rate': 20000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 1,
     },
     'Travel Agencies': {
@@ -1780,7 +1780,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.02,
         'Cash Flow Volatility': 0.25,
         'Gross Burn Rate': 20000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 1,
     },
     'Tutoring Services (In-person and Online)': {
@@ -1791,7 +1791,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.03,
         'Cash Flow Volatility': 0.10,
         'Gross Burn Rate': 15000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 0,
     },
     'Vacation Rentals (e.g., Airbnb Operators)': {
@@ -1802,7 +1802,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.04,
         'Cash Flow Volatility': 0.15,
         'Gross Burn Rate': 20000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 0,
     },
     'Videography and Photography Studios': {
@@ -1813,7 +1813,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.02,
         'Cash Flow Volatility': 0.25,
         'Gross Burn Rate': 20000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 1,
     },
     'Vocational and Technical Training Centres': {
@@ -1824,7 +1824,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.03,
         'Cash Flow Volatility': 0.10,
         'Gross Burn Rate': 15000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 0,
     },
     'Warehouse and Distribution Centres': {
@@ -1835,7 +1835,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.03,
         'Cash Flow Volatility': 0.10,
         'Gross Burn Rate': 15000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 0,
     },
     'Waste Management Services': {
@@ -1846,7 +1846,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.03,
         'Cash Flow Volatility': 0.10,
         'Gross Burn Rate': 15000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 0,
     },
     'Water Supply and Treatment Services': {
@@ -1857,7 +1857,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.03,
         'Cash Flow Volatility': 0.10,
         'Gross Burn Rate': 15000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 0,
     },
     'Water Treatment Facilities': {
@@ -1868,7 +1868,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.03,
         'Cash Flow Volatility': 0.10,
         'Gross Burn Rate': 15000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 0,
     },
     'Web and Mobile App Development': {
@@ -1879,7 +1879,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.04,
         'Cash Flow Volatility': 0.15,
         'Gross Burn Rate': 20000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 0,
     },
     'Weddings and Private Parties': {
@@ -1890,7 +1890,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.02,
         'Cash Flow Volatility': 0.25,
         'Gross Burn Rate': 20000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 1,
     },
     'Wellness Centres': {
@@ -1901,7 +1901,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.02,
         'Cash Flow Volatility': 0.25,
         'Gross Burn Rate': 20000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 1,
     },
     'Wind Farm Operators': {
@@ -1912,7 +1912,7 @@ industry_thresholds = dict(sorted({
         'Revenue Growth Rate': 0.04,
         'Cash Flow Volatility': 0.15,
         'Gross Burn Rate': 20000,
-        'Directors Score': 70,
+        'Directors Score': 65,
         'Sector Risk': 0,
     },
 }.items()))
