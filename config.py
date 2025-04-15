@@ -198,6 +198,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 20000,
         'Directors Score': 65,
         'Sector Risk': 1,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Accounting and Auditing Firms': {
         'Debt Service Coverage Ratio': 1.50,
@@ -209,6 +211,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 15000,
         'Directors Score': 65,
         'Sector Risk': 0,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Advertising Agencies': {
         'Debt Service Coverage Ratio': 1.20,
@@ -220,6 +224,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 20000,
         'Directors Score': 65,
         'Sector Risk': 1,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Agricultural Equipment Suppliers': {
         'Debt Service Coverage Ratio': 1.30,
@@ -231,6 +237,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 18000,
         'Directors Score': 65,
         'Sector Risk': 1,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Agricultural Research Centres': {
         'Debt Service Coverage Ratio': 1.50,
@@ -242,6 +250,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 15000,
         'Directors Score': 65,
         'Sector Risk': 0,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Allied Health Services (e.g., Physiotherapy, Speech Therapy, Occupational Therapy)': {
         'Debt Service Coverage Ratio': 1.50,
@@ -253,6 +263,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 15000,
         'Directors Score': 65,
         'Sector Risk': 0,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Amusement Parks and Theme Parks': {
         'Debt Service Coverage Ratio': 1.20,
@@ -264,6 +276,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 20000,
         'Directors Score': 65,
         'Sector Risk': 1,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Architectural Design Firms': {
         'Debt Service Coverage Ratio': 1.50,
@@ -275,6 +289,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 15000,
         'Directors Score': 65,
         'Sector Risk': 0,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Art Galleries and Studios': {
         'Debt Service Coverage Ratio': 1.20,
@@ -286,6 +302,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 20000,
         'Directors Score': 65,
         'Sector Risk': 1,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Artisan Manufacturing (e.g., Bespoke Furniture)': {
         'Debt Service Coverage Ratio': 1.30,
@@ -297,6 +315,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 18000,
         'Directors Score': 65,
         'Sector Risk': 1,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Auto Detailing and Car Wash Services': {
         'Debt Service Coverage Ratio': 1.30,
@@ -308,6 +328,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 18000,
         'Directors Score': 65,
         'Sector Risk': 1,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Auto Repair Shops': {
         'Debt Service Coverage Ratio': 1.30,
@@ -319,6 +341,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 18000,
         'Directors Score': 65,
         'Sector Risk': 1,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Automotive Parts Retailers': {
         'Debt Service Coverage Ratio': 1.30,
@@ -330,6 +354,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 18000,
         'Directors Score': 65,
         'Sector Risk': 1,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Bars, Pubs, and Nightclubs': {
         'Debt Service Coverage Ratio': 1.20,
@@ -341,6 +367,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 20000,
         'Directors Score': 65,
         'Sector Risk': 1,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Beauty Salons and Spas': {
         'Debt Service Coverage Ratio': 1.20,
@@ -352,6 +380,10 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 20000,
         'Directors Score': 65,
         'Sector Risk': 1,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Bed and Breakfasts': {
         'Debt Service Coverage Ratio': 1.20,
@@ -363,6 +395,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 20000,
         'Directors Score': 65,
         'Sector Risk': 1,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Biotechnology Firms': {
         'Debt Service Coverage Ratio': 1.40,
@@ -374,6 +408,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 20000,
         'Directors Score': 65,
         'Sector Risk': 0,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Biotechnology Research Firms': {
         'Debt Service Coverage Ratio': 1.40,
@@ -385,6 +421,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 20000,
         'Directors Score': 65,
         'Sector Risk': 0,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Blockchain Solutions': {
         'Debt Service Coverage Ratio': 1.20,
@@ -396,6 +434,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 20000,
         'Directors Score': 65,
         'Sector Risk': 1,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Bowling Alleys and Arcades': {
         'Debt Service Coverage Ratio': 1.20,
@@ -407,6 +447,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 20000,
         'Directors Score': 65,
         'Sector Risk': 1,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Branding Agencies': {
         'Debt Service Coverage Ratio': 1.20,
@@ -418,6 +460,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 20000,
         'Directors Score': 65,
         'Sector Risk': 1,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Brick-and-Mortar Retail Stores': {
         'Debt Service Coverage Ratio': 1.30,
@@ -429,6 +473,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 18000,
         'Directors Score': 65,
         'Sector Risk': 1,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Business and Management Consulting': {
         'Debt Service Coverage Ratio': 1.50,
@@ -440,6 +486,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 15000,
         'Directors Score': 65,
         'Sector Risk': 0,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Cable and Satellite TV Providers': {
         'Debt Service Coverage Ratio': 1.30,
@@ -451,6 +499,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 18000,
         'Directors Score': 65,
         'Sector Risk': 1,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Car Dealerships': {
         'Debt Service Coverage Ratio': 1.30,
@@ -462,6 +512,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 18000,
         'Directors Score': 65,
         'Sector Risk': 1,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Car Rental Agencies': {
         'Debt Service Coverage Ratio': 1.30,
@@ -473,6 +525,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 18000,
         'Directors Score': 65,
         'Sector Risk': 1,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Carbon Offset Providers': {
         'Debt Service Coverage Ratio': 1.40,
@@ -484,6 +538,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 20000,
         'Directors Score': 65,
         'Sector Risk': 0,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Casinos and Gambling Establishments': {
         'Debt Service Coverage Ratio': 1.20,
@@ -495,6 +551,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 20000,
         'Directors Score': 65,
         'Sector Risk': 1,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Cloud Computing Providers': {
         'Debt Service Coverage Ratio': 1.40,
@@ -506,6 +564,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 20000,
         'Directors Score': 65,
         'Sector Risk': 0,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Commercial Construction Firms': {
         'Debt Service Coverage Ratio': 1.30,
@@ -517,6 +577,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 18000,
         'Directors Score': 65,
         'Sector Risk': 1,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Commercial Real Estate Services': {
         'Debt Service Coverage Ratio': 1.50,
@@ -528,6 +590,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 15000,
         'Directors Score': 65,
         'Sector Risk': 0,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Concert Venues and Music Festivals': {
         'Debt Service Coverage Ratio': 1.20,
@@ -539,6 +603,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 20000,
         'Directors Score': 65,
         'Sector Risk': 1,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Concerts and Festivals': {
         'Debt Service Coverage Ratio': 1.20,
@@ -550,6 +616,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 20000,
         'Directors Score': 65,
         'Sector Risk': 1,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Convenience Stores': {
         'Debt Service Coverage Ratio': 1.50,
@@ -561,6 +629,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 15000,
         'Directors Score': 65,
         'Sector Risk': 0,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Corporate Events': {
         'Debt Service Coverage Ratio': 1.20,
@@ -572,6 +642,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 20000,
         'Directors Score': 65,
         'Sector Risk': 1,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Corporate and Professional Training Providers': {
         'Debt Service Coverage Ratio': 1.50,
@@ -583,6 +655,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 15000,
         'Directors Score': 65,
         'Sector Risk': 0,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Courier and Delivery Services': {
         'Debt Service Coverage Ratio': 1.50,
@@ -594,6 +668,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 15000,
         'Directors Score': 65,
         'Sector Risk': 0,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Crop Production Farms': {
         'Debt Service Coverage Ratio': 1.30,
@@ -605,6 +681,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 18000,
         'Directors Score': 65,
         'Sector Risk': 1,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Cultural Festivals and Events': {
         'Debt Service Coverage Ratio': 1.20,
@@ -616,6 +694,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 20000,
         'Directors Score': 65,
         'Sector Risk': 1,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Cybersecurity Firms': {
         'Debt Service Coverage Ratio': 1.50,
@@ -627,6 +707,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 15000,
         'Directors Score': 65,
         'Sector Risk': 0,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Dairy and Poultry Farms': {
         'Debt Service Coverage Ratio': 1.30,
@@ -638,6 +720,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 18000,
         'Directors Score': 65,
         'Sector Risk': 1,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Data Analytics and Big Data Solutions': {
         'Debt Service Coverage Ratio': 1.40,
@@ -649,6 +733,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 20000,
         'Directors Score': 65,
         'Sector Risk': 0,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Defence Contractors': {
         'Debt Service Coverage Ratio': 1.50,
@@ -660,6 +746,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 15000,
         'Directors Score': 65,
         'Sector Risk': 0,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Department Stores': {
         'Debt Service Coverage Ratio': 1.20,
@@ -671,6 +759,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 20000,
         'Directors Score': 65,
         'Sector Risk': 1,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Diagnostic Labs': {
         'Debt Service Coverage Ratio': 1.50,
@@ -682,6 +772,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 15000,
         'Directors Score': 65,
         'Sector Risk': 0,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Dropshipping Businesses': {
         'Debt Service Coverage Ratio': 1.20,
@@ -693,6 +785,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 20000,
         'Directors Score': 65,
         'Sector Risk': 1,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'E-Commerce Retailers': {
         'Debt Service Coverage Ratio': 1.20,
@@ -704,6 +798,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 20000,
         'Directors Score': 65,
         'Sector Risk': 1,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Electric Power Generation and Distribution': {
         'Debt Service Coverage Ratio': 1.50,
@@ -715,6 +811,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 15000,
         'Directors Score': 65,
         'Sector Risk': 0,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Electrical Contractors': {
         'Debt Service Coverage Ratio': 1.30,
@@ -726,6 +824,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 18000,
         'Directors Score': 65,
         'Sector Risk': 1,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Energy Efficiency Consulting': {
         'Debt Service Coverage Ratio': 1.40,
@@ -737,6 +837,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 20000,
         'Directors Score': 65,
         'Sector Risk': 0,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Engineering Services': {
         'Debt Service Coverage Ratio': 1.50,
@@ -748,6 +850,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 15000,
         'Directors Score': 65,
         'Sector Risk': 0,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Environmental Consulting Firms': {
         'Debt Service Coverage Ratio': 1.50,
@@ -759,6 +863,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 15000,
         'Directors Score': 65,
         'Sector Risk': 0,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Environmental Testing Laboratories': {
         'Debt Service Coverage Ratio': 1.50,
@@ -770,6 +876,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 15000,
         'Directors Score': 65,
         'Sector Risk': 0,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Event Planning and Management Firms': {
         'Debt Service Coverage Ratio': 1.20,
@@ -781,6 +889,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 20000,
         'Directors Score': 65,
         'Sector Risk': 1,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Exam Preparation Services': {
         'Debt Service Coverage Ratio': 1.50,
@@ -792,6 +902,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 15000,
         'Directors Score': 65,
         'Sector Risk': 0,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Fashion and Apparel Stores': {
         'Debt Service Coverage Ratio': 1.20,
@@ -803,6 +915,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 20000,
         'Directors Score': 65,
         'Sector Risk': 1,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Financial Planning and Advisory Firms': {
         'Debt Service Coverage Ratio': 1.50,
@@ -814,6 +928,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 15000,
         'Directors Score': 65,
         'Sector Risk': 0,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Fintech Companies (Digital Payments, Peer-to-Peer Lending, Crowdfunding Platforms)': {
         'Debt Service Coverage Ratio': 1.40,
@@ -825,6 +941,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 20000,
         'Directors Score': 65,
         'Sector Risk': 0,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Fisheries and Aquaculture': {
         'Debt Service Coverage Ratio': 1.30,
@@ -836,6 +954,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 18000,
         'Directors Score': 65,
         'Sector Risk': 1,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Fitness Centres and Gyms': {
         'Debt Service Coverage Ratio': 1.20,
@@ -847,6 +967,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 20000,
         'Directors Score': 65,
         'Sector Risk': 1,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Food Processing Plants': {
         'Debt Service Coverage Ratio': 1.30,
@@ -858,6 +980,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 18000,
         'Directors Score': 65,
         'Sector Risk': 1,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Food and Beverage Production': {
         'Debt Service Coverage Ratio': 1.50,
@@ -869,6 +993,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 15000,
         'Directors Score': 65,
         'Sector Risk': 0,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Freight and Logistics Providers': {
         'Debt Service Coverage Ratio': 1.50,
@@ -880,6 +1006,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 15000,
         'Directors Score': 65,
         'Sector Risk': 0,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Furniture and Home Goods Production': {
         'Debt Service Coverage Ratio': 1.30,
@@ -891,6 +1019,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 18000,
         'Directors Score': 65,
         'Sector Risk': 1,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Government Contractors': {
         'Debt Service Coverage Ratio': 1.50,
@@ -902,6 +1032,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 15000,
         'Directors Score': 65,
         'Sector Risk': 0,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Graphic Design Firms': {
         'Debt Service Coverage Ratio': 1.20,
@@ -913,6 +1045,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 20000,
         'Directors Score': 65,
         'Sector Risk': 1,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Greenhouses and Nurseries': {
         'Debt Service Coverage Ratio': 1.30,
@@ -924,6 +1058,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 18000,
         'Directors Score': 65,
         'Sector Risk': 1,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Grocery Stores and Supermarkets': {
         'Debt Service Coverage Ratio': 1.50,
@@ -935,6 +1071,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 15000,
         'Directors Score': 65,
         'Sector Risk': 0,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'HR Services and Outsourcing': {
         'Debt Service Coverage Ratio': 1.50,
@@ -946,6 +1084,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 15000,
         'Directors Score': 65,
         'Sector Risk': 0,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'HVAC Installation and Repair Services': {
         'Debt Service Coverage Ratio': 1.30,
@@ -957,6 +1097,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 18000,
         'Directors Score': 65,
         'Sector Risk': 1,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Hair Removal Services': {
         'Debt Service Coverage Ratio': 1.20,
@@ -968,6 +1110,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 20000,
         'Directors Score': 65,
         'Sector Risk': 1,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Health IT Solutions': {
         'Debt Service Coverage Ratio': 1.40,
@@ -979,6 +1123,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 20000,
         'Directors Score': 65,
         'Sector Risk': 0,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Health Insurance Providers': {
         'Debt Service Coverage Ratio': 1.50,
@@ -990,6 +1136,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 15000,
         'Directors Score': 65,
         'Sector Risk': 0,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Heavy Manufacturing (e.g., Steel, Machinery)': {
         'Debt Service Coverage Ratio': 1.30,
@@ -1001,6 +1149,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 18000,
         'Directors Score': 65,
         'Sector Risk': 1,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Home Renovation and Remodeling Services': {
         'Debt Service Coverage Ratio': 1.30,
@@ -1012,6 +1162,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 18000,
         'Directors Score': 65,
         'Sector Risk': 1,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Hospitals': {
         'Debt Service Coverage Ratio': 1.50,
@@ -1023,6 +1175,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 15000,
         'Directors Score': 65,
         'Sector Risk': 0,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Hotels and Motels': {
         'Debt Service Coverage Ratio': 1.20,
@@ -1034,6 +1188,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 20000,
         'Directors Score': 65,
         'Sector Risk': 1,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Household Products Manufacturing': {
         'Debt Service Coverage Ratio': 1.50,
@@ -1045,6 +1201,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 15000,
         'Directors Score': 65,
         'Sector Risk': 0,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'IT Consulting': {
         'Debt Service Coverage Ratio': 1.50,
@@ -1056,6 +1214,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 15000,
         'Directors Score': 65,
         'Sector Risk': 0,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'IT Services and Support': {
         'Debt Service Coverage Ratio': 1.50,
@@ -1067,6 +1227,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 15000,
         'Directors Score': 65,
         'Sector Risk': 0,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Internet Service Providers': {
         'Debt Service Coverage Ratio': 1.30,
@@ -1078,6 +1240,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 18000,
         'Directors Score': 65,
         'Sector Risk': 1,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Language Schools': {
         'Debt Service Coverage Ratio': 1.50,
@@ -1089,6 +1253,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 15000,
         'Directors Score': 65,
         'Sector Risk': 0,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Legal Services (Law Firms)': {
         'Debt Service Coverage Ratio': 1.50,
@@ -1100,6 +1266,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 15000,
         'Directors Score': 65,
         'Sector Risk': 0,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Livestock Farms': {
         'Debt Service Coverage Ratio': 1.30,
@@ -1111,6 +1279,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 18000,
         'Directors Score': 65,
         'Sector Risk': 1,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Marketing and Advertising Agencies': {
         'Debt Service Coverage Ratio': 1.40,
@@ -1122,6 +1292,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 20000,
         'Directors Score': 65,
         'Sector Risk': 0,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Massage Therapy Studios': {
         'Debt Service Coverage Ratio': 1.20,
@@ -1133,6 +1305,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 20000,
         'Directors Score': 65,
         'Sector Risk': 1,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Media Buying Agencies': {
         'Debt Service Coverage Ratio': 1.20,
@@ -1144,6 +1318,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 20000,
         'Directors Score': 65,
         'Sector Risk': 1,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Medical Device Manufacturers': {
         'Debt Service Coverage Ratio': 1.40,
@@ -1155,6 +1331,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 20000,
         'Directors Score': 65,
         'Sector Risk': 0,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Medical Practices (e.g., GPs, Clinics, Dentists)': {
         'Debt Service Coverage Ratio': 1.50,
@@ -1166,6 +1344,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 15000,
         'Directors Score': 65,
         'Sector Risk': 0,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Metal Fabrication': {
         'Debt Service Coverage Ratio': 1.30,
@@ -1177,6 +1357,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 18000,
         'Directors Score': 65,
         'Sector Risk': 1,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Mineral Mining Companies': {
         'Debt Service Coverage Ratio': 1.20,
@@ -1188,6 +1370,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 20000,
         'Directors Score': 65,
         'Sector Risk': 1,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Movie Theatres and Cinemas': {
         'Debt Service Coverage Ratio': 1.20,
@@ -1199,6 +1383,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 20000,
         'Directors Score': 65,
         'Sector Risk': 1,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Museums and Exhibition Spaces': {
         'Debt Service Coverage Ratio': 1.20,
@@ -1210,6 +1396,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 20000,
         'Directors Score': 65,
         'Sector Risk': 1,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Natural Gas Distribution': {
         'Debt Service Coverage Ratio': 1.50,
@@ -1221,6 +1409,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 15000,
         'Directors Score': 65,
         'Sector Risk': 0,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Network Infrastructure Services': {
         'Debt Service Coverage Ratio': 1.50,
@@ -1232,6 +1422,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 15000,
         'Directors Score': 65,
         'Sector Risk': 0,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Nursing Homes and Elder Care Facilities': {
         'Debt Service Coverage Ratio': 1.50,
@@ -1243,6 +1435,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 15000,
         'Directors Score': 65,
         'Sector Risk': 0,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Oil and Gas Drilling Firms': {
         'Debt Service Coverage Ratio': 1.20,
@@ -1254,6 +1448,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 20000,
         'Directors Score': 65,
         'Sector Risk': 1,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Online Education Platforms': {
         'Debt Service Coverage Ratio': 1.40,
@@ -1265,6 +1461,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 20000,
         'Directors Score': 65,
         'Sector Risk': 0,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Organic Farming Operations': {
         'Debt Service Coverage Ratio': 1.30,
@@ -1276,6 +1474,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 18000,
         'Directors Score': 65,
         'Sector Risk': 1,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'PR and Communications Firms': {
         'Debt Service Coverage Ratio': 1.40,
@@ -1287,6 +1487,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 20000,
         'Directors Score': 65,
         'Sector Risk': 0,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Performing Arts Companies': {
         'Debt Service Coverage Ratio': 1.20,
@@ -1298,6 +1500,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 20000,
         'Directors Score': 65,
         'Sector Risk': 1,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Personal Care Product Suppliers': {
         'Debt Service Coverage Ratio': 1.50,
@@ -1309,6 +1513,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 15000,
         'Directors Score': 65,
         'Sector Risk': 0,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Personal Training Services': {
         'Debt Service Coverage Ratio': 1.20,
@@ -1320,6 +1526,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 20000,
         'Directors Score': 65,
         'Sector Risk': 1,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Pet Food and Supplies': {
         'Debt Service Coverage Ratio': 1.50,
@@ -1331,6 +1539,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 15000,
         'Directors Score': 65,
         'Sector Risk': 0,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Pharmaceutical Research Labs': {
         'Debt Service Coverage Ratio': 1.40,
@@ -1342,6 +1552,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 20000,
         'Directors Score': 65,
         'Sector Risk': 0,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Pharmacies': {
         'Debt Service Coverage Ratio': 1.50,
@@ -1353,6 +1565,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 15000,
         'Directors Score': 65,
         'Sector Risk': 0,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Plastic and Chemical Manufacturing': {
         'Debt Service Coverage Ratio': 1.30,
@@ -1364,6 +1578,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 18000,
         'Directors Score': 65,
         'Sector Risk': 1,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Pollution Control Services': {
         'Debt Service Coverage Ratio': 1.50,
@@ -1375,6 +1591,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 15000,
         'Directors Score': 65,
         'Sector Risk': 0,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Pop-up Shops': {
         'Debt Service Coverage Ratio': 1.20,
@@ -1386,6 +1604,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 20000,
         'Directors Score': 65,
         'Sector Risk': 1,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Print and Digital Media Companies': {
         'Debt Service Coverage Ratio': 1.20,
@@ -1397,6 +1617,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 20000,
         'Directors Score': 65,
         'Sector Risk': 1,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Product Testing Laboratories': {
         'Debt Service Coverage Ratio': 1.50,
@@ -1408,6 +1630,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 15000,
         'Directors Score': 65,
         'Sector Risk': 0,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Property Management Firms': {
         'Debt Service Coverage Ratio': 1.50,
@@ -1419,6 +1643,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 15000,
         'Directors Score': 65,
         'Sector Risk': 0,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Public Relations Agencies': {
         'Debt Service Coverage Ratio': 1.20,
@@ -1430,6 +1656,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 20000,
         'Directors Score': 65,
         'Sector Risk': 1,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Public Safety Services (e.g., Fire, Police Support Services)': {
         'Debt Service Coverage Ratio': 1.50,
@@ -1441,6 +1669,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 15000,
         'Directors Score': 65,
         'Sector Risk': 0,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Public Transportation Operators': {
         'Debt Service Coverage Ratio': 1.50,
@@ -1452,6 +1682,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 15000,
         'Directors Score': 65,
         'Sector Risk': 0,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Public Utilities': {
         'Debt Service Coverage Ratio': 1.50,
@@ -1463,6 +1695,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 15000,
         'Directors Score': 65,
         'Sector Risk': 0,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Quarrying Operations': {
         'Debt Service Coverage Ratio': 1.20,
@@ -1474,6 +1708,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 20000,
         'Directors Score': 65,
         'Sector Risk': 1,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Real Estate Appraisal and Valuation Services': {
         'Debt Service Coverage Ratio': 1.50,
@@ -1485,6 +1721,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 15000,
         'Directors Score': 65,
         'Sector Risk': 0,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Real Estate Investment Trusts (REITs)': {
         'Debt Service Coverage Ratio': 1.50,
@@ -1496,6 +1734,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 15000,
         'Directors Score': 65,
         'Sector Risk': 0,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Recycling and Composting Providers': {
         'Debt Service Coverage Ratio': 1.50,
@@ -1507,6 +1747,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 15000,
         'Directors Score': 65,
         'Sector Risk': 0,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Renewable Energy Providers (Solar, Wind, Hydro)': {
         'Debt Service Coverage Ratio': 1.40,
@@ -1518,6 +1760,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 20000,
         'Directors Score': 65,
         'Sector Risk': 0,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Research Institutions': {
         'Debt Service Coverage Ratio': 1.50,
@@ -1529,6 +1773,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 15000,
         'Directors Score': 65,
         'Sector Risk': 0,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Residential Construction Firms': {
         'Debt Service Coverage Ratio': 1.30,
@@ -1540,6 +1786,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 18000,
         'Directors Score': 65,
         'Sector Risk': 1,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Residential Real Estate Agencies': {
         'Debt Service Coverage Ratio': 1.50,
@@ -1551,6 +1799,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 15000,
         'Directors Score': 65,
         'Sector Risk': 0,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Resorts and Spas': {
         'Debt Service Coverage Ratio': 1.20,
@@ -1562,6 +1812,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 20000,
         'Directors Score': 65,
         'Sector Risk': 1,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Restaurants and Cafes': {
         'Debt Service Coverage Ratio': 1.20,
@@ -1573,6 +1825,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 20000,
         'Directors Score': 65,
         'Sector Risk': 1,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Ride-Sharing and Delivery Apps': {
         'Debt Service Coverage Ratio': 1.40,
@@ -1584,6 +1838,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 20000,
         'Directors Score': 65,
         'Sector Risk': 0,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Roofing and Plumbing Contractors': {
         'Debt Service Coverage Ratio': 1.30,
@@ -1595,6 +1851,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 18000,
         'Directors Score': 65,
         'Sector Risk': 1,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'SaaS Platforms (Software as a Service)': {
         'Debt Service Coverage Ratio': 1.40,
@@ -1606,6 +1864,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 20000,
         'Directors Score': 65,
         'Sector Risk': 0,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Sand and Gravel Extraction': {
         'Debt Service Coverage Ratio': 1.20,
@@ -1617,6 +1877,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 20000,
         'Directors Score': 65,
         'Sector Risk': 1,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Schools and Universities (Private or Charter)': {
         'Debt Service Coverage Ratio': 1.50,
@@ -1628,6 +1890,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 15000,
         'Directors Score': 65,
         'Sector Risk': 0,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Shipping Companies': {
         'Debt Service Coverage Ratio': 1.50,
@@ -1639,6 +1903,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 15000,
         'Directors Score': 65,
         'Sector Risk': 0,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Software Development': {
         'Debt Service Coverage Ratio': 1.40,
@@ -1650,6 +1916,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 20000,
         'Directors Score': 65,
         'Sector Risk': 0,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Solar Panel Installers': {
         'Debt Service Coverage Ratio': 1.40,
@@ -1661,6 +1929,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 20000,
         'Directors Score': 65,
         'Sector Risk': 0,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Specialty Retailers (e.g., Electronics, Books, Home Décor)': {
         'Debt Service Coverage Ratio': 1.30,
@@ -1672,6 +1942,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 18000,
         'Directors Score': 65,
         'Sector Risk': 1,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Sports Arenas and Teams': {
         'Debt Service Coverage Ratio': 1.20,
@@ -1683,6 +1955,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 20000,
         'Directors Score': 65,
         'Sector Risk': 1,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Supply Chain Management Solutions': {
         'Debt Service Coverage Ratio': 1.50,
@@ -1694,6 +1968,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 15000,
         'Directors Score': 65,
         'Sector Risk': 0,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Sustainable Packaging Providers': {
         'Debt Service Coverage Ratio': 1.40,
@@ -1705,6 +1981,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 20000,
         'Directors Score': 65,
         'Sector Risk': 0,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Tax Preparation Services': {
         'Debt Service Coverage Ratio': 1.50,
@@ -1716,6 +1994,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 15000,
         'Directors Score': 65,
         'Sector Risk': 0,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Telecommunications Equipment Suppliers': {
         'Debt Service Coverage Ratio': 1.30,
@@ -1727,6 +2007,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 18000,
         'Directors Score': 65,
         'Sector Risk': 1,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Textile and Apparel Manufacturing': {
         'Debt Service Coverage Ratio': 1.30,
@@ -1738,6 +2020,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 18000,
         'Directors Score': 65,
         'Sector Risk': 1,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Tour Operators': {
         'Debt Service Coverage Ratio': 1.20,
@@ -1749,6 +2033,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 20000,
         'Directors Score': 65,
         'Sector Risk': 1,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Towing Services': {
         'Debt Service Coverage Ratio': 1.30,
@@ -1760,6 +2046,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 18000,
         'Directors Score': 65,
         'Sector Risk': 1,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Trade Shows': {
         'Debt Service Coverage Ratio': 1.20,
@@ -1771,6 +2059,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 20000,
         'Directors Score': 65,
         'Sector Risk': 1,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Travel Agencies': {
         'Debt Service Coverage Ratio': 1.20,
@@ -1782,6 +2072,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 20000,
         'Directors Score': 65,
         'Sector Risk': 1,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Tutoring Services (In-person and Online)': {
         'Debt Service Coverage Ratio': 1.50,
@@ -1793,6 +2085,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 15000,
         'Directors Score': 65,
         'Sector Risk': 0,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Vacation Rentals (e.g., Airbnb Operators)': {
         'Debt Service Coverage Ratio': 1.40,
@@ -1804,6 +2098,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 20000,
         'Directors Score': 65,
         'Sector Risk': 0,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Videography and Photography Studios': {
         'Debt Service Coverage Ratio': 1.20,
@@ -1815,6 +2111,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 20000,
         'Directors Score': 65,
         'Sector Risk': 1,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Vocational and Technical Training Centres': {
         'Debt Service Coverage Ratio': 1.50,
@@ -1826,6 +2124,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 15000,
         'Directors Score': 65,
         'Sector Risk': 0,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Warehouse and Distribution Centres': {
         'Debt Service Coverage Ratio': 1.50,
@@ -1837,6 +2137,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 15000,
         'Directors Score': 65,
         'Sector Risk': 0,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Waste Management Services': {
         'Debt Service Coverage Ratio': 1.50,
@@ -1848,6 +2150,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 15000,
         'Directors Score': 65,
         'Sector Risk': 0,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Water Supply and Treatment Services': {
         'Debt Service Coverage Ratio': 1.50,
@@ -1859,6 +2163,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 15000,
         'Directors Score': 65,
         'Sector Risk': 0,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Water Treatment Facilities': {
         'Debt Service Coverage Ratio': 1.50,
@@ -1870,6 +2176,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 15000,
         'Directors Score': 65,
         'Sector Risk': 0,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Web and Mobile App Development': {
         'Debt Service Coverage Ratio': 1.40,
@@ -1881,6 +2189,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 20000,
         'Directors Score': 65,
         'Sector Risk': 0,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Weddings and Private Parties': {
         'Debt Service Coverage Ratio': 1.20,
@@ -1892,6 +2202,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 20000,
         'Directors Score': 65,
         'Sector Risk': 1,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Wellness Centres': {
         'Debt Service Coverage Ratio': 1.20,
@@ -1903,6 +2215,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 20000,
         'Directors Score': 65,
         'Sector Risk': 1,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
     'Wind Farm Operators': {
         'Debt Service Coverage Ratio': 1.40,
@@ -1914,6 +2228,8 @@ industry_thresholds = dict(sorted({
         'Gross Burn Rate': 20000,
         'Directors Score': 65,
         'Sector Risk': 0,
+        'Average Month-End Balance': 750,
+        'Negative Days': 5,
     },
 }.items()))
 
@@ -1927,7 +2243,9 @@ weights = {
     'Gross Burn Rate': 3,               
     'Months': 5,                       
     'Directors Score': 15,
-    'Sector Risk': 8
+    'Sector Risk': 8,
+    'Average Month-End Balance': 6,
+    'Negative Days': 3
 }
 
 def calculate_risk(requested_loan, monthly_average_revenue):
