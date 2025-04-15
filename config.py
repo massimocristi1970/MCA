@@ -48,7 +48,7 @@ industry_thresholds = dict(sorted({
     'Manufacturing': {
         'Debt Service Coverage Ratio': 1.4, 
         'Net Income': 0, 
-        'Operating Margin': 0.6,
+        'Operating Margin': 0.08,
         'Expense-to-Revenue Ratio': 1.1,
         'Revenue Growth Rate': 0.02,
         'Cash Flow Volatility': 0.18,
@@ -62,7 +62,7 @@ industry_thresholds = dict(sorted({
         'Operating Margin': 0.06,
         'Expense-to-Revenue Ratio': 1.20,
         'Revenue Growth Rate': 0.04,
-        'Cash Flow Volatility': 0.4,
+        'Cash Flow Volatility': 0.25,
         'Gross Burn Rate': 20000,
         'Directors Score': 70,
         'Sector Risk': 0
@@ -115,7 +115,7 @@ industry_thresholds = dict(sorted({
         'Debt Service Coverage Ratio': 1.5, 
         'Net Income': 0, 
         'Operating Margin': 0.05,
-        'Expense-to-Revenue Ratio': 1.3,
+        'Expense-to-Revenue Ratio': 1.2,
         'Revenue Growth Rate': 0.02,
         'Cash Flow Volatility': 0.12,
         'Gross Burn Rate': 15000,
@@ -180,7 +180,7 @@ industry_thresholds = dict(sorted({
     'Hospitality and Tourism': {
         'Debt Service Coverage Ratio': 1.4, 
         'Net Income': 0, 
-        'Operating Margin': 0.4,
+        'Operating Margin': 0.06,
         'Expense-to-Revenue Ratio': 1.1,
         'Revenue Growth Rate': 0.02,
         'Cash Flow Volatility': 0.22,
@@ -191,7 +191,7 @@ industry_thresholds = dict(sorted({
     'Entertainment and Leisure': {
         'Debt Service Coverage Ratio': 1.2, 
         'Net Income': 0, 
-        'Operating Margin': 0.4,
+        'Operating Margin': 0.05,
         'Expense-to-Revenue Ratio': 1.1,
         'Revenue Growth Rate': 0.01,
         'Cash Flow Volatility': 0.25,
@@ -202,7 +202,7 @@ industry_thresholds = dict(sorted({
     'Construction': {
         'Debt Service Coverage Ratio': 1.3, 
         'Net Income': 0, 
-        'Operating Margin': 0.5,
+        'Operating Margin': 0.08,
         'Expense-to-Revenue Ratio': 1.1,
         'Revenue Growth Rate': 0.02,
         'Cash Flow Volatility': 0.18,
@@ -213,7 +213,7 @@ industry_thresholds = dict(sorted({
     'Automotive': {
         'Debt Service Coverage Ratio': 1.3, 
         'Net Income': 0, 
-        'Operating Margin': 0.5,
+        'Operating Margin': 0.08,
         'Expense-to-Revenue Ratio': 1.1,
         'Revenue Growth Rate': 0.02,
         'Cash Flow Volatility': 0.18,
@@ -224,7 +224,7 @@ industry_thresholds = dict(sorted({
     'Agriculture and Farming': {
         'Debt Service Coverage Ratio': 1.3, 
         'Net Income': 0, 
-        'Operating Margin': 0.5,
+        'Operating Margin': 0.06,
         'Expense-to-Revenue Ratio': 1.1,
         'Revenue Growth Rate': 0.02,
         'Cash Flow Volatility': 0.20,
@@ -235,7 +235,7 @@ industry_thresholds = dict(sorted({
     'Telecommunications': {
         'Debt Service Coverage Ratio': 1.3, 
         'Net Income': 0, 
-        'Operating Margin': 0.5,
+        'Operating Margin': 0.10,
         'Expense-to-Revenue Ratio': 1.1,
         'Revenue Growth Rate': 0.02,
         'Cash Flow Volatility': 0.20,
@@ -246,7 +246,7 @@ industry_thresholds = dict(sorted({
     'Mining and Extraction': {
         'Debt Service Coverage Ratio': 1.3, 
         'Net Income': 0, 
-        'Operating Margin': 0.5,
+        'Operating Margin': 0.08,
         'Expense-to-Revenue Ratio': 1.1,
         'Revenue Growth Rate': 0.02,
         'Cash Flow Volatility': 0.20,
@@ -257,7 +257,7 @@ industry_thresholds = dict(sorted({
     'Media and Advertising': {
         'Debt Service Coverage Ratio': 1.3, 
         'Net Income': 0, 
-        'Operating Margin': 0.5,
+        'Operating Margin': 0.10,
         'Expense-to-Revenue Ratio': 1.1,
         'Revenue Growth Rate': 0.02,
         'Cash Flow Volatility': 0.20,
@@ -268,7 +268,7 @@ industry_thresholds = dict(sorted({
     'Personal Services': {
         'Debt Service Coverage Ratio': 1.3, 
         'Net Income': 0, 
-        'Operating Margin': 0.4,
+        'Operating Margin': 0.05,
         'Expense-to-Revenue Ratio': 1.1,
         'Revenue Growth Rate': 0.02,
         'Cash Flow Volatility': 0.22,
@@ -279,7 +279,7 @@ industry_thresholds = dict(sorted({
     'Arts and Culture': {
         'Debt Service Coverage Ratio': 1.2, 
         'Net Income': 0, 
-        'Operating Margin': 0.3,
+        'Operating Margin': 0.04,
         'Expense-to-Revenue Ratio': 1.1,
         'Revenue Growth Rate': 0.01,
         'Cash Flow Volatility': 0.25,
@@ -290,7 +290,7 @@ industry_thresholds = dict(sorted({
     'Event Management': {
         'Debt Service Coverage Ratio': 1.2, 
         'Net Income': 0, 
-        'Operating Margin': 0.3,
+        'Operating Margin': 0.04,
         'Expense-to-Revenue Ratio': 1.1,
         'Revenue Growth Rate': 0.01,
         'Cash Flow Volatility': 0.25,
