@@ -94,10 +94,12 @@ def process_json_data(json_data):
 
         data['subcategory'] = data['personal_finance_category.detailed'].apply(map_transaction_category)
 
-        return data, {
-    "Average Month-End Balance": calculate_average_month_end_balance(data),
-    "Negative Days": calculate_negative_days(data)
-}
+        
+        extra_metrics = {
+            "Average Month-End Balance": data['balances.available'].resample('M', on='date').last().mean(),
+            "Negative Days": (data['balances.available'] < 0).sum()
+        }
+        return data, extra_metrics
 
     except Exception as e:
         st.error(f"Error processing JSON data: {e}")
