@@ -21,6 +21,10 @@ def process_json_data(json_data):
             if transactions_df['date'].isnull().all():
                 transactions_df['date'] = transactions_df['authorized_date']
 
+        # Merge after fixing dates
+        data = pd.merge(accounts_df, transactions_df, on="account_id", how="left")
+
+        # Then define selected columns
         selected_columns = [
             'account_id',
             'balances.available',
@@ -39,8 +43,6 @@ def process_json_data(json_data):
             'personal_finance_category.primary'
         ]
 
-        # Then merge and select columns
-        data = pd.merge(accounts_df, transactions_df, on="account_id", how="left")
         data = data[selected_columns]
         
         # Sort transactions in descending order by date
