@@ -30,18 +30,22 @@ def process_json_data(json_data):
 
         data = data[selected_columns]
 
-        # Ensure both date columns exist and fallback if needed
-        if 'authorized_date' not in data.columns:
-            data['authorized_date'] = pd.NaT
+        # Ensure both date columns exist and fallback if needed BEFORE selecting columns
+        if 'authorized_date' not in transactions_df.columns:
+            transactions_df['authorized_date'] = pd.NaT
         else:
-            data['authorized_date'] = pd.to_datetime(data['authorized_date'], errors='coerce')
+            transactions_df['authorized_date'] = pd.to_datetime(transactions_df['authorized_date'], errors='coerce')
 
-        if 'date' not in data.columns:
-            data['date'] = data['authorized_date']
+        if 'date' not in transactions_df.columns:
+            transactions_df['date'] = transactions_df['authorized_date']
         else:
-            data['date'] = pd.to_datetime(data['date'], errors='coerce')
-            if data['date'].isnull().all():
-                data['date'] = data['authorized_date']
+            transactions_df['date'] = pd.to_datetime(transactions_df['date'], errors='coerce')
+            if transactions_df['date'].isnull().all():
+                transactions_df['date'] = transactions_df['authorized_date']
+
+        # Then merge and select columns
+        data = pd.merge(accounts_df, transactions_df, on="account_id", how="left")
+        data = data[selected_columns]
         
         # Sort transactions in descending order by date
         data = data.sort_values(by='date', ascending=False)
