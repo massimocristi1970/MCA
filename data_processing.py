@@ -8,6 +8,19 @@ def process_json_data(json_data):
         accounts_df = pd.json_normalize(json_data['accounts'])
         transactions_df = pd.json_normalize(json_data['transactions'])
 
+        # Ensure both date columns exist and fallback if needed BEFORE selecting columns
+        if 'authorized_date' not in transactions_df.columns:
+            transactions_df['authorized_date'] = pd.NaT
+        else:
+            transactions_df['authorized_date'] = pd.to_datetime(transactions_df['authorized_date'], errors='coerce')
+
+        if 'date' not in transactions_df.columns:
+            transactions_df['date'] = transactions_df['authorized_date']
+        else:
+            transactions_df['date'] = pd.to_datetime(transactions_df['date'], errors='coerce')
+            if transactions_df['date'].isnull().all():
+                transactions_df['date'] = transactions_df['authorized_date']
+
         data = pd.merge(accounts_df, transactions_df, on="account_id", how="left")
 
         selected_columns = [
@@ -29,19 +42,6 @@ def process_json_data(json_data):
         ]
 
         data = data[selected_columns]
-
-        # Ensure both date columns exist and fallback if needed BEFORE selecting columns
-        if 'authorized_date' not in transactions_df.columns:
-            transactions_df['authorized_date'] = pd.NaT
-        else:
-            transactions_df['authorized_date'] = pd.to_datetime(transactions_df['authorized_date'], errors='coerce')
-
-        if 'date' not in transactions_df.columns:
-            transactions_df['date'] = transactions_df['authorized_date']
-        else:
-            transactions_df['date'] = pd.to_datetime(transactions_df['date'], errors='coerce')
-            if transactions_df['date'].isnull().all():
-                transactions_df['date'] = transactions_df['authorized_date']
 
         # Then merge and select columns
         data = pd.merge(accounts_df, transactions_df, on="account_id", how="left")
