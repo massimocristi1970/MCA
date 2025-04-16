@@ -29,7 +29,16 @@ def process_json_data(json_data):
         ]
 
         data = data[selected_columns]
-        data["date"] = pd.to_datetime(data["date"], errors='coerce')
+
+        # Ensure date columns are available and fallback appropriately
+        if 'authorized_date' in data.columns:
+            data['authorized_date'] = pd.to_datetime(data['authorized_date'], errors='coerce')
+
+        if 'date' not in data.columns or data['date'].isnull().all():
+            # If 'date' is missing or fully null, use 'authorized_date' instead
+            data['date'] = data['authorized_date']
+        else:
+            data['date'] = pd.to_datetime(data['date'], errors='coerce')
         
         # Sort transactions in descending order by date
         data = data.sort_values(by='date', ascending=False)
