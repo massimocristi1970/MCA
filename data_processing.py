@@ -39,8 +39,6 @@ def process_json_data(json_data):
             'personal_finance_category.primary'
         ]
 
-        data = data[selected_columns]
-
         # Then merge and select columns
         data = pd.merge(accounts_df, transactions_df, on="account_id", how="left")
         data = data[selected_columns]
