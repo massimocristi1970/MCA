@@ -46,16 +46,6 @@ def calculate_weighted_score(metrics, directors_score, sector_risk, thresholds, 
     # Add weight for Sector Risk if it's low
     if sector_risk <= thresholds["Sector Risk"]:
         weighted_score += weights["Sector Risk"]
-
-    # Average Month-End Balance
-    if "Average Month-End Balance" in metrics and "Average Month-End Balance" in thresholds:
-        if metrics["Average Month-End Balance"] >= thresholds["Average Month-End Balance"]:
-            weighted_score += weights["Average Month-End Balance"]
-
-    # Number of Negative Days (lower is better)
-    if "Negative Days" in metrics and "Negative Days" in thresholds:
-        if metrics["Negative Days"] <= thresholds["Negative Days"]:
-            weighted_score += weights["Negative Days"]
         
     return weighted_score
 
@@ -135,20 +125,6 @@ def calculate_industry_score(metrics, directors_score, sector_risk, thresholds):
     else:
         feedback.append("❌ Sector Risk is high.")
 
-    # Average Month-End Balance
-    if metrics["Average Month-End Balance"] >= thresholds["Average Month-End Balance"]:
-        industry_score += 1
-        feedback.append("✅ Average Month-End Balance is high.")
-    else:
-        feedback.append("❌ Average Month-End Balance is low.")
-
-    # Negative Days
-    if metrics["Negative Days"] <= thresholds["Negative Days"]:
-        industry_score += 1
-        feedback.append("✅ Few negative balance days.")
-    else:
-        feedback.append("❌ Many negative balance days.")
-    
     # Display the feedback as a list
     st.write("### Scoring Breakdown:")
     for line in feedback:
