@@ -103,7 +103,7 @@ def process_json_data(json_data):
 
     except Exception as e:
         st.error(f"Error processing JSON data: {e}")
-        return None
+        return None, None
 
 
 def count_bounced_payments(data, description_column='description', date_column='date'):
