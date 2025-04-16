@@ -21,8 +21,6 @@ def process_json_data(json_data):
             if transactions_df['date'].isnull().all():
                 transactions_df['date'] = transactions_df['authorized_date']
 
-        data = pd.merge(accounts_df, transactions_df, on="account_id", how="left")
-
         selected_columns = [
             'account_id',
             'balances.available',
