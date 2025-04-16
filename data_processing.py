@@ -13,6 +13,7 @@ def process_json_data(json_data):
         selected_columns = [
             'account_id',
             'balances.available',
+            # 'balances.current',
             'amount',
             'merchant_name',
             'website',
@@ -26,26 +27,27 @@ def process_json_data(json_data):
             'personal_finance_category.detailed',
             'personal_finance_category.primary'
         ]
+
         data = data[selected_columns]
-
-        # Coerce 'date' and fallback if needed
-        data['authorized_date'] = pd.to_datetime(data['authorized_date'], errors='coerce')
-        data['date'] = pd.to_datetime(data['date'], errors='coerce')
-        if data['date'].isnull().all():
-            data['date'] = data['authorized_date']
-
+        data["date"] = pd.to_datetime(data["date"], errors='coerce')
+        data["date"] = pd.to_datetime(data["date"], errors='coerce')
+        # Sort transactions in descending order by date
         data = data.sort_values(by='date', ascending=False)
 
+        # Apply balance updates
         current_balance = data.iloc[0]['balances.available']
         updated_balances = [current_balance]
+
         for index in range(1, len(data)):
-            current_balance += data.iloc[index]['amount']
+            current_balance += data.iloc[index]['amount'] 
             updated_balances.append(current_balance)
+
         data['balances.available'] = updated_balances
 
         data['amount_1'] = data['amount']
         data['amount'] = data['amount'].abs()
-        
+
+
         # Function to map transaction category using regex
         category_patterns = {
             "Income": [
@@ -92,16 +94,11 @@ def process_json_data(json_data):
 
         data['subcategory'] = data['personal_finance_category.detailed'].apply(map_transaction_category)
 
-        
-        extra_metrics = {
-            "Average Month-End Balance": data['balances.available'].resample('M', on='date').last().mean(),
-            "Negative Days": (data['balances.available'] < 0).sum()
-        }
-        return data, extra_metrics
+        return data
 
     except Exception as e:
         st.error(f"Error processing JSON data: {e}")
-        return None, None
+        return None
 
 
 def count_bounced_payments(data, description_column='description', date_column='date'):
@@ -136,6 +133,10 @@ def count_bounced_payments(data, description_column='description', date_column='
     if bounced.empty:
         return pd.DataFrame({'Bounce Category': ['None'],'Count': [0]})
     return bounced
+
+
+
+
 
 # Function to calculate monthly summary
 def calculate_monthly_summary(data):
