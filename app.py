@@ -28,12 +28,8 @@ def main():
         try:
             # Load and process JSON data
             json_data = json.load(uploaded_file)
-            data, extra_metrics = process_json_data(json_data)
+            data = process_json_data(json_data)
             if data is not None:
-                # ✅ Coerce date to datetime and drop nulls before using in metrics
-                data['date'] = pd.to_datetime(data['date'], errors='coerce')
-                data = data.dropna(subset=['date'])
-    
                 # Create tabs for different sections
                 tab1, tab2 = st.tabs(["Overview", "Analysis"])
                 
@@ -41,13 +37,10 @@ def main():
                     st.write("Transaction Data", data)
                 
                     # Categorize transactions
-                    data = categorize_transactions(data)
+                    data = categorize_transactions(data) 
 
                     # Calculate financial metrics
                     metrics = calculate_metrics(data)
-                    metrics["Average Month-End Balance"] = extra_metrics["Average Month-End Balance"]
-                    metrics["Negative Days"] = extra_metrics["Negative Days"]
-                    
                     st.write("Calculated Financial Metrics", metrics)
 
                     # Balance Report
