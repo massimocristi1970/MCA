@@ -30,6 +30,10 @@ def main():
             json_data = json.load(uploaded_file)
             data, extra_metrics = process_json_data(json_data)
             if data is not None:
+                # ✅ Coerce date to datetime and drop nulls before using in metrics
+                data['date'] = pd.to_datetime(data['date'], errors='coerce')
+                data = data.dropna(subset=['date'])
+    
                 # Create tabs for different sections
                 tab1, tab2 = st.tabs(["Overview", "Analysis"])
                 
