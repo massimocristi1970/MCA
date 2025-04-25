@@ -66,6 +66,27 @@ def calculate_metrics(data):
     # Monthly average Revenue
     monthly_average_revenue = round(total_revenue/company_age_months , 2)
 
+    # Calculate Average Month-End Balance
+    try:
+        data_sorted = data.sort_values(by='date', ascending=False).copy()
+        data_sorted['amount_1'] = pd.to_numeric(data_sorted['amount_1'], errors='coerce').fillna(0)
+        data_sorted['balances.available'] = pd.to_numeric(data_sorted['balances.available'], errors='coerce').fillna(0)
+
+        current_balance = data_sorted.loc[0, 'balances.available']
+        updated_balances = [current_balance]
+
+        for index in range(1, len(data_sorted)):
+            current_balance += data_sorted.loc[index, 'amount_1']
+            updated_balances.append(current_balance)
+
+        data_sorted['balances.available'] = updated_balances
+        data_sorted['month_end'] = data_sorted['date'].dt.to_period('M')
+
+        month_end_balances = data_sorted.groupby('month_end').first()['balances.available']
+        avg_month_end_balance = round(month_end_balances.mean(), 2)
+    except Exception:
+        avg_month_end_balance = 0.0
+
     # Return the calculated metrics, rounded to 2 decimal places
     return {
         "Total Revenue": total_revenue,
@@ -81,7 +102,8 @@ def calculate_metrics(data):
         "Gross Burn Rate": gross_burn_rate,
         "Cash Flow Volatility": cash_flow_volatility,
         "Revenue Growth Rate": revenue_growth_rate,
-        "Company Age (Months)": company_age_months
+        "Company Age (Months)": company_age_months,
+        "Average Month-End Balance": avg_month_end_balance
     }
 
 def avg_revenue(data):
