@@ -20,7 +20,8 @@ def predict_score(model, metrics, directors_score, sector_risk, scaler):
         'Gross Burn Rate': metrics["Gross Burn Rate"],       
         'Cash Flow Volatility': metrics["Cash Flow Volatility"], 
         'Revenue Growth Rate': metrics["Revenue Growth Rate"],  
-        'Company Age (Months)': metrics["Company Age (Months)"]  
+        'Company Age (Months)': metrics["Company Age (Months)"],
+        'Average Month-End Balance': metrics["Average Month-End Balance"]
     }
 
     # Convert features to a DataFrame
