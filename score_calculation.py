@@ -57,6 +57,11 @@ def calculate_weighted_score(metrics, directors_score, sector_risk, thresholds, 
         if metrics["Average Negative Balance Days per Month"] <= thresholds["Average Negative Balance Days per Month"]:
             weighted_score += weights["Average Negative Balance Days per Month"]
 
+    # Number of Bounced Payments (lower is better)
+    if "Number of Bounced Payments" in metrics and "Number of Bounced Payments" in thresholds:
+        if metrics["Number of Bounced Payments"] <= thresholds["Number of Bounced Payments"]:
+            weighted_score += weights["Number of Bounced Payments"]
+
             
     return weighted_score
 
@@ -158,6 +163,18 @@ def calculate_industry_score(metrics, directors_score, sector_risk, thresholds):
         else:
             feedback.append(
                 f"❌ Average Negative Balance Days per Month is {metrics['Average Negative Balance Days per Month']}, which exceeds the threshold of {thresholds['Average Negative Balance Days per Month']}."
+            )
+
+    # Number of Bounced Payments
+    if "Number of Bounced Payments" in metrics and "Number of Bounced Payments" in thresholds:
+        if metrics["Number of Bounced Payments"] <= thresholds["Number of Bounced Payments"]:
+            industry_score += 1
+            feedback.append(
+                f"✅ Number of Bounced Payments is {metrics['Number of Bounced Payments']}, which is within the acceptable threshold of {thresholds['Number of Bounced Payments']}."
+            )
+        else:
+            feedback.append(
+                f"❌ Number of Bounced Payments is {metrics['Number of Bounced Payments']}, which exceeds the threshold of {thresholds['Number of Bounced Payments']}."
             )
 
     # Display the feedback as a list
