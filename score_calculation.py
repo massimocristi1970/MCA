@@ -52,6 +52,11 @@ def calculate_weighted_score(metrics, directors_score, sector_risk, thresholds, 
         if metrics["Average Month-End Balance"] >= thresholds["Average Month-End Balance"]:
             weighted_score += weights["Average Month-End Balance"]
 
+    # Average Negative Balance Days per Month (lower is better)
+    if "Average Negative Balance Days per Month" in metrics and "Average Negative Balance Days per Month" in thresholds:
+        if metrics["Average Negative Balance Days per Month"] <= thresholds["Average Negative Balance Days per Month"]:
+            weighted_score += weights["Average Negative Balance Days per Month"]
+
             
     return weighted_score
 
@@ -141,6 +146,18 @@ def calculate_industry_score(metrics, directors_score, sector_risk, thresholds):
         else:
             feedback.append(
                 f"❌ Average Month-End Balance is {metrics['Average Month-End Balance']}, below the threshold of {thresholds['Average Month-End Balance']}."
+            )
+
+    # Average Negative Balance Days per Month
+    if "Average Negative Balance Days per Month" in metrics and "Average Negative Balance Days per Month" in thresholds:
+        if metrics["Average Negative Balance Days per Month"] <= thresholds["Average Negative Balance Days per Month"]:
+            industry_score += 1
+            feedback.append(
+                f"✅ Average Negative Balance Days per Month is {metrics['Average Negative Balance Days per Month']}, within the acceptable limit of {thresholds['Average Negative Balance Days per Month']}."
+            )
+        else:
+            feedback.append(
+                f"❌ Average Negative Balance Days per Month is {metrics['Average Negative Balance Days per Month']}, which exceeds the threshold of {thresholds['Average Negative Balance Days per Month']}."
             )
 
     # Display the feedback as a list
