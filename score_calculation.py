@@ -46,7 +46,13 @@ def calculate_weighted_score(metrics, directors_score, sector_risk, thresholds, 
     # Add weight for Sector Risk if it's low
     if sector_risk <= thresholds["Sector Risk"]:
         weighted_score += weights["Sector Risk"]
-        
+
+    # Average Month-End Balance
+    if "Average Month-End Balance" in metrics and "Average Month-End Balance" in thresholds:
+        if metrics["Average Month-End Balance"] >= thresholds["Average Month-End Balance"]:
+            weighted_score += weights["Average Month-End Balance"]
+
+            
     return weighted_score
 
 
