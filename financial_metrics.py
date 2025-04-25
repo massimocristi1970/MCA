@@ -87,6 +87,32 @@ def calculate_metrics(data):
     except Exception:
         avg_month_end_balance = 0.0
 
+        # Calculate Average Number of Negative Balance Days per Month
+    try:
+        data_sorted = data.sort_values(by='date', ascending=False).copy()
+        data_sorted['amount_1'] = pd.to_numeric(data_sorted['amount_1'], errors='coerce').fillna(0)
+        data_sorted['balances.available'] = pd.to_numeric(data_sorted['balances.available'], errors='coerce').fillna(0)
+
+        current_balance = data_sorted.loc[0, 'balances.available']
+        updated_balances = [current_balance]
+
+        for index in range(1, len(data_sorted)):
+            current_balance += data_sorted.loc[index, 'amount_1']
+            updated_balances.append(current_balance)
+
+        data_sorted['balances.available'] = updated_balances
+        data_sorted['month_end'] = data_sorted['date'].dt.to_period('M')
+        data_sorted['day'] = data_sorted['date'].dt.date
+
+        # Count negative days per month
+        negative_days = data_sorted[data_sorted['balances.available'] < 0].groupby('month_end')['day'].nunique()
+
+        # Average across all months
+        avg_negative_days = round(negative_days.mean() if not negative_days.empty else 0.0, 2)
+    except Exception:
+        avg_negative_days = 0.0
+
+
     # Return the calculated metrics, rounded to 2 decimal places
     return {
         "Total Revenue": total_revenue,
@@ -103,7 +129,9 @@ def calculate_metrics(data):
         "Cash Flow Volatility": cash_flow_volatility,
         "Revenue Growth Rate": revenue_growth_rate,
         "Company Age (Months)": company_age_months,
-        "Average Month-End Balance": avg_month_end_balance
+        "Average Month-End Balance": avg_month_end_balance,
+        "Average Negative Balance Days per Month": avg_negative_days
+
     }
 
 def avg_revenue(data):
