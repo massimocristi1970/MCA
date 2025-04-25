@@ -131,6 +131,18 @@ def calculate_industry_score(metrics, directors_score, sector_risk, thresholds):
     else:
         feedback.append("❌ Sector Risk is high.")
 
+    # Average Month-End Balance
+    if "Average Month-End Balance" in metrics and "Average Month-End Balance" in thresholds:
+        if metrics["Average Month-End Balance"] >= thresholds["Average Month-End Balance"]:
+            industry_score += 1
+            feedback.append(
+                f"✅ Average Month-End Balance is {metrics['Average Month-End Balance']}, meeting the threshold of {thresholds['Average Month-End Balance']}."
+            )
+        else:
+            feedback.append(
+                f"❌ Average Month-End Balance is {metrics['Average Month-End Balance']}, below the threshold of {thresholds['Average Month-End Balance']}."
+            )
+
     # Display the feedback as a list
     st.write("### Scoring Breakdown:")
     for line in feedback:
