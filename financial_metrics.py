@@ -1,5 +1,32 @@
 import pandas as pd
 
+def count_bounced_payments(data, description_column='description', date_column='date'):
+    
+    data['Date'] = pd.to_datetime(data[date_column])
+    data['Month'] = data['Date'].dt.to_period('M')
+    descriptions = data[description_column].fillna('').str.lower()
+
+    bounce_categories = {
+        "Unpaid": r'\bunpaid\b|\bunpaid debit\b|\bunpaid credit\b|\bnot paid\b',
+        "Returned Payment": r'\breturned payment\b|\bpayment returned\b|\breturned\b',
+        "Payment Reversal": r'\bpayment reversal\b|\breversed payment\b|\bchargeback\b|\breversal\b',
+        "Late Payment": r'\blate payment\b|\boverdue payment\b|\bdelayed payment\b|\bmissed payment\b|\bpayment past due\b',
+        "Insufficient Funds": r'\binsufficient funds\b|\bdeclined payment\b|\bnsf\b|\bnon-sufficient funds\b|\bnot enough funds\b|\bpayment returned due to insufficient funds\b|\bfailed direct debit\b|\bdirect debit failure\b',
+        "Unp": r'\bunp\b'
+    }
+
+    data['Bounce Category'] = ''
+    for category, pattern in bounce_categories.items():
+        match_mask = descriptions.str.contains(pattern, regex=True)
+        data.loc[match_mask, 'Bounce Category'] = category
+
+    bounced = data[data['Bounce Category'] != ''].copy()
+
+    if bounced.empty:
+        return pd.DataFrame({'Bounce Category': ['None'], 'Count': [0]})
+    
+    return bounced
+
 def calculate_metrics(data):
     # Total Revenue (Income + Special Inflow)
     total_revenue = round(data.loc[data['is_revenue'], 'amount'].sum() or 0, 2)
@@ -112,6 +139,13 @@ def calculate_metrics(data):
     except Exception:
         avg_negative_days = 0.0
 
+    # Count Number of Bounced Payments
+    try:
+        bounced_df = count_bounced_payments(data, description_column='name_y', date_column='authorized_date')
+        number_of_bounced_payments = len(bounced_df) if not bounced_df.empty else 0
+    except Exception:
+        number_of_bounced_payments = 0
+        
 
     # Return the calculated metrics, rounded to 2 decimal places
     return {
@@ -130,7 +164,8 @@ def calculate_metrics(data):
         "Revenue Growth Rate": revenue_growth_rate,
         "Company Age (Months)": company_age_months,
         "Average Month-End Balance": avg_month_end_balance,
-        "Average Negative Balance Days per Month": avg_negative_days
+        "Average Negative Balance Days per Month": avg_negative_days,
+        "Number of Bounced Payments": number_of_bounced_payments
 
     }
 
