@@ -37,6 +37,7 @@ industry_thresholds = dict(sorted({
         'Directors Score': 65,
         'Sector Risk': 0,
         'Average Month-End Balance': 500,
+        'Average Negative Balance Days per Month': 1,
     },
     'Pharmacies (Independent or Small Chains)': {
         'Debt Service Coverage Ratio': 1.45,
@@ -49,6 +50,7 @@ industry_thresholds = dict(sorted({
         'Directors Score': 65,
         'Sector Risk': 0,
         'Average Month-End Balance': 500,
+        'Average Negative Balance Days per Month': 1,
     },
     'Allied Health Services': {
         'Debt Service Coverage Ratio': 1.35,
@@ -61,6 +63,7 @@ industry_thresholds = dict(sorted({
         'Directors Score': 65,
         'Sector Risk': 0,
         'Average Month-End Balance': 500,
+        'Average Negative Balance Days per Month': 1,
     },
     'Accounting and Tax Preparation Firms': {
         'Debt Service Coverage Ratio': 1.50,
@@ -73,6 +76,7 @@ industry_thresholds = dict(sorted({
         'Directors Score': 65,
         'Sector Risk': 0,
         'Average Month-End Balance': 500,
+        'Average Negative Balance Days per Month': 1,
     },
     'IT Services and Support Companies': {
         'Debt Service Coverage Ratio': 1.40,
@@ -85,6 +89,7 @@ industry_thresholds = dict(sorted({
         'Directors Score': 65,
         'Sector Risk': 0,
         'Average Month-End Balance': 500,
+        'Average Negative Balance Days per Month': 1,
     },
     'Courier Services (Independent and Regional Operators)': {
         'Debt Service Coverage Ratio': 1.30,
@@ -97,6 +102,7 @@ industry_thresholds = dict(sorted({
         'Directors Score': 65,
         'Sector Risk': 0,
         'Average Month-End Balance': 500,
+        'Average Negative Balance Days per Month': 1,
     },
     'Grocery Stores and Mini-Markets': {
         'Debt Service Coverage Ratio': 1.25,
@@ -109,6 +115,7 @@ industry_thresholds = dict(sorted({
         'Directors Score': 65,
         'Sector Risk': 0,
         'Average Month-End Balance': 500,
+        'Average Negative Balance Days per Month': 1,
     },
     'Residential Real Estate Agencies': {
         'Debt Service Coverage Ratio': 1.35,
@@ -121,6 +128,7 @@ industry_thresholds = dict(sorted({
         'Directors Score': 65,
         'Sector Risk': 0,
         'Average Month-End Balance': 500,
+        'Average Negative Balance Days per Month': 1,
     },
     'Restaurants and Cafes': {
         'Debt Service Coverage Ratio': 1.10,
@@ -133,6 +141,7 @@ industry_thresholds = dict(sorted({
         'Directors Score': 60,
         'Sector Risk': 1,
         'Average Month-End Balance': 500,
+        'Average Negative Balance Days per Month': 1,
     },
     'Bars and Pubs': {
         'Debt Service Coverage Ratio': 1.05,
@@ -145,6 +154,7 @@ industry_thresholds = dict(sorted({
         'Directors Score': 58,
         'Sector Risk': 1,
         'Average Month-End Balance': 500,
+        'Average Negative Balance Days per Month': 1,
     },
     'Beauty Salons and Spas': {
         'Debt Service Coverage Ratio': 1.15,
@@ -157,6 +167,7 @@ industry_thresholds = dict(sorted({
         'Directors Score': 60,
         'Sector Risk': 1,
         'Average Month-End Balance': 500,
+        'Average Negative Balance Days per Month': 1,
     },
     'E-Commerce Retailers': {
         'Debt Service Coverage Ratio': 1.20,
@@ -169,6 +180,7 @@ industry_thresholds = dict(sorted({
         'Directors Score': 62,
         'Sector Risk': 1,
         'Average Month-End Balance': 500,
+        'Average Negative Balance Days per Month': 1,
     },
     'Event Planning and Management Firms': {
         'Debt Service Coverage Ratio': 1.10,
@@ -181,6 +193,7 @@ industry_thresholds = dict(sorted({
         'Directors Score': 60,
         'Sector Risk': 1,
         'Average Month-End Balance': 500,
+        'Average Negative Balance Days per Month': 1,
     },
     'Auto Repair Shops': {
         'Debt Service Coverage Ratio': 1.25,
@@ -193,6 +206,7 @@ industry_thresholds = dict(sorted({
         'Directors Score': 61,
         'Sector Risk': 1,
         'Average Month-End Balance': 500,
+        'Average Negative Balance Days per Month': 1,
     },
     'Fitness Centres and Gyms': {
         'Debt Service Coverage Ratio': 1.20,
@@ -205,6 +219,7 @@ industry_thresholds = dict(sorted({
         'Directors Score': 60,
         'Sector Risk': 1,
         'Average Month-End Balance': 500,
+        'Average Negative Balance Days per Month': 1,
     },
     'Residential Construction Firms': {
         'Debt Service Coverage Ratio': 1.15,
@@ -217,21 +232,23 @@ industry_thresholds = dict(sorted({
         'Directors Score': 60,
         'Sector Risk': 1,
         'Average Month-End Balance': 500,
+        'Average Negative Balance Days per Month': 1,
     },
 }.items()))
 
 weights = {
     'Debt Service Coverage Ratio': 17,  
-    'Net Income': 14,                   
-    'Operating Margin': 9,             
+    'Net Income': 13,                   
+    'Operating Margin': 8,             
     'Expense-to-Revenue Ratio': 8,     
     'Revenue Growth Rate': 5,           
     'Cash Flow Volatility': 11,          
     'Gross Burn Rate': 3,               
-    'Months': 5,                       
+    'Months': 4,                       
     'Directors Score': 15,
-    'Sector Risk': 8,
-    'Average Month-End Balance': 5,
+    'Sector Risk': 3,
+    'Average Month-End Balance': 4,
+    'Average Negative Balance Days per Month': 5,
 }
 
 def calculate_risk(requested_loan, monthly_average_revenue):
