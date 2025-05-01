@@ -64,7 +64,7 @@ def main():
                         st.write("Bounced Payments", bounced_payments)
 
                         # Calculate the weighted score
-                        revised_weighted_d_score = calculate_weighted_score(metrics, directors_score, sector_risk, industry_thresholds, weights)
+                        revised_weighted_d_score = calculate_weighted_score(metrics, directors_score, sector_risk, industry_thresholds, weights, company_age_months)
                         st.write(f"Weighted Score: {revised_weighted_d_score}")
 
                         probability_score = predict_score(model, metrics, directors_score, sector_risk, scaler, company_age_months)
