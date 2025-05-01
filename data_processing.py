@@ -65,8 +65,8 @@ def process_json_data(json_data):
                 r"TRANSFER_OUT_(INVESTMENT_AND_RETIREMENT_FUNDS|SAVINGS|OTHER_TRANSFER_OUT|WITHDRAWAL|ACCOUNT_TRANSFER)"
             ],
             "Failed Payment": [
-    r"BANK_FEES_(INSUFFICIENT_FUNDS|LATE_PAYMENT)|Unp|Unpaid|returned payment|returned|reversal|chargeback|RETURNED DD|direct debit|rejected|payment fee"
-],
+                r"BANK_FEES_(INSUFFICIENT_FUNDS|LATE_PAYMENT)|Unp|Unpaid|returned payment|returned|reversal|chargeback|RETURNED DD|direct debit|rejected|payment fee"
+            ],
             "Expenses": [
                 r"BANK_FEES_.*",
                 r"ENTERTAINMENT_.*",
