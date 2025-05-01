@@ -487,14 +487,14 @@ weights = {
     'Operating Margin': 8,             
     'Expense-to-Revenue Ratio': 7,     
     'Revenue Growth Rate': 5,           
-    'Cash Flow Volatility': 10,          
+    'Cash Flow Volatility': 11,          
     'Gross Burn Rate': 3,               
     'Months': 4,                       
-    'Directors Score': 16,
+    'Directors Score': 17,
     'Sector Risk': 3,
-    'Average Month-End Balance': 4,
-    'Average Negative Balance Days per Month': 5,
-    'Number of Bounced Payments': 5,
+    'Average Month-End Balance': 5,
+    'Average Negative Balance Days per Month': 6,
+    'Number of Bounced Payments': 1,
 }
 
 def calculate_risk(requested_loan, monthly_average_revenue):
