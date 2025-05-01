@@ -4,7 +4,7 @@ import streamlit as st
 from config import months_threshold, calculate_risk
 from financial_metrics import avg_revenue
 
-def calculate_weighted_score(metrics, directors_score, sector_risk, thresholds, weights):
+def calculate_weighted_score(metrics, directors_score, sector_risk, thresholds, weights, company_age_months):
     weighted_score = 0
     # Debt Service Coverage Ratio
     if metrics["Debt Service Coverage Ratio"] >= thresholds["Debt Service Coverage Ratio"]:
@@ -34,8 +34,8 @@ def calculate_weighted_score(metrics, directors_score, sector_risk, thresholds, 
     if metrics["Gross Burn Rate"] <= thresholds["Gross Burn Rate"]:
         weighted_score += weights["Gross Burn Rate"]
 
-    # Company Age
-    if metrics["Company Age (Months)"] >= months_threshold:
+    # Company Age (passed manually)
+    if company_age_months >= months_threshold:
         weighted_score += weights["Months"]
 
     # Directors Score
