@@ -27,7 +27,7 @@ def count_bounced_payments(data, description_column='description', date_column='
     
     return bounced
 
-def calculate_metrics(data):
+def calculate_metrics(data, company_age_months):
     # Total Revenue (Income + Special Inflow)
     total_revenue = round(data.loc[data['is_revenue'], 'amount'].sum() or 0, 2)
 
