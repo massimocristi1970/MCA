@@ -50,7 +50,7 @@ def main():
                         data = categorize_transactions(data) 
 
                         # Calculate financial metrics
-                        metrics = calculate_metrics(data)
+                        metrics = calculate_metrics(data, company_age_months)
                         st.write("Calculated Financial Metrics", metrics)
 
                         # Balance Report
