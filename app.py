@@ -31,6 +31,7 @@ def main():
         industry_thresholds = industry_thresholds_config[industry]
         sector_risk = industry_thresholds['Sector Risk']
         directors_score = st.number_input("Director Score", min_value=0)
+        company_age_months = st.number_input("Enter Company Age (in months)", min_value=0, max_value=1000, value=24, step=1)
         uploaded_file = st.file_uploader("Upload a JSON file", type="json")
         
         if uploaded_file:
