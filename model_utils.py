@@ -3,7 +3,7 @@ import numpy as np
 
 
 # Function to predict the score using the trained Logistic Regression model
-def predict_score(model, metrics, directors_score, sector_risk, scaler):
+def predict_score(model, metrics, directors_score, sector_risk, scaler, company_age_months):
     # Prepare the input data as a dictionary
     features = {
         'Directors Score': directors_score,                  
@@ -20,7 +20,7 @@ def predict_score(model, metrics, directors_score, sector_risk, scaler):
         'Gross Burn Rate': metrics["Gross Burn Rate"],       
         'Cash Flow Volatility': metrics["Cash Flow Volatility"], 
         'Revenue Growth Rate': metrics["Revenue Growth Rate"],  
-        'Company Age (Months)': metrics["Company Age (Months)"],
+        'Company Age (Months)': company_age_months,
         
     }
 
