@@ -182,7 +182,7 @@ industry_thresholds = dict(sorted({
         'Sector Risk': 0,
         'Average Month-End Balance': 445,
         'Average Negative Balance Days per Month': 1,
-        'Number of Bounced Payments': 1,
+        'Number of Bounced Payments': 0,
     },
     'Food Service': {
         'Debt Service Coverage Ratio': 1.41,
@@ -224,7 +224,7 @@ industry_thresholds = dict(sorted({
         'Sector Risk': 0,
         'Average Month-End Balance': 469,
         'Average Negative Balance Days per Month': 2,
-        'Number of Bounced Payments': 1,
+        'Number of Bounced Payments': 0,
     },
     'Marketing / Advertising / Design': {
         'Debt Service Coverage Ratio': 1.39,
@@ -266,7 +266,7 @@ industry_thresholds = dict(sorted({
         'Sector Risk': 1,
         'Average Month-End Balance': 450,
         'Average Negative Balance Days per Month': 3,
-        'Number of Bounced Payments': 1,
+        'Number of Bounced Payments': 0,
     },
     'Personal Services': {
         'Debt Service Coverage Ratio': 1.30,
@@ -280,7 +280,7 @@ industry_thresholds = dict(sorted({
         'Sector Risk': 1,
         'Average Month-End Balance': 476,
         'Average Negative Balance Days per Month': 2,
-        'Number of Bounced Payments': 1,
+        'Number of Bounced Payments': 0,
     },
     'Restaurants and Cafes': {
         'Debt Service Coverage Ratio': 1.10,
@@ -406,7 +406,7 @@ industry_thresholds = dict(sorted({
         'Sector Risk': 1,
         'Average Month-End Balance': 460,
         'Average Negative Balance Days per Month': 2,
-        'Number of Bounced Payments': 1,
+        'Number of Bounced Payments': 0,
     },
     'Recruitment': {
         'Debt Service Coverage Ratio': 1.37,
@@ -420,7 +420,7 @@ industry_thresholds = dict(sorted({
         'Sector Risk': 1,
         'Average Month-End Balance': 474,
         'Average Negative Balance Days per Month': 4,
-        'Number of Bounced Payments': 1,
+        'Number of Bounced Payments': 0,
     },
     'Retail': {
         'Debt Service Coverage Ratio': 1.30,
