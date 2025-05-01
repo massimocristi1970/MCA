@@ -71,7 +71,7 @@ def main():
                         st.write(f"Repayment Probability: {probability_score:.2f}")
 
                         # Calculate the revised score based on industry thresholds
-                        industry_d_score = calculate_industry_score(metrics, directors_score, sector_risk, industry_thresholds)
+                        industry_d_score = calculate_industry_score(metrics, directors_score, sector_risk, industry_thresholds, company_age_months)
                         st.write(f"Financial Score: {industry_d_score}")
 
                         monthly_avg_revenue = avg_revenue(data)
