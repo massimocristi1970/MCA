@@ -11,10 +11,9 @@ import streamlit as st
 
 
 COMPANY_ACCESS_TOKENS = dict(sorted({
-    "Company C": "access-production-9d27e5a4-3f09-4deb-8d7c-58b2ea014578",
-    "Company B": "access-production-c96f81d2-206f-4e6a-b442-a18d102b3870",
-    "Company A": "access-production-31009602-a97b-42db-bf7c-ca7db185eac1",
-    "Company D": "access-production-9d27e5a4-3f09-4deb-8d7c-58b2ea014578" 
+    "Bound Studios": "access-production-c96f81d2-206f-4e6a-b442-a18d102b3870",
+    "Moving Ewe": "access-production-31009602-a97b-42db-bf7c-ca7db185eac1",
+    "Sanitaire Ltd": "access-production-9d27e5a4-3f09-4deb-8d7c-58b2ea014578" 
 }.items()))
 
 
