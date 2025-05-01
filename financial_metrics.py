@@ -61,11 +61,6 @@ def calculate_metrics(data):
     # Convert 'date' column to datetime for burn rate calculation
     data['date'] = pd.to_datetime(data['date'])
 
-    # Calculate the number of months (company age)
-    first_date = data['date'].min()
-    last_date = data['date'].max()
-    company_age_months = ((last_date.year - first_date.year) * 12 + (last_date.month - first_date.month)) + 1
-
     # Extract month and year for grouping transactions by month
     data['year_month'] = data['date'].dt.to_period('M')
 
@@ -162,7 +157,6 @@ def calculate_metrics(data):
         "Gross Burn Rate": gross_burn_rate,
         "Cash Flow Volatility": cash_flow_volatility,
         "Revenue Growth Rate": revenue_growth_rate,
-        "Company Age (Months)": company_age_months,
         "Average Month-End Balance": avg_month_end_balance,
         "Average Negative Balance Days per Month": avg_negative_days,
         "Number of Bounced Payments": number_of_bounced_payments
