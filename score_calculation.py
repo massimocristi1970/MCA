@@ -67,7 +67,7 @@ def calculate_weighted_score(metrics, directors_score, sector_risk, thresholds, 
 
 
 # Function to calculate revised score based on financial metrics, thresholds, and binary scoring
-def calculate_industry_score(metrics, directors_score, sector_risk, thresholds):
+def calculate_industry_score(metrics, directors_score, sector_risk, thresholds, company_age_months):
     industry_score = 0
     feedback = []  # List to store feedback for each metric
 
@@ -120,12 +120,12 @@ def calculate_industry_score(metrics, directors_score, sector_risk, thresholds):
     else:
         feedback.append(f"❌ Gross Burn Rate is {metrics['Gross Burn Rate']}, which is too high.")
 
-    # Company Age (Months)
-    if metrics["Company Age (Months)"] >= months_threshold:
+    # Company Age (Months) — passed manually
+    if company_age_months >= months_threshold:
         industry_score += 1
-        feedback.append(f"✅ Company Age is {metrics['Company Age (Months)']} months, meeting the threshold of {months_threshold} months.")
+        feedback.append(f"✅ Company Age is {company_age_months} months, meeting the threshold of {months_threshold} months.")
     else:
-        feedback.append(f"❌ Company Age is {metrics['Company Age (Months)']} months, which is below the threshold.")
+        feedback.append(f"❌ Company Age is {company_age_months} months, which is below the threshold.")
 
     # Directors Score
     if directors_score >= thresholds["Directors Score"]:
