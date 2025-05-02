@@ -27,12 +27,20 @@ def predict_score(model, metrics, directors_score, sector_risk, scaler, company_
     # Convert features to a DataFrame
     features_df = pd.DataFrame([features])
 
-    # Handle infinite values by replacing them with NaN, then fill NaN with 0
+    # Debug: Print raw features before scaling
+    print("\n📊 Raw input features:")
+    print(features_df.to_string(index=False))
+
+    # Handle infinite values and fill NaNs
     features_df.replace([np.inf, -np.inf], np.nan, inplace=True)
     features_df.fillna(0, inplace=True)
 
-    # Scale the features using the scaler
+    # Scale the features
     features_scaled = scaler.transform(features_df)
+
+    # Debug: Print scaled features
+    print("\n📉 Scaled input features:")
+    print(features_scaled)
 
     # Predict the probability of repayment (class 1)
     probability_score = model.predict_proba(features_scaled)[:, 1]
