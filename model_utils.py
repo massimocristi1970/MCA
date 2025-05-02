@@ -1,33 +1,7 @@
 import pandas as pd
 import numpy as np
 import streamlit as st  # Make sure this import is present
-
-
-# Function to predict the score using the trained Logistic Regression model
-def predict_score(model, metrics, directors_score, sector_risk, scaler, company_age_months):
-    # Prepare the input data as a dictionary
-    features = {
-        'Directors Score': directors_score,                  
-        'Sector': sector_risk,                             
-        'Total Revenue': metrics["Total Revenue"],         
-        'Total Expenses': metrics["Total Expenses"],       
-        'Net Income': metrics["Net Income"],               
-        'Total Debt Repayments': metrics["Total Debt Repayments"],  
-        'Total Debt': metrics["Total Debt"],               
-        'Debt-to-Income Ratio': metrics["Debt-to-Income Ratio"], 
-        'Expense-to-Revenue Ratio': metrics["Expense-to-Revenue Ratio"],
-        'Operating Margin': metrics["Operating Margin"],     
-        'Debt Service Coverage Ratio': metrics["Debt Service Coverage Ratio"], 
-        'Gross Burn Rate': metrics["Gross Burn Rate"],       
-        'Cash Flow Volatility': metrics["Cash Flow Volatility"], 
-        'Revenue Growth Rate': metrics["Revenue Growth Rate"],  
-        'Company Age (Months)': company_age_months,
-        
-    }
-
-    import pandas as pd
-import numpy as np
-import streamlit as st  # Make sure this import is present
+import os
 
 
 # Function to predict the score using the trained Logistic Regression model
