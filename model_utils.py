@@ -51,6 +51,21 @@ def predict_score(model, metrics, directors_score, sector_risk, scaler, company_
     # Scale the features
     features_scaled = scaler.transform(features_df)
 
+    # ✅ More diagnostics after scaling
+    st.write("📉 Final scaled input to model:")
+    st.write(features_scaled)
+
+    st.write("⚙️ Model coefficients:")
+    st.write(model.coef_)
+
+    st.write("🚦 Model intercept:")
+    st.write(model.intercept_)
+
+    # 🧮 Manually calculate probability to confirm
+    logit = np.dot(features_scaled, model.coef_.T) + model.intercept_
+    probability = 1 / (1 + np.exp(-logit))
+    st.write("🧮 Manually calculated probability:", probability[0][0])
+
     # Predict the probability of repayment (class 1)
     probability_score = model.predict_proba(features_scaled)[:, 1]
 
