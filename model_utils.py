@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import streamlit as st  # Make sure this import is present
 
 
 # Function to predict the score using the trained Logistic Regression model
