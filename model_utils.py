@@ -55,14 +55,16 @@ def predict_score(model, metrics, directors_score, sector_risk, scaler, company_
     # Convert features to a DataFrame
     features_df = pd.DataFrame([features])
 
-    # Debug: Print raw features
+    # ✅ 🔍 Add diagnostics here
+    st.write("📦 Model path:", os.path.abspath("model.pkl"))
+    st.write("🧪 Scaler path:", os.path.abspath("scaler.pkl"))
+
     st.write("📊 Raw input features:")
     st.write(features_df)
 
-    # Show feature counts
-    st.write("📦 You are passing in", features_df.shape[1], "features")
-    st.write("🔍 Model expects", model.coef_.shape[1], "features")
-    st.write("🧪 Scaler expects", scaler.mean_.shape[0], "features")
+    st.write("📈 Model coefficients shape:", model.coef_.shape)
+    st.write("📏 Scaler mean shape:", scaler.mean_.shape)
+    st.write("📋 Scaler expected features (if available):", getattr(scaler, 'feature_names_in_', 'Not available'))
 
     # Handle infinite values and fill NaNs
     features_df.replace([np.inf, -np.inf], np.nan, inplace=True)
@@ -70,10 +72,6 @@ def predict_score(model, metrics, directors_score, sector_risk, scaler, company_
 
     # Scale the features
     features_scaled = scaler.transform(features_df)
-
-    # Debug: Print scaled features
-    st.write("📉 Scaled input features:")
-    st.write(features_scaled)
 
     # Predict the probability of repayment (class 1)
     probability_score = model.predict_proba(features_scaled)[:, 1]
