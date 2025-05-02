@@ -44,6 +44,10 @@ def predict_score(model, metrics, directors_score, sector_risk, scaler, company_
     features_df.replace([np.inf, -np.inf], np.nan, inplace=True)
     features_df.fillna(0, inplace=True)
 
+    # ✅ Check the order of columns
+    st.write("🧭 Order of columns in features_df:", list(features_df.columns))
+    st.write("🎯 Order expected by scaler:", list(getattr(scaler, 'feature_names_in_', [])))
+
     # Scale the features
     features_scaled = scaler.transform(features_df)
 
