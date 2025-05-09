@@ -6,7 +6,7 @@ months_threshold = 6
 low_risk_sectors = [
     'Medical Practices (GPs, Clinics, Dentists)',
     'Pharmacies (Independent or Small Chains)',
-    'Accounting and Tax Preparation Firms',
+    'Business Consultants',
     'IT Services and Support Companies',
     'Courier Services (Independent and Regional Operators)',
     'Grocery Stores and Mini-Markets',
