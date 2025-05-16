@@ -18,10 +18,6 @@ def calculate_weighted_score(metrics, directors_score, sector_risk, thresholds, 
     if metrics["Operating Margin"] >= thresholds["Operating Margin"]:
         weighted_score += weights["Operating Margin"]
 
-    # Expense-to-Revenue Ratio (lower is better)
-    if metrics["Expense-to-Revenue Ratio"] <= thresholds["Expense-to-Revenue Ratio"]:
-        weighted_score += weights["Expense-to-Revenue Ratio"]
-
     # Revenue Growth Rate
     if metrics["Revenue Growth Rate"] >= thresholds["Revenue Growth Rate"]:
         weighted_score += weights["Revenue Growth Rate"]
@@ -97,13 +93,6 @@ def calculate_industry_score(metrics, directors_score, sector_risk, thresholds, 
         feedback.append(f"✅ Operating Margin is {metrics['Operating Margin']}, which meets or exceeds the threshold of {thresholds['Operating Margin']}.")
     else:
         feedback.append(f"❌ Operating Margin is {metrics['Operating Margin']}, below the threshold of {thresholds['Operating Margin']}.")
-
-    # Expense-to-Revenue Ratio (lower is better)
-    if metrics["Expense-to-Revenue Ratio"] <= thresholds["Expense-to-Revenue Ratio"]:
-        industry_score += 1
-        feedback.append(f"✅ Expense-to-Revenue Ratio is {metrics['Expense-to-Revenue Ratio']}, which is within the acceptable range (threshold is {thresholds['Expense-to-Revenue Ratio']}).")
-    else:
-        feedback.append(f"❌ Expense-to-Revenue Ratio is {metrics['Expense-to-Revenue Ratio']}, exceeding the threshold of {thresholds['Expense-to-Revenue Ratio']}.")
 
     # Revenue Growth Rate
     if metrics["Revenue Growth Rate"] >= thresholds["Revenue Growth Rate"]:
