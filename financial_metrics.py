@@ -46,9 +46,6 @@ def calculate_metrics(data, company_age_months):
     # Debt-to-Income Ratio
     debt_to_income_ratio = round(total_debt / total_revenue if total_revenue != 0 else 0, 2)
 
-    # Expense-to-Revenue Ratio
-    expense_to_revenue_ratio = round(total_expenses / total_revenue if total_revenue != 0 else 0, 2)
-
     # Operating Income (EBIT)
     operating_income = total_revenue - total_expenses
 
