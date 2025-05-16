@@ -51,16 +51,22 @@ def calculate_weighted_score(metrics, directors_score, sector_risk, thresholds, 
     if "Average Month-End Balance" in metrics and "Average Month-End Balance" in thresholds:
         if metrics["Average Month-End Balance"] >= thresholds["Average Month-End Balance"]:
             weighted_score += weights["Average Month-End Balance"]
+        else:
+            weighted_score -= weights["Average Month-End Balance"] * 0.5
 
     # Average Negative Balance Days per Month (lower is better)
     if "Average Negative Balance Days per Month" in metrics and "Average Negative Balance Days per Month" in thresholds:
         if metrics["Average Negative Balance Days per Month"] <= thresholds["Average Negative Balance Days per Month"]:
             weighted_score += weights["Average Negative Balance Days per Month"]
+        else:
+            weighted_score -= weights["Average Negative Balance Days per Month"] * 0.5
 
     # Number of Bounced Payments (lower is better)
     if "Number of Bounced Payments" in metrics and "Number of Bounced Payments" in thresholds:
         if metrics["Number of Bounced Payments"] <= thresholds["Number of Bounced Payments"]:
             weighted_score += weights["Number of Bounced Payments"]
+        else:
+            weighted_score -= weights["Number of Bounced Payments"] * 0.5
 
             
     return weighted_score
