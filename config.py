@@ -437,18 +437,18 @@ industry_thresholds = dict(sorted({
 }.items()))
 
 weights = {
-    'Debt Service Coverage Ratio': 18,  
-    'Net Income': 12,                   
-    'Operating Margin': 8,             
+    'Debt Service Coverage Ratio': 19,  
+    'Net Income': 13,                   
+    'Operating Margin': 9,             
     'Revenue Growth Rate': 5,           
-    'Cash Flow Volatility': 11,          
+    'Cash Flow Volatility': 12,          
     'Gross Burn Rate': 3,               
     'Months': 4,                       
-    'Directors Score': 17,
+    'Directors Score': 18,
     'Sector Risk': 3,
     'Average Month-End Balance': 5,
     'Average Negative Balance Days per Month': 6,
-    'Number of Bounced Payments': 1,
+    'Number of Bounced Payments': 3,
 }
 
 def calculate_risk(requested_loan, monthly_average_revenue):
