@@ -32,9 +32,13 @@ def main():
         sector_risk = industry_thresholds['Sector Risk']
         directors_score = st.number_input("Director Score", min_value=0)
         company_age_months = st.number_input("Enter Company Age (in months)", min_value=0, max_value=1000, value=24, step=1)
+
+        # New section for credit checks
+        st.subheader("Additional Credit History Checks")
         personal_default_12m = st.checkbox("Any personal credit defaults in last 12 months?", value=False)
         business_ccj = st.checkbox("Any business County Court Judgments (CCJs)?", value=False)
         director_ccj = st.checkbox("Any director County Court Judgments (CCJs)?", value=False)
+
         uploaded_file = st.file_uploader("Upload a JSON file", type="json")
         
         if uploaded_file:
