@@ -5,7 +5,7 @@ from model_utils import predict_score
 from data_processing import process_json_data, categorize_transactions, calculate_monthly_summary, summarize_monthly_revenue, count_bounced_payments
 from financial_metrics import calculate_metrics, avg_revenue, process_balance_report
 from score_calculation import calculate_weighted_score, calculate_industry_score
-from config import weights, calculate_risk, industry_thresholds as industry_thresholds_config
+from config import weights, calculate_risk, industry_thresholds as industry_thresholds_config, penalties
 from analysis import plot_revenue_vs_expense, plot_outflow_transactions, plot_transaction_graphs, plot_loan_vs_expense_graph
 from plaid_config import get_plaid_data_by_company, COMPANY_ACCESS_TOKENS
 import json
@@ -32,6 +32,9 @@ def main():
         sector_risk = industry_thresholds['Sector Risk']
         directors_score = st.number_input("Director Score", min_value=0)
         company_age_months = st.number_input("Enter Company Age (in months)", min_value=0, max_value=1000, value=24, step=1)
+        personal_default_12m = st.checkbox("Personal default in last 12 months?")
+        business_ccj = st.checkbox("County Court Judgment against business?")
+        director_ccj = st.checkbox("County Court Judgment against director?")
         uploaded_file = st.file_uploader("Upload a JSON file", type="json")
         
         if uploaded_file:
@@ -64,7 +67,8 @@ def main():
                         st.write("Bounced Payments", bounced_payments)
 
                         # Calculate the weighted score
-                        revised_weighted_d_score = calculate_weighted_score(metrics, directors_score, sector_risk, industry_thresholds, weights, company_age_months)
+                        revised_weighted_d_score = calculate_weighted_score(metrics, directors_score, sector_risk, industry_thresholds, weights, company_age_months, personal_default_12m=personal_default_12m, business_ccj=business_ccj, penalties=penalties)
+
                         st.write(f"Weighted Score: {revised_weighted_d_score}")
 
                         probability_score = predict_score(model, metrics, directors_score, sector_risk, scaler, company_age_months)
