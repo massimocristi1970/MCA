@@ -32,9 +32,9 @@ def main():
         sector_risk = industry_thresholds['Sector Risk']
         directors_score = st.number_input("Director Score", min_value=0)
         company_age_months = st.number_input("Enter Company Age (in months)", min_value=0, max_value=1000, value=24, step=1)
-        personal_default_12m = st.checkbox("Personal default in last 12 months?")
-        business_ccj = st.checkbox("County Court Judgment against business?")
-        director_ccj = st.checkbox("County Court Judgment against director?")
+        personal_default_12m = st.checkbox("Any personal credit defaults in last 12 months?", value=False)
+        business_ccj = st.checkbox("Any business County Court Judgments (CCJs)?", value=False)
+        director_ccj = st.checkbox("Any director County Court Judgments (CCJs)?", value=False)
         uploaded_file = st.file_uploader("Upload a JSON file", type="json")
         
         if uploaded_file:
@@ -67,7 +67,7 @@ def main():
                         st.write("Bounced Payments", bounced_payments)
 
                         # Calculate the weighted score
-                        revised_weighted_d_score = calculate_weighted_score(metrics, directors_score, sector_risk, industry_thresholds, weights, company_age_months, personal_default_12m=personal_default_12m, business_ccj=business_ccj, penalties=penalties)
+                        revised_weighted_d_score = calculate_weighted_score(metrics, directors_score, sector_risk, industry_thresholds, weights, company_age_months, personal_default_12m=personal_default_12m, business_ccj=business_ccj, director_ccj=director_ccj, penalties=penalties)
 
                         st.write(f"Weighted Score: {revised_weighted_d_score}")
 
