@@ -152,7 +152,7 @@ def calculate_monthly_summary(data):
 # Function to categorize transactions
 def categorize_transactions(data):
     data['is_revenue'] = data['subcategory'].str.strip().isin(['Income', 'Special Inflow'])
-    data['is_expense'] = data['subcategory'].str.strip().isin(['Expenses'])
+    data['is_expense'] = data['subcategory'].str.strip().isin(['Expenses', 'Special Outflow'])
     data['is_debt_repayment'] = data['subcategory'].str.strip().isin(['Debt Repayments'])
     data['is_debt'] = data['subcategory'].str.strip().isin(['Loans'])
     return data
