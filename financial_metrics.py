@@ -86,7 +86,8 @@ def calculate_metrics(data, company_age_months):
     revenue_growth_rate = round(monthly_summary['Monthly Revenue'].pct_change().median() * 100, 2)
 
     # Monthly average Revenue
-    monthly_average_revenue = round(total_revenue/company_age_months , 2)
+    months_in_data = data['date'].dt.to_period('M').nunique()
+    monthly_average_revenue = round(total_revenue / months_in_data, 2) if months_in_data else 0
 
     # Calculate Average Month-End Balance
     try:
@@ -165,12 +166,9 @@ def calculate_metrics(data, company_age_months):
 
 def avg_revenue(data):
     total_revenue = round(data.loc[data['is_revenue'], 'amount'].sum() or 0, 2)
-    first_date = data['date'].min()
-    last_date = data['date'].max()
-    company_age_months = ((last_date.year - first_date.year) * 12 + (last_date.month - first_date.month)) + 1
-    monthly_average_revenue = round(total_revenue/company_age_months , 2)
+    months_in_data = data['date'].dt.to_period('M').nunique()
+    monthly_average_revenue = round(total_revenue / months_in_data, 2) if months_in_data else 0
     return monthly_average_revenue
-
 
 def process_balance_report(data):
     if data.empty:
