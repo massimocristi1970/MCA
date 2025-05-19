@@ -151,6 +151,7 @@ def calculate_metrics(data, company_age_months):
         "Total Debt Repayments": total_debt_repayments,
         "Total Debt": total_debt,
         "Debt-to-Income Ratio": debt_to_income_ratio,
+        "Expense-to-Revenue Ratio": expense_to_revenue_ratio,
         "Operating Margin": operating_margin,
         "Debt Service Coverage Ratio": debt_service_coverage_ratio,
         "Gross Burn Rate": gross_burn_rate,
