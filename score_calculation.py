@@ -4,7 +4,8 @@ import streamlit as st
 from config import months_threshold, calculate_risk
 from financial_metrics import avg_revenue
 
-def calculate_weighted_score(metrics, directors_score, sector_risk, thresholds, weights, company_age_months):
+def calculate_weighted_score(metrics, directors_score, sector_risk, thresholds, weights, company_age_months, personal_default_12m=False, personal_default_12m=False, business_ccj=False, director_ccj=False, penalties=None):
+    
     weighted_score = 0
     # Debt Service Coverage Ratio
     if metrics["Debt Service Coverage Ratio"] >= thresholds["Debt Service Coverage Ratio"]:
@@ -64,6 +65,14 @@ def calculate_weighted_score(metrics, directors_score, sector_risk, thresholds, 
         else:
             weighted_score -= weights["Number of Bounced Payments"] * 0.5
 
+    # ⚠️ Apply penalties if applicable
+    if penalties:
+        if personal_default_12m:
+            weighted_score -= penalties.get("personal_default_12m", 0)
+        if business_ccj:
+            weighted_score -= penalties.get("business_ccj", 0)
+        if director_ccj:
+            weighted_score -= penalties.get("director_ccj", 0)
             
     return weighted_score
 
