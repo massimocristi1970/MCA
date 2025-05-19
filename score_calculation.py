@@ -4,7 +4,7 @@ import streamlit as st
 from config import months_threshold, calculate_risk
 from financial_metrics import avg_revenue
 
-def calculate_weighted_score(metrics, directors_score, sector_risk, thresholds, weights, company_age_months, personal_default_12m=False, personal_default_12m=False, business_ccj=False, director_ccj=False, penalties=None):
+def calculate_weighted_score(metrics, directors_score, sector_risk, thresholds, weights, company_age_months, personal_default_12m=False, business_ccj=False, director_ccj=False, penalties=None):
     
     weighted_score = 0
     # Debt Service Coverage Ratio
