@@ -451,6 +451,12 @@ weights = {
     'Number of Bounced Payments': 3,
 }
 
+penalties = {
+    "personal_default_12m": 5,
+    "business_ccj": 5,
+    "director_ccj": 5,
+}
+
 def calculate_risk(requested_loan, monthly_average_revenue):
     if requested_loan <= 0.7 * monthly_average_revenue:
         return 'Low Risk', f"Requested loan amount of {requested_loan} is less than or equal to 70% of the average monthly revenue ({monthly_average_revenue}), classified as Low Risk."
