@@ -48,53 +48,66 @@ def process_json_data(json_data):
         data['amount'] = data['amount'].abs()
 
 
-        # Function to map transaction category using regex
-        category_patterns = {
-            "Income": [
-                r"INCOME_(WAGES|OTHER_INCOME|DIVIDENDS|INTEREST_EARNED|RETIREMENT_PENSION|UNEMPLOYMENT)"
-            ],
-            "Loans": [r"TRANSFER_IN_CASH_ADVANCES_AND_LOANS"],
-            "Debt Repayments": [
-                r"LOAN_PAYMENTS_(CREDIT_CARD_PAYMENT|PERSONAL_LOAN_PAYMENT|OTHER_PAYMENT|CAR_PAYMENT|MORTGAGE_PAYMENT|STUDENT_LOAN_PAYMENT)"
-            ],
-            "Special Inflow": [
-                r"INCOME_(DIVIDENDS|INTEREST_EARNED|RETIREMENT_PENSION|TAX_REFUND|UNEMPLOYMENT|TAX_REFUND)",
-                r"TRANSFER_IN_(INVESTMENT_AND_RETIREMENT_FUNDS|SAVINGS|ACCOUNT_TRANSFER|OTHER_TRANSFER_IN|DEPOSIT)"
-            ],
-            "Special Outflow": [
-                r"TRANSFER_OUT_(INVESTMENT_AND_RETIREMENT_FUNDS|SAVINGS|OTHER_TRANSFER_OUT|WITHDRAWAL|ACCOUNT_TRANSFER)"
-            ],
-            "Failed Payment": [
-                r"BANK_FEES_(INSUFFICIENT_FUNDS|LATE_PAYMENT)|Unp|Unpaid|returned payment|returned|reversal|chargeback|RETURNED DD|direct debit|rejected|payment fee"
-            ],
-            "Expenses": [
-                r"BANK_FEES_.*",
-                r"ENTERTAINMENT_.*",
-                r"FOOD_AND_DRINK_.*",
-                r"GENERAL_MERCHANDISE_.*",
-                r"GENERAL_SERVICES_.*",
-                r"GOVERNMENT_AND_NON_PROFIT_.*",
-                r"HOME_IMPROVEMENT_.*",
-                r"MEDICAL_.*",
-                r"PERSONAL_CARE_.*",
-                r"RENT_AND_UTILITIES_.*",
-                r"TRANSPORTATION_.*",
-                r"TRAVEL_.*"
-            ]
-        }
+        # Updated function to map transaction category using multiple fields (name_y, merchant_name, category)
+def map_transaction_category(transaction):
+    name = (transaction.get("name_y") or "").lower()
+    description = (transaction.get("merchant_name") or "").lower()
+    category = (transaction.get("category") or "").lower()
+    combined_text = f"{name} {description}"
 
-        def map_transaction_category(category_detailed):
-            if pd.isnull(category_detailed):
-                return "Unknown"
-            for category, patterns in category_patterns.items():
-                for pattern in patterns:
-                    if re.search(pattern, category_detailed):
-                        return category
-            return "Unknown"
+    category_patterns = {
+        "Income": [
+            r"INCOME_(WAGES|OTHER_INCOME|DIVIDENDS|INTEREST_EARNED|RETIREMENT_PENSION|UNEMPLOYMENT)",
+            r"(stripe|paypal|sumup|zettle|square|takepayments|shopify|amazon|ebay|gocardless|revolut|klarna|worldpay|izettle|ubereats|justeat|deliveroo|uber|bolt|fresha|treatwell|taskrabbit|invoice|inv|client payment|merchant|card settlement|daily takings|clearing|payout|pos deposit|terminal)",
+            r"(you\s?lend)(?!.*\b(fnd|fund|funding)\b)"
+        ],
+        "Loans": [
+            r"TRANSFER_IN_CASH_ADVANCES_AND_LOANS",
+            r"(you\s?lend).*\b(fnd|fund|funding)\b"
+        ],
+        "Debt Repayments": [
+            r"LOAN_PAYMENTS_(CREDIT_CARD_PAYMENT|PERSONAL_LOAN_PAYMENT|OTHER_PAYMENT|CAR_PAYMENT|MORTGAGE_PAYMENT|STUDENT_LOAN_PAYMENT)"
+        ],
+        "Special Inflow": [
+            r"INCOME_(DIVIDENDS|INTEREST_EARNED|RETIREMENT_PENSION|TAX_REFUND|UNEMPLOYMENT|TAX_REFUND)",
+            r"TRANSFER_IN_(INVESTMENT_AND_RETIREMENT_FUNDS|SAVINGS|ACCOUNT_TRANSFER|OTHER_TRANSFER_IN|DEPOSIT)"
+        ],
+        "Special Outflow": [
+            r"TRANSFER_OUT_(INVESTMENT_AND_RETIREMENT_FUNDS|SAVINGS|OTHER_TRANSFER_OUT|WITHDRAWAL|ACCOUNT_TRANSFER)"
+        ],
+        "Failed Payment": [
+            r"BANK_FEES_(INSUFFICIENT_FUNDS|LATE_PAYMENT)",
+            r"Unp|Unpaid|returned payment|returned|reversal|chargeback|RETURNED DD|direct debit|rejected|payment fee"
+        ],
+        "Expenses": [
+            r"BANK_FEES_.*",
+            r"ENTERTAINMENT_.*",
+            r"FOOD_AND_DRINK_.*",
+            r"GENERAL_MERCHANDISE_.*",
+            r"GENERAL_SERVICES_.*",
+            r"GOVERNMENT_AND_NON_PROFIT_.*",
+            r"HOME_IMPROVEMENT_.*",
+            r"MEDICAL_.*",
+            r"PERSONAL_CARE_.*",
+            r"RENT_AND_UTILITIES_.*",
+            r"TRANSPORTATION_.*",
+            r"TRAVEL_.*"
+        ]
+    }
 
-        data['subcategory'] = data['personal_finance_category.detailed'].apply(map_transaction_category)
+    for cat, patterns in category_patterns.items():
+        for pattern in patterns:
+            if cat in ["Debt Repayments", "Special Inflow", "Special Outflow", "Expenses"]:
+                if re.search(pattern, category):
+                    return cat
+            else:
+                if re.search(pattern, category) or re.search(pattern, combined_text):
+                    return cat
+    return "Uncategorised"
 
-        return data
+data['subcategory'] = data.apply(map_transaction_category, axis=1)
+
+return data
 
     except Exception as e:
         st.error(f"Error processing JSON data: {e}")
