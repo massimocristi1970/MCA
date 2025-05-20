@@ -23,7 +23,7 @@ def count_bounced_payments(data, description_column='description', date_column='
     bounced = data[data['Bounce Category'] != ''].copy()
 
     if bounced.empty:
-        return pd.DataFrame({'Bounce Category': ['None'], 'Count': [0]})
+        return pd.DataFrame()
     
     return bounced
 
