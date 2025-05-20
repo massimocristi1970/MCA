@@ -455,6 +455,9 @@ penalties = {
     "personal_default_12m": 5,
     "business_ccj": 5,
     "director_ccj": 5,
+    'website_or_social_outdated': 3,
+    'uses_generic_email': 3,
+    'no_online_presence': 5
 }
 
 def calculate_risk(requested_loan, monthly_average_revenue):
