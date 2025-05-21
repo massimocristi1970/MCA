@@ -148,7 +148,8 @@ def map_transaction_category(transaction):
         for pattern in category_patterns["Failed Payment"]:
             if re.search(pattern, combined_text):
                 return "Failed Payment"
-
+    print(f"Unmatched transaction: name={name}, description={description}, category={category}, amount={amount}")
+    
     return "Uncategorised"
 
 def count_bounced_payments(data, description_column='description', date_column='date'):
