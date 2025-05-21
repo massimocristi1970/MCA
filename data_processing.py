@@ -57,7 +57,6 @@ def process_json_data(json_data):
 
 
 # Updated function to map transaction category using multiple fields (name_y, merchant_name, category)
-# Updated function to map transaction category using multiple fields (name_y, merchant_name, category)
 def map_transaction_category(transaction):
     import re
 
@@ -75,6 +74,9 @@ def map_transaction_category(transaction):
 
     amount = transaction.get("amount_1", 0)
     combined_text = f"{name} {description}"
+
+    is_credit = amount < 0
+    is_debit = amount > 0
 
     category_patterns = {
         "Income": [
@@ -117,16 +119,13 @@ def map_transaction_category(transaction):
         ]
     }
 
-    # Step 1: Try category-based matching first (Plaid category)
+    # Step 1: Try category-based matching (Plaid classification)
     for cat, patterns in category_patterns.items():
         for pattern in patterns:
             if re.search(pattern, category):
                 return cat
 
-    # Step 2: Apply inflow/outflow matching using text for custom overrides
-    is_credit = amount < 0
-    is_debit = amount > 0
-
+    # Step 2: If not matched by Plaid, use custom inflow/outflow overrides
     if is_credit:
         for pattern in category_patterns["Income"]:
             if re.search(pattern, combined_text):
@@ -148,8 +147,7 @@ def map_transaction_category(transaction):
         for pattern in category_patterns["Failed Payment"]:
             if re.search(pattern, combined_text):
                 return "Failed Payment"
-    print(f"Unmatched transaction: name={name}, description={description}, category={category}, amount={amount}")
-    
+
     return "Uncategorised"
 
 def count_bounced_payments(data, description_column='description', date_column='date'):
