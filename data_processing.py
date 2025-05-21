@@ -74,7 +74,7 @@ def map_transaction_category(transaction):
     is_debit = amount > 0
 
     # Step 1: Custom keyword overrides
-    if is_credit and re.search(r"(stripe|sumup|zettle|square|takepayments|shopify|card settlement|daily takings|payout)", combined_text):
+    if is_credit and re.search(r"(stripe|sumup|zettle|square|takepayments|shopify|card settlement|daily takings|payout|capital\s+on\s+tap|capital\s+one|evo|gocardless|got[\s\-]?capital|paypal|teya\s+solutions)", combined_text):
         return "Income"
     if is_credit and re.search(r"(you\s?lend|yl\s?ii|yl\s?ltd|yl\s?limited|yl\s?a\s?limited)(?!.*\b(fnd|fund|funding)\b)", combined_text):
         return "Income"
