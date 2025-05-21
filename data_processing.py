@@ -68,7 +68,7 @@ def map_transaction_category(transaction):
     if isinstance(description, list): description = " ".join(description)
     description = description.lower()
 
-    category = (transaction.get("personal_finance_category.detailed") or "")
+    category = (transaction.get("personal_finance_category.primary") or "")
     if isinstance(category, list): category = " ".join(category)
     category = category.lower()
 
