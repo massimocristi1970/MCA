@@ -47,8 +47,16 @@ def process_json_data(json_data):
         data['amount_1'] = data['amount']
         data['amount'] = data['amount'].abs()
 
+        data['subcategory'] = data.apply(map_transaction_category, axis=1)
 
-        # Updated function to map transaction category using multiple fields (name_y, merchant_name, category)
+        return data
+
+    except Exception as e:
+        st.error(f"Error processing JSON data: {e}")
+        return None
+
+
+# Updated function to map transaction category using multiple fields (name_y, merchant_name, category)
 def map_transaction_category(transaction):
     name = (transaction.get("name_y") or "").lower()
     description = (transaction.get("merchant_name") or "").lower()
@@ -126,15 +134,6 @@ def map_transaction_category(transaction):
                 return "Failed Payment"
 
     return "Uncategorised"
-
-data['subcategory'] = data.apply(map_transaction_category, axis=1)
-
-return data
-
-    except Exception as e:
-        st.error(f"Error processing JSON data: {e}")
-        return None
-
 
 def count_bounced_payments(data, description_column='description', date_column='date'):
     """
