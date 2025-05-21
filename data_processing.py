@@ -62,9 +62,10 @@ def map_transaction_category(transaction):
     if isinstance(description, list): description = " ".join(description)
     description = description.lower()
 
-    category = (transaction.get("personal_finance_category.primary") or "")
+    # Normalise Plaid category
+    category = (transaction.get("personal_finance_category.detailed") or "")
     if isinstance(category, list): category = " ".join(category)
-    category = category.lower()
+    category = category.lower().strip().replace(" ", "_")
 
     amount = transaction.get("amount_1", 0)
     combined_text = f"{name} {description}"
@@ -72,7 +73,7 @@ def map_transaction_category(transaction):
     is_credit = amount < 0
     is_debit = amount > 0
 
-    # Step 1: Keyword-based classification (overrides Plaid)
+    # Step 1: Custom keyword overrides
     if is_credit and re.search(r"(stripe|sumup|zettle|square|takepayments|shopify|card settlement|daily takings|payout)", combined_text):
         return "Income"
     if is_credit and re.search(r"(you\s?lend|yl\s?ii|yl\s?ltd|yl\s?limited|yl\s?a\s?limited)(?!.*\b(fnd|fund|funding)\b)", combined_text):
@@ -82,31 +83,51 @@ def map_transaction_category(transaction):
     if is_debit and re.search(r"\biwoca\b", combined_text):
         return "Debt Repayments"
 
-    # Step 2: Plaid category mapping
-    category_patterns = {
-        "Income": [r"INCOME_(WAGES|OTHER_INCOME|DIVIDENDS|INTEREST_EARNED|RETIREMENT_PENSION|UNEMPLOYMENT)"],
-        "Loans": [r"TRANSFER_IN_CASH_ADVANCES_AND_LOANS"],
-        "Debt Repayments": [r"LOAN_PAYMENTS_(CREDIT_CARD_PAYMENT|PERSONAL_LOAN_PAYMENT|OTHER_PAYMENT|CAR_PAYMENT|MORTGAGE_PAYMENT|STUDENT_LOAN_PAYMENT)"],
-        "Special Inflow": [
-            r"INCOME_(DIVIDENDS|INTEREST_EARNED|RETIREMENT_PENSION|TAX_REFUND|UNEMPLOYMENT)",
-            r"TRANSFER_IN_(INVESTMENT_AND_RETIREMENT_FUNDS|SAVINGS|ACCOUNT_TRANSFER|OTHER_TRANSFER_IN|DEPOSIT)"
-        ],
-        "Special Outflow": [r"TRANSFER_OUT_(INVESTMENT_AND_RETIREMENT_FUNDS|SAVINGS|OTHER_TRANSFER_OUT|WITHDRAWAL|ACCOUNT_TRANSFER)"],
-        "Failed Payment": [
-            r"BANK_FEES_(INSUFFICIENT_FUNDS|LATE_PAYMENT)",
-            r"Unp|Unpaid|returned payment|reversal|chargeback|RETURNED DD|direct debit|rejected|payment fee"
-        ],
-        "Expenses": [
-            r"BANK_FEES_.*", r"ENTERTAINMENT_.*", r"FOOD_AND_DRINK_.*", r"GENERAL_MERCHANDISE_.*",
-            r"GENERAL_SERVICES_.*", r"GOVERNMENT_AND_NON_PROFIT_.*", r"HOME_IMPROVEMENT_.*", r"MEDICAL_.*",
-            r"PERSONAL_CARE_.*", r"RENT_AND_UTILITIES_.*", r"TRANSPORTATION_.*", r"TRAVEL_.*"
-        ]
+    # Step 2: Plaid category fallback
+    plaid_map = {
+        "income_wages": "Income",
+        "income_other_income": "Income",
+        "income_dividends": "Special Inflow",
+        "income_interest_earned": "Special Inflow",
+        "income_retirement_pension": "Special Inflow",
+        "income_unemployment": "Special Inflow",
+        "transfer_in_cash_advances_and_loans": "Loans",
+        "loan_payments_credit_card_payment": "Debt Repayments",
+        "loan_payments_personal_loan_payment": "Debt Repayments",
+        "loan_payments_other_payment": "Debt Repayments",
+        "loan_payments_car_payment": "Debt Repayments",
+        "loan_payments_mortgage_payment": "Debt Repayments",
+        "loan_payments_student_loan_payment": "Debt Repayments",
+        "transfer_in_investment_and_retirement_funds": "Special Inflow",
+        "transfer_in_savings": "Special Inflow",
+        "transfer_in_account_transfer": "Special Inflow",
+        "transfer_in_other_transfer_in": "Special Inflow",
+        "transfer_in_deposit": "Special Inflow",
+        "transfer_out_investment_and_retirement_funds": "Special Outflow",
+        "transfer_out_savings": "Special Outflow",
+        "transfer_out_other_transfer_out": "Special Outflow",
+        "transfer_out_withdrawal": "Special Outflow",
+        "transfer_out_account_transfer": "Special Outflow",
+        "bank_fees_insufficient_funds": "Failed Payment",
+        "bank_fees_late_payment": "Failed Payment",
     }
 
-    for cat, patterns in category_patterns.items():
-        for pattern in patterns:
-            if re.search(pattern, category):
-                return cat
+    # Match exact key
+    if category in plaid_map:
+        return plaid_map[category]
+
+    # Step 3: Fallback for Plaid broad categories
+    broad_matchers = [
+        ("Expenses", [
+            "bank_fees_", "entertainment_", "food_and_drink_", "general_merchandise_",
+            "general_services_", "government_and_non_profit_", "home_improvement_",
+            "medical_", "personal_care_", "rent_and_utilities_", "transportation_", "travel_"
+        ])
+    ]
+
+    for label, patterns in broad_matchers:
+        if any(category.startswith(p) for p in patterns):
+            return label
 
     return "Uncategorised"
 
