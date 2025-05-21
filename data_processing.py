@@ -57,7 +57,10 @@ def process_json_data(json_data):
 
 
 # Updated function to map transaction category using multiple fields (name_y, merchant_name, category)
+# Updated function to map transaction category using multiple fields (name_y, merchant_name, category)
 def map_transaction_category(transaction):
+    import re
+
     name = (transaction.get("name_y") or "")
     if isinstance(name, list): name = " ".join(name)
     name = name.lower()
@@ -69,11 +72,9 @@ def map_transaction_category(transaction):
     category = (transaction.get("category") or "")
     if isinstance(category, list): category = " ".join(category)
     category = category.lower()
+
     amount = transaction.get("amount_1", 0)
     combined_text = f"{name} {description}"
-
-    is_credit = amount < 0  # inflow
-    is_debit = amount > 0   # outflow
 
     category_patterns = {
         "Income": [
@@ -116,29 +117,36 @@ def map_transaction_category(transaction):
         ]
     }
 
-    if is_credit:  # inflow
+    # Step 1: Try category-based matching first (Plaid category)
+    for cat, patterns in category_patterns.items():
+        for pattern in patterns:
+            if re.search(pattern, category):
+                return cat
+
+    # Step 2: Apply inflow/outflow matching using text for custom overrides
+    is_credit = amount < 0
+    is_debit = amount > 0
+
+    if is_credit:
         for pattern in category_patterns["Income"]:
-            if re.search(pattern, combined_text) or re.search(pattern, category):
+            if re.search(pattern, combined_text):
                 return "Income"
         for pattern in category_patterns["Loans"]:
-            if re.search(pattern, combined_text) or re.search(pattern, category):
+            if re.search(pattern, combined_text):
                 return "Loans"
         for pattern in category_patterns["Special Inflow"]:
-            if re.search(pattern, category):
+            if re.search(pattern, combined_text):
                 return "Special Inflow"
 
     elif is_debit:
-        for pattern in category_patterns["Expenses"]:
-            if re.search(pattern, category):
-                return "Expenses"
         for pattern in category_patterns["Debt Repayments"]:
-            if re.search(pattern, category) or re.search(pattern, combined_text):
+            if re.search(pattern, combined_text):
                 return "Debt Repayments"
         for pattern in category_patterns["Special Outflow"]:
-            if re.search(pattern, category):
+            if re.search(pattern, combined_text):
                 return "Special Outflow"
         for pattern in category_patterns["Failed Payment"]:
-            if re.search(pattern, combined_text) or re.search(pattern, category):
+            if re.search(pattern, combined_text):
                 return "Failed Payment"
 
     return "Uncategorised"
