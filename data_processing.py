@@ -13,7 +13,6 @@ def process_json_data(json_data):
         selected_columns = [
             'account_id',
             'balances.available',
-            # 'balances.current',
             'amount',
             'merchant_name',
             'website',
@@ -30,16 +29,14 @@ def process_json_data(json_data):
 
         data = data[selected_columns]
         data["date"] = pd.to_datetime(data["date"], errors='coerce')
-        data["date"] = pd.to_datetime(data["date"], errors='coerce')
-        # Sort transactions in descending order by date
         data = data.sort_values(by='date', ascending=False)
 
-        # Apply balance updates
+        # Recalculate balance
         current_balance = data.iloc[0]['balances.available']
         updated_balances = [current_balance]
 
         for index in range(1, len(data)):
-            current_balance += data.iloc[index]['amount'] 
+            current_balance += data.iloc[index]['amount']
             updated_balances.append(current_balance)
 
         data['balances.available'] = updated_balances
@@ -55,70 +52,8 @@ def process_json_data(json_data):
         st.error(f"Error processing JSON data: {e}")
         return None
 
-
-# Updated function to map transaction category using multiple fields (name_y, merchant_name, category)
-import pandas as pd
-import re
-import streamlit as st
-
-# Function to process JSON data
-def process_json_data(json_data):
-    try:
-        accounts_df = pd.json_normalize(json_data['accounts'])
-        transactions_df = pd.json_normalize(json_data['transactions'])
-
-        data = pd.merge(accounts_df, transactions_df, on="account_id", how="left")
-
-        selected_columns = [
-            'account_id',
-            'balances.available',
-            # 'balances.current',
-            'amount',
-            'merchant_name',
-            'website',
-            'name_y',
-            'authorized_date',
-            'authorized_datetime',
-            'category',
-            'date',
-            'payment_channel',
-            'personal_finance_category.confidence_level',
-            'personal_finance_category.detailed',
-            'personal_finance_category.primary'
-        ]
-
-        data = data[selected_columns]
-        data["date"] = pd.to_datetime(data["date"], errors='coerce')
-        data["date"] = pd.to_datetime(data["date"], errors='coerce')
-        # Sort transactions in descending order by date
-        data = data.sort_values(by='date', ascending=False)
-
-        # Apply balance updates
-        current_balance = data.iloc[0]['balances.available']
-        updated_balances = [current_balance]
-
-        for index in range(1, len(data)):
-            current_balance += data.iloc[index]['amount'] 
-            updated_balances.append(current_balance)
-
-        data['balances.available'] = updated_balances
-
-        data['amount_1'] = data['amount']
-        data['amount'] = data['amount'].abs()
-
-        data['subcategory'] = data.apply(map_transaction_category, axis=1)
-
-        return data
-
-    except Exception as e:
-        st.error(f"Error processing JSON data: {e}")
-        return None
-
-
-# Updated function to map transaction category using multiple fields (name_y, merchant_name, category)
+# Categorisation function
 def map_transaction_category(transaction):
-    import re
-
     name = (transaction.get("name_y") or "")
     if isinstance(name, list): name = " ".join(name)
     name = name.lower()
@@ -137,63 +72,41 @@ def map_transaction_category(transaction):
     is_credit = amount < 0
     is_debit = amount > 0
 
+    # Step 1: Keyword-based classification (overrides Plaid)
+    if is_credit and re.search(r"(stripe|sumup|zettle|square|takepayments|shopify|card settlement|daily takings|payout)", combined_text):
+        return "Income"
+    if is_credit and re.search(r"(you\s?lend|yl\s?ii|yl\s?ltd|yl\s?limited|yl\s?a\s?limited)(?!.*\b(fnd|fund|funding)\b)", combined_text):
+        return "Income"
+    if is_credit and re.search(r"(you\s?lend|yl\s?ii|yl\s?ltd|yl\s?limited|yl\s?a\s?limited).*\b(fnd|fund|funding)\b", combined_text):
+        return "Loans"
+    if is_debit and re.search(r"\biwoca\b", combined_text):
+        return "Debt Repayments"
+
+    # Step 2: Plaid category mapping
     category_patterns = {
-        "Income": [
-            r"income_(wages|other_income|dividends|interest_earned|retirement_pension|unemployment)"
-        ],
-        "Loans": [
-            r"transfer_in_cash_advances_and_loans"
-        ],
-        "Debt Repayments": [
-            r"loan_payments_(credit_card_payment|personal_loan_payment|other_payment|car_payment|mortgage_payment|student_loan_payment)"
-        ],
+        "Income": [r"INCOME_(WAGES|OTHER_INCOME|DIVIDENDS|INTEREST_EARNED|RETIREMENT_PENSION|UNEMPLOYMENT)"],
+        "Loans": [r"TRANSFER_IN_CASH_ADVANCES_AND_LOANS"],
+        "Debt Repayments": [r"LOAN_PAYMENTS_(CREDIT_CARD_PAYMENT|PERSONAL_LOAN_PAYMENT|OTHER_PAYMENT|CAR_PAYMENT|MORTGAGE_PAYMENT|STUDENT_LOAN_PAYMENT)"],
         "Special Inflow": [
-            r"income_(dividends|interest_earned|retirement_pension|tax_refund|unemployment)",
-            r"transfer_in_(investment_and_retirement_funds|savings|account_transfer|other_transfer_in|deposit)"
+            r"INCOME_(DIVIDENDS|INTEREST_EARNED|RETIREMENT_PENSION|TAX_REFUND|UNEMPLOYMENT)",
+            r"TRANSFER_IN_(INVESTMENT_AND_RETIREMENT_FUNDS|SAVINGS|ACCOUNT_TRANSFER|OTHER_TRANSFER_IN|DEPOSIT)"
         ],
-        "Special Outflow": [
-            r"transfer_out_(investment_and_retirement_funds|savings|other_transfer_out|withdrawal|account_transfer)"
-        ],
+        "Special Outflow": [r"TRANSFER_OUT_(INVESTMENT_AND_RETIREMENT_FUNDS|SAVINGS|OTHER_TRANSFER_OUT|WITHDRAWAL|ACCOUNT_TRANSFER)"],
         "Failed Payment": [
-            r"bank_fees_(insufficient_funds|late_payment)",
-            r"unp|unpaid|returned payment|returned|reversal|chargeback|returned dd|direct debit|rejected|payment fee"
+            r"BANK_FEES_(INSUFFICIENT_FUNDS|LATE_PAYMENT)",
+            r"Unp|Unpaid|returned payment|reversal|chargeback|RETURNED DD|direct debit|rejected|payment fee"
         ],
         "Expenses": [
-            r"bank_fees_.*",
-            r"entertainment_.*",
-            r"food_and_drink_.*",
-            r"general_merchandise_.*",
-            r"general_services_.*",
-            r"government_and_non_profit_.*",
-            r"home_improvement_.*",
-            r"medical_.*",
-            r"personal_care_.*",
-            r"rent_and_utilities_.*",
-            r"transportation_.*",
-            r"travel_.*"
+            r"BANK_FEES_.*", r"ENTERTAINMENT_.*", r"FOOD_AND_DRINK_.*", r"GENERAL_MERCHANDISE_.*",
+            r"GENERAL_SERVICES_.*", r"GOVERNMENT_AND_NON_PROFIT_.*", r"HOME_IMPROVEMENT_.*", r"MEDICAL_.*",
+            r"PERSONAL_CARE_.*", r"RENT_AND_UTILITIES_.*", r"TRANSPORTATION_.*", r"TRAVEL_.*"
         ]
     }
 
-    # Step 1 – match based on category pattern (Plaid's classification)
     for cat, patterns in category_patterns.items():
         for pattern in patterns:
             if re.search(pattern, category):
                 return cat
-
-    # Step 2 – match based on text in name + merchant
-    income_keywords = r"(stripe|paypal|sumup|zettle|square|takepayments|shopify|amazon|ebay|gocardless|revolut|klarna|worldpay|izettle|ubereats|justeat|deliveroo|uber|bolt|fresha|treatwell|taskrabbit|client payment|merchant|card settlement|daily takings|clearing|payout|pos deposit|terminal)"
-    youlend_income = r"(you\s?lend|yl\s?ii|yl\s?ltd|yl\s?limited|yl\s?a\s?limited)(?!.*\b(fnd|fund|funding)\b)"
-    youlend_loan = r"(you\s?lend|yl\s?ii|yl\s?ltd|yl\s?limited|yl\s?a\s?limited).*\b(fnd|fund|funding)\b"
-    iwoca = r"iwoca"
-
-    if is_credit and re.search(income_keywords, combined_text):
-        return "Income"
-    if is_credit and re.search(youlend_income, combined_text):
-        return "Income"
-    if is_credit and re.search(youlend_loan, combined_text):
-        return "Loans"
-    if is_debit and re.search(iwoca, combined_text):
-        return "Debt Repayments"
 
     return "Uncategorised"
 
