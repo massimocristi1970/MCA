@@ -58,9 +58,17 @@ def process_json_data(json_data):
 
 # Updated function to map transaction category using multiple fields (name_y, merchant_name, category)
 def map_transaction_category(transaction):
-    name = (transaction.get("name_y") or "").lower()
-    description = (transaction.get("merchant_name") or "").lower()
-    category = (transaction.get("category") or "").lower()
+    name = (transaction.get("name_y") or "")
+    if isinstance(name, list): name = " ".join(name)
+    name = name.lower()
+
+    description = (transaction.get("merchant_name") or "")
+    if isinstance(description, list): description = " ".join(description)
+    description = description.lower()
+
+    category = (transaction.get("category") or "")
+    if isinstance(category, list): category = " ".join(category)
+    category = category.lower()
     amount = transaction.get("amount_1", 0)
     combined_text = f"{name} {description}"
 
