@@ -53,20 +53,25 @@ def map_transaction_category(transaction):
     name = (transaction.get("name_y") or "").lower()
     description = (transaction.get("merchant_name") or "").lower()
     category = (transaction.get("category") or "").lower()
+    amount = transaction.get("amount_1", 0)
     combined_text = f"{name} {description}"
+
+    is_credit = amount < 0  # inflow
+    is_debit = amount > 0   # outflow
 
     category_patterns = {
         "Income": [
             r"INCOME_(WAGES|OTHER_INCOME|DIVIDENDS|INTEREST_EARNED|RETIREMENT_PENSION|UNEMPLOYMENT)",
             r"(stripe|paypal|sumup|zettle|square|takepayments|shopify|amazon|ebay|gocardless|revolut|klarna|worldpay|izettle|ubereats|justeat|deliveroo|uber|bolt|fresha|treatwell|taskrabbit|invoice|inv|client payment|merchant|card settlement|daily takings|clearing|payout|pos deposit|terminal)",
-            r"(you\s?lend)(?!.*\b(fnd|fund|funding)\b)"
+            r"((you\s?lend|yl\s?ii|yl\s?ltd|yl\s?limited|yl\s?a\s?limited))(?!.*\b(fnd|fund|funding)\b)"
         ],
         "Loans": [
             r"TRANSFER_IN_CASH_ADVANCES_AND_LOANS",
-            r"(you\s?lend).*\b(fnd|fund|funding)\b"
+            r"((you\s?lend|yl\s?ii|yl\s?ltd|yl\s?limited|yl\s?a\s?limited)).*\b(fnd|fund|funding)\b"
         ],
         "Debt Repayments": [
-            r"LOAN_PAYMENTS_(CREDIT_CARD_PAYMENT|PERSONAL_LOAN_PAYMENT|OTHER_PAYMENT|CAR_PAYMENT|MORTGAGE_PAYMENT|STUDENT_LOAN_PAYMENT)"
+            r"LOAN_PAYMENTS_(CREDIT_CARD_PAYMENT|PERSONAL_LOAN_PAYMENT|OTHER_PAYMENT|CAR_PAYMENT|MORTGAGE_PAYMENT|STUDENT_LOAN_PAYMENT)",
+            r"(iwoca)"
         ],
         "Special Inflow": [
             r"INCOME_(DIVIDENDS|INTEREST_EARNED|RETIREMENT_PENSION|TAX_REFUND|UNEMPLOYMENT|TAX_REFUND)",
@@ -95,14 +100,31 @@ def map_transaction_category(transaction):
         ]
     }
 
-    for cat, patterns in category_patterns.items():
-        for pattern in patterns:
-            if cat in ["Debt Repayments", "Special Inflow", "Special Outflow", "Expenses"]:
-                if re.search(pattern, category):
-                    return cat
-            else:
-                if re.search(pattern, category) or re.search(pattern, combined_text):
-                    return cat
+    if is_credit:  # inflow
+        for pattern in category_patterns["Income"]:
+            if re.search(pattern, combined_text) or re.search(pattern, category):
+                return "Income"
+        for pattern in category_patterns["Loans"]:
+            if re.search(pattern, combined_text) or re.search(pattern, category):
+                return "Loans"
+        for pattern in category_patterns["Special Inflow"]:
+            if re.search(pattern, category):
+                return "Special Inflow"
+
+    elif is_debit:
+        for pattern in category_patterns["Expenses"]:
+            if re.search(pattern, category):
+                return "Expenses"
+        for pattern in category_patterns["Debt Repayments"]:
+            if re.search(pattern, category) or re.search(pattern, combined_text):
+                return "Debt Repayments"
+        for pattern in category_patterns["Special Outflow"]:
+            if re.search(pattern, category):
+                return "Special Outflow"
+        for pattern in category_patterns["Failed Payment"]:
+            if re.search(pattern, combined_text) or re.search(pattern, category):
+                return "Failed Payment"
+
     return "Uncategorised"
 
 data['subcategory'] = data.apply(map_transaction_category, axis=1)
