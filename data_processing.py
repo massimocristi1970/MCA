@@ -80,6 +80,8 @@ def map_transaction_category(transaction):
         return "Income"
     if is_credit and re.search(r"(you\s?lend|yl\s?ii|yl\s?ltd|yl\s?limited|yl\s?a\s?limited).*\b(fnd|fund|funding)\b", combined_text):
         return "Loans"
+    if is_credit and re.search(r"\biwoca\b|\bcapify\b|\bfundbox\b|\bgot capital\b", combined_text):
+        return "Loans"
     if is_debit and re.search(r"\biwoca\b", combined_text):
         return "Debt Repayments"
 
