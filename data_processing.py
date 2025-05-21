@@ -68,7 +68,7 @@ def map_transaction_category(transaction):
     if isinstance(description, list): description = " ".join(description)
     description = description.lower()
 
-    category = (transaction.get("category") or "")
+    category = (transaction.get("personal_finance_category.detailed") or "")
     if isinstance(category, list): category = " ".join(category)
     category = category.lower()
 
@@ -119,35 +119,22 @@ def map_transaction_category(transaction):
         ]
     }
 
-    # Step 1: Try category-based matching (Plaid classification)
-    for cat, patterns in category_patterns.items():
-        for pattern in patterns:
-            if re.search(pattern, category):
-                return cat
+    # ✅ 2. Add enhanced identification logic for known merchants (only if Plaid category didn't already match)
+    income_keywords = r"(stripe|paypal|sumup|zettle|square|takepayments|shopify|amazon|ebay|gocardless|revolut|klarna|worldpay|izettle|ubereats|justeat|deliveroo|uber|bolt|fresha|treatwell|taskrabbit|client payment|merchant|card settlement|daily takings|clearing|payout|pos deposit|terminal)"
+    youlend_income = r"((you\s?lend|yl\s?ii|yl\s?ltd|yl\s?limited|yl\s?a\s?limited))(?!.*\b(fnd|fund|funding)\b)"
+    youlend_loan = r"((you\s?lend|yl\s?ii|yl\s?ltd|yl\s?limited|yl\s?a\s?limited)).*\b(fnd|fund|funding)\b"
+    iwoca = r"(iwoca)"
 
-    # Step 2: If not matched by Plaid, use custom inflow/outflow overrides
-    if is_credit:
-        for pattern in category_patterns["Income"]:
-            if re.search(pattern, combined_text):
-                return "Income"
-        for pattern in category_patterns["Loans"]:
-            if re.search(pattern, combined_text):
-                return "Loans"
-        for pattern in category_patterns["Special Inflow"]:
-            if re.search(pattern, combined_text):
-                return "Special Inflow"
+    if is_credit and re.search(income_keywords, combined_text):
+        return "Income"
+    if is_credit and re.search(youlend_income, combined_text):
+        return "Income"
+    if is_credit and re.search(youlend_loan, combined_text):
+        return "Loans"
+    if is_debit and re.search(iwoca, combined_text):
+        return "Debt Repayments"
 
-    elif is_debit:
-        for pattern in category_patterns["Debt Repayments"]:
-            if re.search(pattern, combined_text):
-                return "Debt Repayments"
-        for pattern in category_patterns["Special Outflow"]:
-            if re.search(pattern, combined_text):
-                return "Special Outflow"
-        for pattern in category_patterns["Failed Payment"]:
-            if re.search(pattern, combined_text):
-                return "Failed Payment"
-
+    # ✅ 3. Fallback
     return "Uncategorised"
 
 def count_bounced_payments(data, description_column='description', date_column='date'):
