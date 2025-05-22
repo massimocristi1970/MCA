@@ -165,6 +165,28 @@ def calculate_metrics(data, company_age_months):
     }
 
 def calculate_metrics_subset(data):
+    # Defensive check: return zeros if there's no data or no revenue/expenses
+    if data.empty or (data['is_revenue'].sum() == 0 and data['is_expense'].sum() == 0):
+        return {
+            "Total Revenue": 0,
+            "Monthly Average Revenue": 0,
+            "Total Expenses": 0,
+            "Net Income": 0,
+            "Total Debt Repayments": 0,
+            "Total Debt": 0,
+            "Debt-to-Income Ratio": 0,
+            "Expense-to-Revenue Ratio": 0,
+            "Operating Margin": 0,
+            "Debt Service Coverage Ratio": 0,
+            "Gross Burn Rate": 0,
+            "Cash Flow Volatility": 0,
+            "Revenue Growth Rate": 0,
+            "Average Month-End Balance": 0,
+            "Average Negative Balance Days per Month": 0,
+            "Number of Bounced Payments": 0
+        }
+
+    
     # Subset metric calculations for last 3 months
 
     total_revenue = round(data.loc[data['is_revenue'], 'amount'].sum() or 0, 2)
