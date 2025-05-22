@@ -61,10 +61,20 @@ def main():
                     
                         # Categorize transactions
                         data = categorize_transactions(data) 
+                        
+                        # Get last 3 months of data
+                        data['date'] = pd.to_datetime(data['date'])
+                        latest_date = data['date'].max()
+                        three_months_ago = latest_date - pd.DateOffset(months=3)
+                        data_last_3_months = data[data['date'] >= three_months_ago]
 
                         # Calculate financial metrics
                         metrics = calculate_metrics(data, company_age_months)
                         st.write("Calculated Financial Metrics", metrics)
+
+                        # Calculate and show 3-month metrics
+                        recent_metrics = calculate_metrics_subset(data_last_3_months)
+                        st.write("Last 3 Months Financial Metrics", recent_metrics)
 
                         # Balance Report
                         report = process_balance_report(data)
