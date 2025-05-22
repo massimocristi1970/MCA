@@ -65,10 +65,15 @@ def calculate_metrics(data, company_age_months):
     data['year_month'] = data['date'].dt.to_period('M')
 
     # Calculate monthly revenue and expenses
-    monthly_summary = data.groupby('year_month').agg(
-        Net_Cashflow=('amount', lambda x: x[data['is_revenue']].sum() - x[data['is_expense']].sum()),
-        Monthly_Revenue=('amount', lambda x: x[data['is_revenue']].sum())
-    ).reset_index()
+    monthly_summary = (
+        data.groupby('year_month')
+        .apply(lambda group: pd.Series({
+            "Net_Cashflow": group.loc[group['is_revenue'], 'amount'].sum() - group.loc[group['is_expense'], 'amount'].sum(),
+            "Monthly_Revenue": group.loc[group['is_revenue'], 'amount'].sum()
+        }))
+        .reset_index()
+    )
+
 
     monthly_summary.columns = ['Year-Month', 'Net Cashflow', 'Monthly Revenue']
     monthly_summary['Monthly Expenses'] = monthly_summary['Monthly Revenue'] - monthly_summary['Net Cashflow']
