@@ -3,7 +3,7 @@ import streamlit as st
 import joblib
 from model_utils import predict_score
 from data_processing import process_json_data, categorize_transactions, calculate_monthly_summary, summarize_monthly_revenue, count_bounced_payments
-from financial_metrics import calculate_metrics, calculate_metrics_subset, avg_revenue, process_balance_report
+from financial_metrics import calculate_metrics, avg_revenue, process_balance_report
 from score_calculation import calculate_weighted_score, calculate_industry_score
 from config import weights, calculate_risk, industry_thresholds as industry_thresholds_config, penalties
 from analysis import plot_revenue_vs_expense, plot_outflow_transactions, plot_transaction_graphs, plot_loan_vs_expense_graph
@@ -61,20 +61,10 @@ def main():
                     
                         # Categorize transactions
                         data = categorize_transactions(data) 
-                        
-                        # Get last 3 months of data
-                        data['date'] = pd.to_datetime(data['date'])
-                        latest_date = data['date'].max()
-                        three_months_ago = latest_date - pd.DateOffset(months=3)
-                        data_last_3_months = data[data['date'] >= three_months_ago]
 
                         # Calculate financial metrics
                         metrics = calculate_metrics(data, company_age_months)
                         st.write("Calculated Financial Metrics", metrics)
-
-                        # Calculate and show 3-month metrics
-                        recent_metrics = calculate_metrics_subset(data_last_3_months)
-                        st.write("Last 3 Months Financial Metrics", recent_metrics)
 
                         # Balance Report
                         report = process_balance_report(data)
