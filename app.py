@@ -40,7 +40,7 @@ def main():
         director_ccj = st.checkbox("Any director County Court Judgments (CCJs)?", value=False)
 
         # Business Digital Footprint Checks
-        st.markdown("Business Digital Footprint Checks")
+        st.subheader("Business Digital Footprint Checks")
         website_or_social_outdated = st.checkbox("Website or social presence hasn't been updated in 3+ months?", value=False)
         uses_generic_email = st.checkbox("Business email is Gmail, Hotmail or other generic provider?", value=False)
         no_online_presence = st.checkbox("No website or minimal/no online footprint?", value=False)
