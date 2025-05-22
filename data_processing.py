@@ -74,7 +74,19 @@ def map_transaction_category(transaction):
     is_debit = amount > 0
 
     # Step 1: Custom keyword overrides
-    if is_credit and re.search(r"(stripe|sumup|zettle|square|takepayments|shopify|card settlement|daily takings|payout|capital\s+on\s+tap|capital\s+one|evo|gocardless|got[\s\-]?capital|paypal|teya\s+solutions)", combined_text):
+    if is_credit and re.search(
+        r"(?i)\b("
+        r"stripe|sumup|zettle|square|take\s*payments|shopify|card\s+settlement|daily\s+takings|payout"
+        r"|paypal|go\s*cardless|klarna|worldpay|izettle|ubereats|just\s*eat|deliveroo|uber|bolt"
+        r"|fresha|treatwell|taskrabbit|terminal|pos\s+deposit|revolut"
+        r"|capital\s+on\s+tap|capital\s+one|evo\s*payments?|tink|teya(\s+solutions)?|talech"
+        r"|barclaycard|elavon|adyen|payzone|verifone|ingenico"
+        r"|nmi|trust\s+payments?|global\s+payments?|checkout\.com|epdq|santander|handepay"
+        r"|dojo|valitor|paypoint|mypos|moneris"
+        r"|merchant\s+services|payment\s+sense"
+        r")\b", 
+        combined_text
+    ):
         return "Income"
     if is_credit and re.search(r"(you\s?lend|yl\s?ii|yl\s?ltd|yl\s?limited|yl\s?a\s?limited)(?!.*\b(fnd|fund|funding)\b)", combined_text):
         return "Income"
