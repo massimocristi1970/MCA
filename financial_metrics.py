@@ -74,7 +74,6 @@ def calculate_metrics(data, company_age_months):
         .reset_index()
     )
 
-
     monthly_summary.columns = ['Year-Month', 'Net Cashflow', 'Monthly Revenue']
     monthly_summary['Monthly Expenses'] = monthly_summary['Monthly Revenue'] - monthly_summary['Net Cashflow']
 
