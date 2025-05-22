@@ -164,6 +164,84 @@ def calculate_metrics(data, company_age_months):
 
     }
 
+def calculate_metrics_subset(data):
+    # Subset metric calculations for last 3 months
+
+    total_revenue = round(data.loc[data['is_revenue'], 'amount'].sum() or 0, 2)
+    total_expenses = round(data.loc[data['is_expense'], 'amount'].sum() or 0, 2)
+    net_income = round(total_revenue - total_expenses, 2)
+    total_debt_repayments = round(data.loc[data['is_debt_repayment'], 'amount'].sum() or 0, 2)
+    total_debt = round(data.loc[data['is_debt'], 'amount'].sum() or 0, 2)
+    debt_to_income_ratio = round(total_debt / total_revenue if total_revenue != 0 else 0, 2)
+    expense_to_revenue_ratio = round(total_expenses / total_revenue if total_revenue != 0 else 0, 2)
+    operating_margin = round((total_revenue - total_expenses) / total_revenue if total_revenue != 0 else 0, 2)
+    debt_service_coverage_ratio = round(total_revenue / total_debt_repayments if total_debt_repayments != 0 else 0, 2)
+
+    data['year_month'] = data['date'].dt.to_period('M')
+    monthly_summary = data.groupby('year_month').agg(
+        Net_Cashflow=('amount', lambda x: x[data['is_revenue']].sum() - x[data['is_expense']].sum()),
+        Monthly_Revenue=('amount', lambda x: x[data['is_revenue']].sum())
+    ).reset_index()
+
+    monthly_summary['Monthly Expenses'] = monthly_summary['Monthly Revenue'] - monthly_summary['Net Cashflow']
+    total_months = len(monthly_summary)
+    gross_burn_rate = round(monthly_summary['Monthly Expenses'].sum() / total_months if total_months > 0 else 0, 2)
+    cash_flow_mean = monthly_summary['Net Cashflow'].mean()
+    cash_flow_std = monthly_summary['Net Cashflow'].std()
+    cash_flow_volatility = round((cash_flow_std / cash_flow_mean) if cash_flow_mean != 0 else 0, 2)
+    revenue_growth_rate = round(monthly_summary['Monthly Revenue'].pct_change().median() * 100, 2)
+
+    months_in_data = data['date'].dt.to_period('M').nunique()
+    monthly_average_revenue = round(total_revenue / months_in_data, 2) if months_in_data else 0
+
+    try:
+        data_sorted = data.sort_values(by='date', ascending=False).copy()
+        data_sorted['amount_1'] = pd.to_numeric(data_sorted['amount_1'], errors='coerce').fillna(0)
+        data_sorted['balances.available'] = pd.to_numeric(data_sorted['balances.available'], errors='coerce').fillna(0)
+        current_balance = data_sorted.iloc[0]['balances.available']
+        updated_balances = [current_balance]
+        for index in range(1, len(data_sorted)):
+            current_balance += data_sorted.iloc[index]['amount_1']
+            updated_balances.append(current_balance)
+        data_sorted['balances.available'] = updated_balances
+        data_sorted['month_end'] = data_sorted['date'].dt.to_period('M')
+        month_end_balances = data_sorted.groupby('month_end').first()['balances.available']
+        avg_month_end_balance = round(month_end_balances.mean(), 2)
+    except Exception:
+        avg_month_end_balance = 0.0
+
+    try:
+        negative_days = data_sorted[data_sorted['balances.available'] < 0].groupby('month_end')['date'].dt.date.nunique()
+        avg_negative_days = round(negative_days.mean() if not negative_days.empty else 0.0, 2)
+    except Exception:
+        avg_negative_days = 0.0
+
+    try:
+        bounced_df = count_bounced_payments(data, description_column='name_y', date_column='authorized_date')
+        number_of_bounced_payments = len(bounced_df) if not bounced_df.empty else 0
+    except Exception:
+        number_of_bounced_payments = 0
+
+    return {
+        "Total Revenue": total_revenue,
+        "Monthly Average Revenue": monthly_average_revenue,
+        "Total Expenses": total_expenses,
+        "Net Income": net_income,
+        "Total Debt Repayments": total_debt_repayments,
+        "Total Debt": total_debt,
+        "Debt-to-Income Ratio": debt_to_income_ratio,
+        "Expense-to-Revenue Ratio": expense_to_revenue_ratio,
+        "Operating Margin": operating_margin,
+        "Debt Service Coverage Ratio": debt_service_coverage_ratio,
+        "Gross Burn Rate": gross_burn_rate,
+        "Cash Flow Volatility": cash_flow_volatility,
+        "Revenue Growth Rate": revenue_growth_rate,
+        "Average Month-End Balance": avg_month_end_balance,
+        "Average Negative Balance Days per Month": avg_negative_days,
+        "Number of Bounced Payments": number_of_bounced_payments
+    }
+
+
 def avg_revenue(data):
     total_revenue = round(data.loc[data['is_revenue'], 'amount'].sum() or 0, 2)
     months_in_data = data['date'].dt.to_period('M').nunique()
