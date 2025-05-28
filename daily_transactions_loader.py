@@ -2,7 +2,7 @@ import pandas as pd
 import streamlit as st
 from data_processing import process_json_data
 
-def get_data_from_uploaded_file(uploaded_file):
+def get_data_from_uploaded_file(uploaded_file, start_date=None, end_date=None):
     if uploaded_file is None:
         st.warning("Please upload a transaction file.")
         return None, None
@@ -13,6 +13,13 @@ def get_data_from_uploaded_file(uploaded_file):
 
         accounts = json_data.get('accounts', [])
         transactions = json_data.get('transactions', [])
+
+        # Filter transactions by date range if provided
+        if start_date and end_date:
+            transactions = [
+                txn for txn in transactions
+                if 'date' in txn and start_date <= pd.to_datetime(txn['date']).date() <= end_date
+            ]
 
         # Account summary construction
         account_summaries = []
