@@ -348,21 +348,30 @@ def main():
     with main_tab3:
         st.header("Upload Transaction File")
 
+        st.subheader("Select Date Range Before Uploading")
+        col1, col2 = st.columns(2)
+        with col1:
+            start_date = st.date_input("Start Date", value=date.today() - timedelta(days=30))
+        with col2:
+            end_date = st.date_input("End Date", value=date.today())
+
         uploaded_file = st.file_uploader("Upload Transaction JSON", type=["json"])
-        account_df, categorized_data = get_data_from_uploaded_file(uploaded_file)
 
-        if account_df is not None and categorized_data is not None:
-            st.success("Transaction data successfully loaded.")
-            st.dataframe(categorized_data.head())
+        if uploaded_file:
+            account_df, categorized_data = get_data_from_uploaded_file(uploaded_file, start_date, end_date)
 
-            # Add export button here
-            csv_data = categorized_data.to_csv(index=False)
-            st.download_button(
-                label="Download Categorized Transactions as CSV",
-                data=csv_data,
-                file_name="categorized_transactions.csv",
-                mime="text/csv"
-            )
+            if account_df is not None and categorized_data is not None:
+                st.success("Transaction data successfully loaded.")
+                st.dataframe(categorized_data.head())
+
+                # Add export button
+                csv_data = categorized_data.to_csv(index=False)
+                st.download_button(
+                    label="Download Categorized Transactions as CSV",
+                    data=csv_data,
+                    file_name="categorized_transactions.csv",
+                    mime="text/csv"
+                )
 
 if __name__ == "__main__":
         main()
