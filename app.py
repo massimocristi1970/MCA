@@ -169,20 +169,34 @@ def main():
         
         with subtab3:
             st.header("Bank Account Information")
-            
-            # Define a dictionary of companies and their access tokens
-            companies = COMPANY_ACCESS_TOKENS
 
-            # Create a form to collect company info before processing
-            with st.form("simple_transaction_form"):
-                st.subheader("Select Company")
+            from file_transaction_loader import get_data_from_uploaded_file
+
+            st.subheader("Data Source Selection")
+            data_source = st.radio("Choose data source:", ["Plaid API", "Upload File"], horizontal=True)
+
+            if data_source == "Upload File":
+                uploaded_file = st.file_uploader("Upload Transaction JSON", type=["json"])
+                account_df, categorized_data = get_data_from_uploaded_file(uploaded_file)
+
+                if account_df is not None and categorized_data is not None:
+                    st.success("Transaction data successfully loaded.")
+                    st.dataframe(categorized_data.head())
+
+            elif data_source == "Plaid API":        
+                # Define a dictionary of companies and their access tokens
+                companies = COMPANY_ACCESS_TOKENS
+
+                # Create a form to collect company info before processing
+                with st.form("simple_transaction_form"):
+                    st.subheader("Select Company")
                 
-                # Company selection dropdown
-                selected_company = st.selectbox(
-                    "Select Company", 
-                    list(companies.keys()),
-                    key="simple_company_selector"
-                )
+                    # Company selection dropdown
+                    selected_company = st.selectbox(
+                        "Select Company", 
+                        list(companies.keys()),
+                        key="simple_company_selector"
+                    )
                 
                 # Submit button
                 submit_button = st.form_submit_button("View Information")
