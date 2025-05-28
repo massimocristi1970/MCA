@@ -10,7 +10,7 @@ from analysis import plot_revenue_vs_expense, plot_outflow_transactions, plot_tr
 from plaid_config import get_plaid_data_by_company, COMPANY_ACCESS_TOKENS
 from daily_transactions_loader import get_data_from_uploaded_file
 import json
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, date
 # Load the model and scaler
 model = joblib.load('model.pkl')
 scaler = joblib.load('scaler.pkl')
