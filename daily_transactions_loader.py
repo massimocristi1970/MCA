@@ -18,7 +18,7 @@ def get_data_from_uploaded_file(uploaded_file, start_date=None, end_date=None):
         if start_date and end_date:
             transactions = [
                 txn for txn in transactions
-                if 'date' in txn and start_date <= pd.to_datetime(txn['date']).date() <= end_date
+                if 'date' in txn and start_date <= pd.to_datetime(txn['date']).normalize() <= end_date
             ]
 
         # Account summary construction
