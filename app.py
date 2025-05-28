@@ -8,6 +8,7 @@ from score_calculation import calculate_weighted_score, calculate_industry_score
 from config import weights, calculate_risk, industry_thresholds as industry_thresholds_config, penalties
 from analysis import plot_revenue_vs_expense, plot_outflow_transactions, plot_transaction_graphs, plot_loan_vs_expense_graph
 from plaid_config import get_plaid_data_by_company, COMPANY_ACCESS_TOKENS
+from daily_transactions_loader import get_data_from_uploaded_file
 import json
 from datetime import datetime, timedelta
 # Load the model and scaler
@@ -347,8 +348,6 @@ def main():
     with main_tab3:
         st.header("Upload Transaction File")
 
-        from daily_transactions_loader import get_data_from_uploaded_file
-
         uploaded_file = st.file_uploader("Upload Transaction JSON", type=["json"])
         account_df, categorized_data = get_data_from_uploaded_file(uploaded_file)
 
@@ -356,5 +355,15 @@ def main():
             st.success("Transaction data successfully loaded.")
             st.dataframe(categorized_data.head())
 
-if __name__ == "__main__":
-    main()
+            # Add export button here
+            csv_data = categorized_data.to_csv(index=False)
+            st.download_button(
+                label="Download Categorized Transactions as CSV",
+                data=csv_data,
+                file_name="categorized_transactions.csv",
+                mime="text/csv"
+            )
+
+
+    if __name__ == "__main__":
+        main()
