@@ -180,79 +180,64 @@ def main():
             st.subheader("Data Source Selection")
             data_source = st.radio("Choose data source:", ["Plaid API", "Upload File"], horizontal=True)
 
+            submit_button = False  # Prevent UnboundLocalError
+
             if data_source == "Upload File":
                 uploaded_file = st.file_uploader("Upload Transaction JSON", type=["json"])
                 account_df, categorized_data = get_data_from_uploaded_file(uploaded_file)
 
                 if account_df is not None and categorized_data is not None:
                     st.success("Transaction data successfully loaded.")
-                    st.dataframe(categorized_data.head())
+                    st.dataframe(categorized_data)  # Show all rows
 
-            elif data_source == "Plaid API":        
-                # Define a dictionary of companies and their access tokens
+            elif data_source == "Plaid API":
                 companies = COMPANY_ACCESS_TOKENS
 
-                # Create a form to collect company info before processing
                 with st.form("simple_transaction_form"):
                     st.subheader("Select Company")
-                
-                    # Company selection dropdown
-                    selected_company = st.selectbox(
-                        "Select Company", 
-                        list(companies.keys()),
-                        key="simple_company_selector"
-                    )
-                
-                    # Submit button
+                    selected_company = st.selectbox("Select Company", list(companies.keys()), key="simple_company_selector")
                     submit_button = st.form_submit_button("View Information")
-            
-            # Only process data if the form has been submitted
+
             if submit_button:
                 st.info(f"Selected Company: {selected_company}")
-                
                 access_token = companies[selected_company]
-                
+
                 try:
-                    # Show a spinner while fetching data
                     with st.spinner('Fetching transaction data...'):
-                        # Get default date range (last 30 days)
                         end_date = datetime.now().date()
                         start_date = end_date - timedelta(days=30)
-                        
-                        # Get bank account data for the selected company and date range
+
                         _, transaction_data = get_plaid_data_by_company(
-                            selected_company, 
+                            selected_company,
                             access_token,
                             start_date,
                             end_date
                         )
-                    
+
                     if not transaction_data.empty:
-                        # Format transaction data
                         transaction_data['date'] = pd.to_datetime(transaction_data['date'])
                         sorted_transactions = transaction_data.sort_values('date', ascending=False)
-                        
-                        # Display the actual date range of transactions
+
                         actual_min_date = transaction_data['date'].min().date()
                         actual_max_date = transaction_data['date'].max().date()
                         st.success(f"Showing transactions from {actual_min_date} to {actual_max_date}")
-                        
-                        # Add download button for transactions
+
                         csv = sorted_transactions[['date', 'name', 'amount', 'category', 'is_authorised_account', 'sort_code', 'account_number', 'account_name']].to_csv(index=False)
                         st.download_button(
-                            "Download Transactions as CSV",
-                            data=csv,
-                            file_name=f"{selected_company}_transactions.csv",
-                            mime="text/csv",
+                             "Download Transactions as CSV",
+                             data=csv,
+                             file_name=f"{selected_company}_transactions.csv",
+                             mime="text/csv"
                         )
-                        
-                        # Display transactions table (the main dataframe)
+
                         st.subheader("Transactions")
-                        st.dataframe(sorted_transactions[['date', 'name', 'amount', 'category', 'is_authorised_account', 'sort_code', 'account_number', 'account_name','subcategory','personal_finance_category.detailed']])
+                        st.dataframe(sorted_transactions[['date', 'name', 'amount', 'category', 'is_authorised_account', 'sort_code', 'account_number', 'account_name', 'subcategory', 'personal_finance_category.detailed']])
                     else:
                         st.warning(f"No transaction data found for company: {selected_company}")
+
                 except Exception as e:
                     st.error(f"Error fetching data: {str(e)}")
+
         
         with subtab4:
             st.header("Daily MCA Payment Processing")
