@@ -8,13 +8,8 @@ def get_data_from_uploaded_file(uploaded_file):
         return None, None
 
     try:
-        raw_data = uploaded_file.read()
-        json_data = pd.read_json(raw_data)
-
-        if 'accounts' not in json_data or 'transactions' not in json_data:
-            json_data = uploaded_file.getvalue()
-            import json
-            json_data = json.loads(json_data)
+        import json
+        json_data = json.load(uploaded_file)
 
         accounts = json_data.get('accounts', [])
         transactions = json_data.get('transactions', [])
