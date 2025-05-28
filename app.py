@@ -362,7 +362,7 @@ def main():
 
             if account_df is not None and categorized_data is not None:
                 st.success("Transaction data successfully loaded.")
-                st.dataframe(categorized_data.head())
+                st.dataframe(categorized_data)
 
                 # Add export button
                 csv_data = categorized_data.to_csv(index=False)
