@@ -183,7 +183,7 @@ def main():
             submit_button = False  # Prevent UnboundLocalError
 
             if data_source == "Upload File":
-                uploaded_file = st.file_uploader("Upload Transaction JSON", type=["json"])
+                uploaded_file = st.file_uploader("Upload Transaction JSON", type=["json"], key="bank_tab_file_upload")
                 account_df, categorized_data = get_data_from_uploaded_file(uploaded_file)
 
                 if account_df is not None and categorized_data is not None:
@@ -340,7 +340,7 @@ def main():
         with col2:
             end_date = st.date_input("End Date", value=date.today())
 
-        uploaded_file = st.file_uploader("Upload Transaction JSON", type=["json"])
+        uploaded_file = st.file_uploader("Upload Transaction JSON", type=["json"], key="upload_tab_file_upload")
 
         if uploaded_file:
             account_df, categorized_data = get_data_from_uploaded_file(uploaded_file, start_date, end_date)
