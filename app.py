@@ -20,7 +20,11 @@ def main():
     st.title("Business Finance Application Scorecard")
     
     # Create two main tabs
-    main_tab1, main_tab2 = st.tabs(["Overview and Analysis", "Bank Account and Payment Processing"])
+    main_tab1, main_tab2, main_tab3 = st.tabs([
+        "Overview and Analysis", 
+        "Bank Account and Payment Processing", 
+        "Upload Transaction File"
+    ])
     
     with main_tab1:
         st.header("Financial Analysis")
@@ -339,6 +343,18 @@ def main():
                     st.info("No income transactions found for this account.")
             else:
                 st.info("\U0001F446 Please select a company and date range, then click 'Fetch Data'.")
+
+    with main_tab3:
+        st.header("Upload Transaction File")
+
+        from daily_transactions_loader import get_data_from_uploaded_file
+
+        uploaded_file = st.file_uploader("Upload Transaction JSON", type=["json"])
+        account_df, categorized_data = get_data_from_uploaded_file(uploaded_file)
+
+        if account_df is not None and categorized_data is not None:
+            st.success("Transaction data successfully loaded.")
+            st.dataframe(categorized_data.head())
 
 if __name__ == "__main__":
     main()
