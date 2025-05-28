@@ -198,8 +198,8 @@ def main():
                         key="simple_company_selector"
                     )
                 
-                # Submit button
-                submit_button = st.form_submit_button("View Information")
+                    # Submit button
+                    submit_button = st.form_submit_button("View Information")
             
             # Only process data if the form has been submitted
             if submit_button:
