@@ -357,7 +357,7 @@ def main():
 
         uploaded_file = st.file_uploader("Upload Transaction JSON", type=["json"])
 
-       if uploaded_file:
+        if uploaded_file:
             account_df, categorized_data = get_data_from_uploaded_file(uploaded_file, start_date, end_date)
 
             if account_df is not None and categorized_data is not None:
