@@ -170,7 +170,7 @@ def main():
         with subtab3:
             st.header("Bank Account Information")
 
-            from file_transaction_loader import get_data_from_uploaded_file
+            from daily_transactions_loader import get_data_from_uploaded_file
 
             st.subheader("Data Source Selection")
             data_source = st.radio("Choose data source:", ["Plaid API", "Upload File"], horizontal=True)
