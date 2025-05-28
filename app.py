@@ -357,17 +357,27 @@ def main():
 
         uploaded_file = st.file_uploader("Upload Transaction JSON", type=["json"])
 
-        if uploaded_file:
+       if uploaded_file:
             account_df, categorized_data = get_data_from_uploaded_file(uploaded_file, start_date, end_date)
 
             if account_df is not None and categorized_data is not None:
                 st.success("Transaction data successfully loaded.")
-                st.dataframe(categorized_data)
 
-                # Add export button
-                csv_data = categorized_data.to_csv(index=False)
+                # Let user filter by subcategory
+                available_subcategories = categorized_data['subcategory'].dropna().unique().tolist()
+                selected_subcategories = st.multiselect(
+                    "Filter by Subcategory (e.g. Income, Special Inflow, Expenses, etc.)",
+                    options=available_subcategories,
+                    default=available_subcategories
+                )
+
+                filtered_data = categorized_data[categorized_data['subcategory'].isin(selected_subcategories)]
+                st.dataframe(filtered_data)
+
+                # Export filtered data
+                csv_data = filtered_data.to_csv(index=False)
                 st.download_button(
-                    label="Download Categorized Transactions as CSV",
+                    label="Download Filtered Transactions as CSV",
                     data=csv_data,
                     file_name="categorized_transactions.csv",
                     mime="text/csv"
