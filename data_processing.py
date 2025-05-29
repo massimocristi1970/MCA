@@ -54,29 +54,25 @@ def process_json_data(json_data):
 
 # Categorisation function
 def map_transaction_category(transaction):
-    name = transaction.get("name_y") or transaction.get("name") or ""
-    try:
-        if isinstance(name, list):
-            name = " ".join([str(n) for n in name])
-        else:
-            name = str(name)
-        name = name.lower()
-    except Exception:
-        name = ""
+    name = transaction.get("name_y", "")
+    if isinstance(name, list):
+        name = " ".join(map(str, name))
+    else:
+        name = str(name)
+    name = name.lower()
 
     description = transaction.get("merchant_name", "")
-    try:
-        if isinstance(description, list):
-            description = " ".join([str(d) for d in description])
-        else:
-            description = str(description)
-        description = description.lower()
-    except Exception:
-        description = ""
+    if isinstance(description, list):
+        description = " ".join(map(str, description))
+    else:
+        description = str(description)
+    description = description.lower()
 
-    # Normalise Plaid category
-    category = (transaction.get("personal_finance_category.detailed") or "")
-    if isinstance(category, list): category = " ".join(category)
+    category = transaction.get("personal_finance_category.detailed", "")
+    if isinstance(category, list):
+        category = " ".join(map(str, category))
+    else:
+        category = str(category)
     category = category.lower().strip().replace(" ", "_")
 
     amount = transaction.get("amount_1", 0)
@@ -84,6 +80,7 @@ def map_transaction_category(transaction):
 
     is_credit = amount < 0
     is_debit = amount > 0
+
 
     # Step 1: Custom keyword overrides
     if is_credit and re.search(
