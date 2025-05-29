@@ -3,7 +3,7 @@ import streamlit as st
 import joblib
 from model_utils import predict_score
 from data_processing import process_json_data, categorize_transactions, calculate_monthly_summary, summarize_monthly_revenue, count_bounced_payments
-from financial_metrics import calculate_metrics, avg_revenue, process_balance_report
+from financial_metrics import calculate_metrics, avg_revenue, process_balance_report, count_revenue_sources, daily_revenue_summary
 from score_calculation import calculate_weighted_score, calculate_industry_score
 from config import weights, calculate_risk, industry_thresholds as industry_thresholds_config, penalties
 from analysis import plot_revenue_vs_expense, plot_outflow_transactions, plot_transaction_graphs, plot_loan_vs_expense_graph
@@ -70,6 +70,16 @@ def main():
                         # Calculate financial metrics
                         metrics = calculate_metrics(data, company_age_months)
                         st.write("Calculated Financial Metrics", metrics)
+
+                        # ✅ Additional Revenue Insights
+                        revenue_sources = count_revenue_sources(data)
+                        avg_txn_count, avg_txn_amount = daily_revenue_summary(data)
+
+                        st.markdown("### Additional Revenue Insights")
+                        st.write(f"**Number of Unique Revenue Sources:** {revenue_sources}")
+                        st.write(f"**Average Revenue Transactions per Day:** {avg_txn_count}")
+                        st.write(f"**Average Daily Revenue Amount:** £{avg_txn_amount}")
+
 
                         # Balance Report
                         report = process_balance_report(data)
