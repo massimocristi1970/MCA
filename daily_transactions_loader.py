@@ -70,22 +70,31 @@ def get_data_from_uploaded_file(uploaded_file, start_date=None, end_date=None):
 
         except Exception as e:
             st.error(f"Error in processing transaction data: {str(e)}")
+
             txn_data = []
             for txn in transactions:
-                acct_id = txn['account_id']
-                route_info = routing_data.get(acct_id, {})
-                txn_data.append({
-                    'date': txn['date'],
-                    'name': txn['name'],
-                    'amount': txn['amount'],
-                    'category': ", ".join(txn.get('category') or []),
-                    'account_id': acct_id,
-                    'is_authorised_account': acct_id in routing_data,
-                    'sort_code': route_info.get('sort_code'),
-                    'account_number': route_info.get('account_number'),
-                    'account_name': route_info.get('account_name'),
-                    'subcategory': 'Income' if txn['amount'] < 0 else 'Expenses'
-                })
+                try:
+                    acct_id = txn.get('account_id', 'unknown')
+                    route_info = routing_data.get(acct_id, {})
+                    txn_data.append({
+                        'date': txn.get('date'),
+                        'name': txn.get('name'),
+                        'amount': txn.get('amount'),
+                        'category': ", ".join(txn.get('category') or []),
+                        'account_id': acct_id,
+                        'is_authorised_account': acct_id in routing_data,
+                        'sort_code': route_info.get('sort_code'),
+                        'account_number': route_info.get('account_number'),
+                        'account_name': route_info.get('account_name'),
+                        'subcategory': (
+                            'Income' if txn.get('amount') is not None and txn['amount'] < 0
+                            else 'Expenses' if txn.get('amount') is not None
+                            else None
+                        )
+                    })
+                except Exception as txn_error:
+                    st.warning(f"Skipping malformed transaction: {txn_error}")
+
             categorized_data = pd.DataFrame(txn_data)
 
         return account_df, categorized_data
