@@ -54,7 +54,7 @@ def process_json_data(json_data):
 
 # Categorisation function
 def map_transaction_category(transaction):
-    name = transaction.get("name_y", "")
+    name = transaction.get("name_y") or transaction.get("name") or ""
     try:
         if isinstance(name, list):
             name = " ".join([str(n) for n in name])
