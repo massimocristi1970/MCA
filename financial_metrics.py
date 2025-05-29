@@ -215,3 +215,30 @@ def process_balance_report(data):
     monthly_balances['Negative Balance Days'] = monthly_balances['Negative Balance Days'].fillna(0).astype(int)
 
     return monthly_balances
+    
+from data_processing import categorize_transactions
+
+def count_revenue_sources(data):
+    if 'is_revenue' not in data.columns:
+        data = categorize_transactions(data)
+    return data[data['is_revenue']]['name_y'].nunique()
+
+
+def daily_revenue_summary(data):
+    if 'is_revenue' not in data.columns:
+        data = categorize_transactions(data)
+
+    revenue_data = data[data['is_revenue']].copy()
+    revenue_data['date'] = pd.to_datetime(revenue_data['date'])
+
+    daily_counts = revenue_data.groupby(revenue_data['date'].dt.date).agg(
+        daily_txn_count=('amount', 'count'),
+        daily_txn_sum=('amount', 'sum')
+    )
+
+    avg_txns_per_day = round(daily_counts['daily_txn_count'].mean(), 2)
+    avg_amount_per_day = round(daily_counts['daily_txn_sum'].mean(), 2)
+
+    return avg_txns_per_day, avg_amount_per_day
+
+
