@@ -103,9 +103,9 @@ def get_data_from_uploaded_file(uploaded_file, start_date=None, end_date=None):
                 if 'subcategory' not in categorized_data.columns:
                     st.warning("Transactions loaded, but 'subcategory' could not be derived.")
 
-            return account_df, categorized_data
+        return account_df, categorized_data
 
-        except Exception as e:
-            st.error(f"Failed to load and process uploaded file: {str(e)}")
-            return pd.DataFrame(), pd.DataFrame()
+    except Exception as e:
+        st.error(f"Failed to load and process uploaded file: {str(e)}")
+        return pd.DataFrame(), pd.DataFrame()
 
