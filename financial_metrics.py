@@ -243,3 +243,13 @@ def daily_revenue_summary(data):
 
     return avg_txns_per_day, avg_amount_per_day
 
+def check_loan_vs_repayment(data):
+    if 'subcategory' not in data.columns:
+        data = categorize_transactions(data)
+
+    loans_total = data[data['subcategory'] == 'Loans']['amount'].sum()
+    repayments_total = data[data['subcategory'] == 'Debt Repayments']['amount'].sum()
+
+    return round(loans_total, 2), round(repayments_total, 2)
+
+
