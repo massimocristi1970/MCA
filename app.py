@@ -348,25 +348,25 @@ def main():
             if account_df is not None and categorized_data is not None:
                 st.success("Transaction data successfully loaded.")
 
-                # Let user filter by subcategory
-                available_subcategories = categorized_data['subcategory'].dropna().unique().tolist()
-                selected_subcategories = st.multiselect(
-                    "Filter by Subcategory (e.g. Income, Special Inflow, Expenses, etc.)",
-                    options=available_subcategories,
-                    default=available_subcategories
-                )
+                if 'subcategory' in categorized_data.columns:
+                    available_subcategories = categorized_data['subcategory'].dropna().unique().tolist()
+                    selected_subcategories = st.multiselect(
+                        "Filter by Subcategory (e.g. Income, Special Inflow, Expenses, etc.)",
+                        options=available_subcategories,
+                        default=available_subcategories
+                    )
+                    filtered_data = categorized_data[categorized_data['subcategory'].isin(selected_subcategories)]
+                    st.dataframe(filtered_data)
 
-                filtered_data = categorized_data[categorized_data['subcategory'].isin(selected_subcategories)]
-                st.dataframe(filtered_data)
-
-                # Export filtered data
-                csv_data = filtered_data.to_csv(index=False)
-                st.download_button(
-                    label="Download Filtered Transactions as CSV",
-                    data=csv_data,
-                    file_name="categorized_transactions.csv",
-                    mime="text/csv"
-                )
+                    csv_data = filtered_data.to_csv(index=False)
+                    st.download_button(
+                        label="Download Filtered Transactions as CSV",
+                        data=csv_data,
+                        file_name="categorized_transactions.csv",
+                        mime="text/csv"
+                    )
+                else:
+                    st.warning("The uploaded file did not contain a 'subcategory' column.")
 
 if __name__ == "__main__":
         main()
