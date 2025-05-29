@@ -97,7 +97,13 @@ def get_data_from_uploaded_file(uploaded_file, start_date=None, end_date=None):
 
             categorized_data = pd.DataFrame(txn_data)
 
-        return account_df, categorized_data
+            if categorized_data.empty:
+                st.warning("All transactions were skipped due to formatting issues.")
+            else:
+                if 'subcategory' not in categorized_data.columns:
+                    st.warning("Transactions loaded, but 'subcategory' could not be derived.")
+
+            return account_df, categorized_data
 
     except Exception as e:
         st.error(f"Failed to load and process uploaded file: {str(e)}")
