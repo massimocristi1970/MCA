@@ -55,18 +55,24 @@ def process_json_data(json_data):
 # Categorisation function
 def map_transaction_category(transaction):
     name = transaction.get("name_y", "")
-    if isinstance(name, list):
-        name = " ".join(name)
-    else:
-        name = str(name)
-    name = name.lower()
+    try:
+        if isinstance(name, list):
+            name = " ".join([str(n) for n in name])
+        else:
+            name = str(name)
+        name = name.lower()
+    except Exception:
+        name = ""
 
     description = transaction.get("merchant_name", "")
-    if isinstance(description, list):
-        description = " ".join(description)
-    else:
-        description = str(description)
-    description = description.lower()
+    try:
+        if isinstance(description, list):
+            description = " ".join([str(d) for d in description])
+        else:
+            description = str(description)
+        description = description.lower()
+    except Exception:
+        description = ""
 
     # Normalise Plaid category
     category = (transaction.get("personal_finance_category.detailed") or "")
