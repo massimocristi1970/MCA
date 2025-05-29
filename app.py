@@ -77,6 +77,8 @@ def main():
 
                         st.markdown("### Additional Revenue Insights")
                         st.write(f"**Number of Unique Revenue Sources:** {revenue_sources}")
+                        if revenue_sources == 1:
+                            st.warning("⚠️ This business has only **one** revenue source. This may indicate a higher risk due to income concentration.")
                         st.write(f"**Average Revenue Transactions per Day:** {avg_txn_count}")
                         st.write(f"**Average Daily Revenue Amount:** £{avg_txn_amount}")
 
