@@ -105,6 +105,7 @@ def get_data_from_uploaded_file(uploaded_file, start_date=None, end_date=None):
 
             return account_df, categorized_data
 
-    except Exception as e:
-        st.error(f"Failed to load and process uploaded file: {str(e)}")
-        return None, None
+        except Exception as e:
+            st.error(f"Failed to load and process uploaded file: {str(e)}")
+            return pd.DataFrame(), pd.DataFrame()
+
