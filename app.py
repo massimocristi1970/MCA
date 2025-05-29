@@ -331,42 +331,42 @@ def main():
                 st.info("\U0001F446 Please select a company and date range, then click 'Fetch Data'.")
 
     with main_tab3:
-    st.header("Upload Transaction File")
+        st.header("Upload Transaction File")
 
-    st.subheader("Select Date Range Before Uploading")
-    col1, col2 = st.columns(2)
-    with col1:
-        start_date = st.date_input("Start Date", value=date.today() - timedelta(days=30))
-    with col2:
-        end_date = st.date_input("End Date", value=date.today())
+        st.subheader("Select Date Range Before Uploading")
+        col1, col2 = st.columns(2)
+        with col1:
+            start_date = st.date_input("Start Date", value=date.today() - timedelta(days=30))
+        with col2:
+            end_date = st.date_input("End Date", value=date.today())
 
-    uploaded_file = st.file_uploader("Upload Transaction JSON", type=["json"], key="upload_tab_file_upload")
+        uploaded_file = st.file_uploader("Upload Transaction JSON", type=["json"], key="upload_tab_file_upload")
 
-    if uploaded_file:
-        account_df, categorized_data = get_data_from_uploaded_file(uploaded_file, start_date, end_date)
+        if uploaded_file:
+            account_df, categorized_data = get_data_from_uploaded_file(uploaded_file, start_date, end_date)
 
-        if account_df is not None and categorized_data is not None:
-            st.success("Transaction data successfully loaded.")
+            if account_df is not None and categorized_data is not None:
+                st.success("Transaction data successfully loaded.")
 
-            if not categorized_data.empty and 'subcategory' in categorized_data.columns:
-                available_subcategories = categorized_data['subcategory'].dropna().unique().tolist()
-                selected_subcategories = st.multiselect(
-                    "Filter by Subcategory (e.g. Income, Special Inflow, Expenses, etc.)",
-                    options=available_subcategories,
-                    default=available_subcategories
-                )
-                filtered_data = categorized_data[categorized_data['subcategory'].isin(selected_subcategories)]
-                st.dataframe(filtered_data)
+                if not categorized_data.empty and 'subcategory' in categorized_data.columns:
+                    available_subcategories = categorized_data['subcategory'].dropna().unique().tolist()
+                    selected_subcategories = st.multiselect(
+                        "Filter by Subcategory (e.g. Income, Special Inflow, Expenses, etc.)",
+                        options=available_subcategories,
+                        default=available_subcategories
+                    )
+                    filtered_data = categorized_data[categorized_data['subcategory'].isin(selected_subcategories)]
+                    st.dataframe(filtered_data)
 
-                csv_data = filtered_data.to_csv(index=False)
-                st.download_button(
-                    label="Download Filtered Transactions as CSV",
-                    data=csv_data,
-                    file_name="categorized_transactions.csv",
-                    mime="text/csv"
-                )
-            else:
-                st.warning("No usable transactions or 'subcategory' column missing from processed data.")
+                    csv_data = filtered_data.to_csv(index=False)
+                    st.download_button(
+                        label="Download Filtered Transactions as CSV",
+                        data=csv_data,
+                        file_name="categorized_transactions.csv",
+                        mime="text/csv"
+                    )
+                else:
+                    st.warning("No usable transactions or 'subcategory' column missing from processed data.")
 
 if __name__ == "__main__":
         main()
