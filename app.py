@@ -3,7 +3,7 @@ import streamlit as st
 import joblib
 from model_utils import predict_score
 from data_processing import process_json_data, categorize_transactions, calculate_monthly_summary, summarize_monthly_revenue, count_bounced_payments
-from financial_metrics import calculate_metrics, avg_revenue, process_balance_report, count_revenue_sources, daily_revenue_summary, check_loan_vs_repayment
+from financial_metrics import calculate_metrics, avg_revenue, process_balance_report, count_revenue_sources, daily_revenue_summary, check_loan_vs_repayment, check_lender_repayments
 from score_calculation import calculate_weighted_score, calculate_industry_score
 from config import weights, calculate_risk, industry_thresholds as industry_thresholds_config, penalties
 from analysis import plot_revenue_vs_expense, plot_outflow_transactions, plot_transaction_graphs, plot_loan_vs_expense_graph
@@ -91,6 +91,25 @@ def main():
                         if loans_total > 0 and repayments_total == 0:
                             st.warning("⚠️ Loans have been received but no debt repayments were detected. Investigate repayment behaviour or timing.")
 
+                        # ✅ Detailed Loan Lender Matching Check
+                        st.markdown("### Lender-Specific Repayment Check")
+                        loans_display, repayments_display, unmatched_lenders = check_lender_repayments(data)
+
+                        st.write("**Loans Received From:**")
+                        for lender, amount in loans_display.items():
+                            st.write(f"- {lender.title()} (£{amount:,.2f})")
+
+                        st.write("**Repayments Made To:**")
+                        for recipient, amount in repayments_display.items():
+                            st.write(f"- {recipient.title()} (£{amount:,.2f})")
+
+                        if unmatched_lenders:
+                            st.warning("⚠️ No repayments detected to the following lenders:")
+                            for lender in unmatched_lenders:
+                                st.write(f"- {lender.title()}")
+                        else:
+                             st.success("✅ Repayments were detected for all known loan sources.")
+                   
                         # Balance Report
                         report = process_balance_report(data)
                         st.write("Monthly Balance Report", report)
