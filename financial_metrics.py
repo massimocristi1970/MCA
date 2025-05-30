@@ -2,6 +2,7 @@ import pandas as pd
 from collections import defaultdict
 from data_processing import categorize_transactions
 from rapidfuzz import fuzz
+import re
 
 def count_bounced_payments(data, description_column='description', date_column='date'):
     
@@ -218,6 +219,15 @@ def process_balance_report(data):
     monthly_balances['Negative Balance Days'] = monthly_balances['Negative Balance Days'].fillna(0).astype(int)
 
     return monthly_balances
+
+def clean_name(name):
+    if not isinstance(name, str):
+        return ""
+    name = name.lower()
+    name = re.sub(r'www\.|\.co\.uk|\.com|\.org|ltd|limited|t/a', '', name)
+    name = re.sub(r'[^a-z0-9\s]', '', name)  # remove special characters
+    name = re.sub(r'\s+', ' ', name).strip()
+    return name
     
 def count_revenue_sources(data):
     if 'subcategory' not in data.columns:
@@ -253,7 +263,7 @@ def check_loan_vs_repayment(data):
 
     return round(loans_total, 2), round(repayments_total, 2)
 
-def check_lender_repayments(data, threshold=75):
+def check_lender_repayments(data, threshold=80):
     if 'subcategory' not in data.columns:
         data = categorize_transactions(data)
 
@@ -267,14 +277,16 @@ def check_lender_repayments(data, threshold=75):
     repayments['recipient'] = repayments['name_y'].str.lower().str.strip()
     repayment_targets = repayments.groupby('recipient')['amount'].sum()
 
-    # 3. Fuzzy match
+    # 3. Fuzzy match with cleaned names
     unmatched_lenders = []
     matched_lenders = []
 
     for lender in loan_sources.index:
+        lender_clean = clean_name(lender)
         match_found = False
         for rep_name in repayment_targets.index:
-            similarity = fuzz.token_sort_ratio(lender, rep_name)
+            rep_clean = clean_name(rep_name)
+            similarity = fuzz.token_sort_ratio(lender_clean, rep_clean)
             if similarity >= threshold:
                 match_found = True
                 break
@@ -288,5 +300,4 @@ def check_lender_repayments(data, threshold=75):
     repayments_display = repayment_targets.round(2).to_dict()
 
     return loans_display, repayments_display, unmatched_lenders
-
 
