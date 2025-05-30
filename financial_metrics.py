@@ -224,10 +224,27 @@ def clean_name(name):
     if not isinstance(name, str):
         return ""
     name = name.lower()
-    name = re.sub(r'www\.|\.co\.uk|\.com|\.org|ltd|limited|t/a', '', name)
-    name = re.sub(r'[^a-z0-9\s]', '', name)  # remove special characters
+
+    # Remove website prefixes and domain suffixes
+    name = re.sub(r'www\.|\.co\.uk|\.com|\.org|\.net', '', name)
+
+    # Remove legal/company suffixes
+    name = re.sub(r'\bltd\b|\blimited\b|\bt/a\b|\bt\/a\b', '', name)
+
+    # Remove generic financial terms that add noise
+    name = re.sub(r'\b(repayment|payment|finance|loan|loans|payback|transfer)\b', '', name)
+
+    # Remove alphanumeric tracking/reference codes
+    name = re.sub(r'\b[a-z]*\d+[a-z\d]*\b', '', name)
+
+    # Remove all remaining non-alphanumeric characters
+    name = re.sub(r'[^a-z0-9\s]', '', name)
+
+    # Condense multiple spaces and trim
     name = re.sub(r'\s+', ' ', name).strip()
+
     return name
+
     
 def count_revenue_sources(data):
     if 'subcategory' not in data.columns:
@@ -235,7 +252,6 @@ def count_revenue_sources(data):
 
     income_only = data[data['subcategory'].str.strip() == 'Income']
     return income_only['name_y'].nunique()
-
 
 def daily_revenue_summary(data):
     if 'subcategory' not in data.columns:
