@@ -11,25 +11,32 @@ from plaid_config import get_plaid_data_by_company, COMPANY_ACCESS_TOKENS
 from daily_transactions_loader import get_data_from_uploaded_file
 import json
 from datetime import datetime, timedelta, date
+
+def filter_last_n_months(data, n):
+    data = data.copy()
+    data['date'] = pd.to_datetime(data['date'])
+    latest_date = data['date'].max()
+    start_date = (latest_date - pd.DateOffset(months=n)).replace(day=1)
+    return data[data['date'] >= start_date]
+
 # Load the model and scaler
 model = joblib.load('model.pkl')
 scaler = joblib.load('scaler.pkl')
 
-
 # Streamlit App
 def main():
     st.title("Business Finance Application Scorecard")
-    
+
     # Create two main tabs
     main_tab1, main_tab2, main_tab3 = st.tabs([
         "Overview and Analysis", 
         "Bank Account and Payment Processing", 
         "Upload Transaction File"
     ])
-    
+
     with main_tab1:
         st.header("Financial Analysis")
-        
+
         # Input fields for analysis
         requested_loan = st.number_input("Enter the requested loan amount:", min_value=0.0)
         industry = st.selectbox("Select Industry", list(industry_thresholds_config.keys()))
@@ -51,30 +58,22 @@ def main():
         no_online_presence = st.checkbox("No website or minimal/no online footprint?", value=False)
 
         uploaded_file = st.file_uploader("Upload a JSON file", type="json")
-        
+
         if uploaded_file:
             try:
-                # Load and process JSON data
                 json_data = json.load(uploaded_file)
                 data = process_json_data(json_data)
                 if data is not None:
-                    # Create subtabs for Overview and Analysis
-                    subtab1, subtab2 = st.tabs(["Overview", "Analysis"])
-                    
+                    subtab1, subtab2, subtab3, subtab4 = st.tabs(["Overview", "Analysis", "Last 3 Months", "Last 6 Months"])
+
                     with subtab1:
                         st.write("Transaction Data", data)
-                    
-                        # Categorize transactions
-                        data = categorize_transactions(data) 
-
-                        # Calculate financial metrics
+                        data = categorize_transactions(data)
                         metrics = calculate_metrics(data, company_age_months)
                         st.write("Calculated Financial Metrics", metrics)
 
-                        # ✅ Additional Revenue Insights
                         revenue_sources = count_revenue_sources(data)
                         avg_txn_count, avg_txn_amount = daily_revenue_summary(data)
-
                         st.markdown("### Additional Revenue Insights")
                         st.write(f"**Number of Unique Revenue Sources:** {revenue_sources}")
                         if revenue_sources == 1:
@@ -82,19 +81,15 @@ def main():
                         st.write(f"**Average Revenue Transactions per Day:** {avg_txn_count}")
                         st.write(f"**Average Daily Revenue Amount:** £{avg_txn_amount}")
 
-                        # ✅ Loan vs Repayment Check
                         loans_total, repayments_total = check_loan_vs_repayment(data)
                         st.markdown("### Loan vs Repayment Check")
                         st.write(f"**Total Loans Received:** £{loans_total}")
                         st.write(f"**Total Debt Repayments:** £{repayments_total}")
-
                         if loans_total > 0 and repayments_total == 0:
                             st.warning("⚠️ Loans have been received but no debt repayments were detected. Investigate repayment behaviour or timing.")
 
-                        # ✅ Detailed Loan Lender Matching Check
                         st.markdown("### Lender-Specific Repayment Check")
                         loans_display, repayments_display, unmatched_lenders = check_lender_repayments(data)
-
                         st.write("**Loans Received From:**")
                         for lender, amount in loans_display.items():
                             st.write(f"- {lender.title()} (£{amount:,.2f})")
@@ -108,27 +103,23 @@ def main():
                             for lender in unmatched_lenders:
                                 st.write(f"- {lender.title()}")
                         else:
-                             st.success("✅ Repayments were detected for all known loan sources.")
-                   
-                        # Balance Report
+                            st.success("✅ Repayments were detected for all known loan sources.")
+
                         report = process_balance_report(data)
                         st.write("Monthly Balance Report", report)
 
                         revenue_report = summarize_monthly_revenue(data)
-                        st.write("Report", revenue_report)
+                        st.write("Revenue Report", revenue_report)
 
                         bounced_payments = count_bounced_payments(data, description_column='name_y', date_column='authorized_date')
                         st.write("Bounced Payments", bounced_payments)
 
-                        # Calculate the weighted score
-                        revised_weighted_d_score = calculate_weighted_score(metrics, directors_score, sector_risk, industry_thresholds, weights, company_age_months, personal_default_12m=personal_default_12m, business_ccj=business_ccj, director_ccj=director_ccj, penalties=penalties)
-
-                        st.write(f"Weighted Score: {revised_weighted_d_score}")
+                        weighted_score = calculate_weighted_score(metrics, directors_score, sector_risk, industry_thresholds, weights, company_age_months, personal_default_12m, business_ccj, director_ccj, website_or_social_outdated, uses_generic_email, no_online_presence, penalties)
+                        st.write(f"Weighted Score: {weighted_score}")
 
                         probability_score = predict_score(model, metrics, directors_score, sector_risk, scaler, company_age_months)
                         st.write(f"Repayment Probability: {probability_score:.2f}")
 
-                        # Calculate the revised score based on industry thresholds
                         industry_d_score = calculate_industry_score(metrics, directors_score, sector_risk, industry_thresholds, company_age_months)
                         st.write(f"Financial Score: {industry_d_score}")
 
@@ -137,84 +128,86 @@ def main():
                         st.write(f"Loan Risk Level: {loan_risk}")
 
                     with subtab2:
-                        selected_categories = ['Expenses', 'Debt Repayments', 'Special Outflow', 'Failed Payment']
-                        expenses = data[data['subcategory'].isin(selected_categories)]
-                        expenses_grouped = expenses.groupby('personal_finance_category.primary')['amount'].sum().reset_index()
-                        expenses_grouped = expenses_grouped.sort_values(by='amount', ascending=False).reset_index(drop=True)
-                        st.write("Total Expenses", expenses_grouped)
-
-                        # Plot Revenue vs Expenses
                         monthly_summary = calculate_monthly_summary(data)
                         st.write("Revenue vs Expenses Graph")
                         plot_revenue_vs_expense(monthly_summary)
-
                         plot_transaction_graphs(data)
 
-                        # Filter loans received
-                        loans_received = data[data['subcategory'] == 'Loans'][['date', 'amount']]
-                        loans_received = loans_received.sort_values(by='date').reset_index(drop=True)
+                    with subtab3:
+                        st.subheader("Last 3 Months Overview")
+                        data_3m = filter_last_n_months(data, 3)
+                        if not data_3m.empty:
+                            data_3m = categorize_transactions(data_3m)
+                            metrics_3m = calculate_metrics(data_3m, company_age_months)
+                            st.write("Calculated Financial Metrics (3 Months)", metrics_3m)
 
-                        # Create a new dataframe to store loans and revenue for the same period
-                        loans_with_revenue = loans_received.copy()
+                            report_3m = process_balance_report(data_3m)
+                            st.write("Monthly Balance Report (3 Months)", report_3m)
 
-                        # Calculate the total revenue for the entire dataset
-                        total_revenue = round(data.loc[data['is_revenue'], 'amount'].sum() or 0, 2)
+                            revenue_report_3m = summarize_monthly_revenue(data_3m)
+                            st.write("Revenue Report (3 Months)", revenue_report_3m)
 
-                        # Find cumulative revenue up to and including the loan date
-                        loans_with_revenue['cumulative_revenue'] = loans_with_revenue['date'].apply(
-                            lambda loan_date: round(data.loc[(data['is_revenue']) & (data['date'] <= loan_date), 'amount'].sum() or 0, 2)
-                        )
+                            bounced_3m = count_bounced_payments(data_3m, description_column='name_y', date_column='authorized_date')
+                            st.write("Bounced Payments (3 Months)", bounced_3m)
 
-                        # Display loans and corresponding cumulative revenue up to that loan date
-                        st.write("Loans Received with Cumulative Revenue Up to Loan Date")
-                        st.write(loans_with_revenue)
+                            weighted_score_3m = calculate_weighted_score(metrics_3m, directors_score, sector_risk, industry_thresholds, weights, company_age_months, personal_default_12m, business_ccj, director_ccj, website_or_social_outdated, uses_generic_email, no_online_presence, penalties)
+                            st.write(f"Weighted Score (3 Months): {weighted_score_3m}")
 
-                        # Loan inflow vs Expense
-                        plot_loan_vs_expense_graph(data, loans_received['date'])
+                            probability_3m = predict_score(model, metrics_3m, directors_score, sector_risk, scaler, company_age_months)
+                            st.write(f"Repayment Probability (3 Months): {probability_3m:.2f}")
 
-                        # Initialize a list to store grouped expenses after each loan within 10 days
-                        grouped_expenses = []
+                            industry_score_3m = calculate_industry_score(metrics_3m, directors_score, sector_risk, industry_thresholds, company_age_months)
+                            st.write(f"Financial Score (3 Months): {industry_score_3m}")
 
-                        # Loop through loans to get expenses within the next 10 days of each loan
-                        for i in range(len(loans_received)):
-                            start_date = loans_received.iloc[i]['date']
-                            end_date = start_date + pd.DateOffset(days=10)
-                            start_date_10_before = start_date - pd.DateOffset(days=10)
+                            avg_rev_3m = avg_revenue(data_3m)
+                            loan_risk_3m = calculate_risk(requested_loan, avg_rev_3m)
+                            st.write(f"Loan Risk Level (3 Months): {loan_risk_3m}")
+                        else:
+                            st.warning("No transaction data available for the last 3 months.")
 
-                            # Filter expenses 10 days before the loan date
-                            expenses_before_loan = expenses[(expenses['date'] > start_date_10_before) & (expenses['date'] <= start_date)]
-                            expenses_grouped_before_loan = expenses_before_loan.groupby('personal_finance_category.primary')['amount'].sum().reset_index()
+                    with subtab4:
+                        st.subheader("Last 6 Months Overview")
+                        data_6m = filter_last_n_months(data, 6)
+                        if not data_6m.empty:
+                            data_6m = categorize_transactions(data_6m)
+                            metrics_6m = calculate_metrics(data_6m, company_age_months)
+                            st.write("Calculated Financial Metrics (6 Months)", metrics_6m)
 
-                            # Filter expenses between the start date (loan date) and the end date (next 10 days)
-                            expenses_after_loan = expenses[(expenses['date'] > start_date) & (expenses['date'] <= end_date)]
-                            expenses_grouped_after_loan = expenses_after_loan.groupby('personal_finance_category.primary')['amount'].sum().reset_index()
+                            report_6m = process_balance_report(data_6m)
+                            st.write("Monthly Balance Report (6 Months)", report_6m)
 
-                            grouped_expenses.append({
-                                'Loan Date': start_date,
-                                '10 Days Before Loan Expenses': expenses_grouped_before_loan,
-                                '10 Days After Loan Expenses': expenses_grouped_after_loan
-                            })
+                            revenue_report_6m = summarize_monthly_revenue(data_6m)
+                            st.write("Revenue Report (6 Months)", revenue_report_6m)
 
-                        # Display the grouped expenses for each loan
-                        for idx, entry in enumerate(grouped_expenses):
-                            st.write(f"Expenses before and after Loan {idx + 1} (from {entry['Loan Date']}):")
-                            st.write("Expenses in the 10 days before loan:")
-                            st.write(entry['10 Days Before Loan Expenses'])
-                            st.write("Expenses in the 10 days after loan:")
-                            st.write(entry['10 Days After Loan Expenses'])
+                            bounced_6m = count_bounced_payments(data_6m, description_column='name_y', date_column='authorized_date')
+                            st.write("Bounced Payments (6 Months)", bounced_6m)
+
+                            weighted_score_6m = calculate_weighted_score(metrics_6m, directors_score, sector_risk, industry_thresholds, weights, company_age_months, personal_default_12m, business_ccj, director_ccj, website_or_social_outdated, uses_generic_email, no_online_presence, penalties)
+                            st.write(f"Weighted Score (6 Months): {weighted_score_6m}")
+
+                            probability_6m = predict_score(model, metrics_6m, directors_score, sector_risk, scaler, company_age_months)
+                            st.write(f"Repayment Probability (6 Months): {probability_6m:.2f}")
+
+                            industry_score_6m = calculate_industry_score(metrics_6m, directors_score, sector_risk, industry_thresholds, company_age_months)
+                            st.write(f"Financial Score (6 Months): {industry_score_6m}")
+
+                            avg_rev_6m = avg_revenue(data_6m)
+                            loan_risk_6m = calculate_risk(requested_loan, avg_rev_6m)
+                            st.write(f"Loan Risk Level (6 Months): {loan_risk_6m}")
+                        else:
+                            st.warning("No transaction data available for the last 6 months.")
             except Exception as e:
                 st.error(f"Error: {e}")
         else:
             st.info("Please upload a JSON file to view financial analysis.")
+
     
     with main_tab2:
         # Create subtabs for Bank Account and Payment Processing
-        subtab3, subtab4 = st.tabs(["Bank Account Information", "Daily MCA Payment Processing"])
+        subtab5, subtab6 = st.tabs(["Bank Account Information", "Daily MCA Payment Processing"])
         
-        with subtab3:
+        with subtab5:
             st.header("Bank Account Information")
-
-            from daily_transactions_loader import get_data_from_uploaded_file
 
             st.subheader("Data Source Selection")
             data_source = st.radio("Choose data source:", ["Plaid API", "Upload File"], horizontal=True)
@@ -278,7 +271,7 @@ def main():
                     st.error(f"Error fetching data: {str(e)}")
 
         
-        with subtab4:
+        with subtab6:
             st.header("Daily MCA Payment Processing")
             companies = COMPANY_ACCESS_TOKENS
 
