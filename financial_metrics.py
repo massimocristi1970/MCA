@@ -253,7 +253,7 @@ def check_loan_vs_repayment(data):
 
     return round(loans_total, 2), round(repayments_total, 2)
 
-def check_lender_repayments(data, threshold=85):
+def check_lender_repayments(data, threshold=75):
     if 'subcategory' not in data.columns:
         data = categorize_transactions(data)
 
