@@ -1,4 +1,7 @@
 import pandas as pd
+from collections import defaultdict
+from data_processing import categorize_transactions
+from rapidfuzz import fuzz
 
 def count_bounced_payments(data, description_column='description', date_column='date'):
     
@@ -216,8 +219,6 @@ def process_balance_report(data):
 
     return monthly_balances
     
-from data_processing import categorize_transactions
-
 def count_revenue_sources(data):
     if 'subcategory' not in data.columns:
         data = categorize_transactions(data)
@@ -252,10 +253,7 @@ def check_loan_vs_repayment(data):
 
     return round(loans_total, 2), round(repayments_total, 2)
 
-from collections import defaultdict
-from data_processing import categorize_transactions
-
-def check_lender_repayments(data):
+def check_lender_repayments(data, threshold=85):
     if 'subcategory' not in data.columns:
         data = categorize_transactions(data)
 
@@ -269,17 +267,23 @@ def check_lender_repayments(data):
     repayments['recipient'] = repayments['name_y'].str.lower().str.strip()
     repayment_targets = repayments.groupby('recipient')['amount'].sum()
 
-    # 3. Check for loan sources with no matching repayments
+    # 3. Fuzzy match
     unmatched_lenders = []
     matched_lenders = []
 
     for lender in loan_sources.index:
-        if any(lender in rep_name for rep_name in repayment_targets.index):
+        match_found = False
+        for rep_name in repayment_targets.index:
+            similarity = fuzz.token_sort_ratio(lender, rep_name)
+            if similarity >= threshold:
+                match_found = True
+                break
+        if match_found:
             matched_lenders.append(lender)
         else:
             unmatched_lenders.append(lender)
 
-    # 4. Format for display
+    # Format for display
     loans_display = loan_sources.round(2).to_dict()
     repayments_display = repayment_targets.round(2).to_dict()
 
