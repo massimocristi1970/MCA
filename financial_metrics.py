@@ -252,4 +252,37 @@ def check_loan_vs_repayment(data):
 
     return round(loans_total, 2), round(repayments_total, 2)
 
+from collections import defaultdict
+from data_processing import categorize_transactions
+
+def check_lender_repayments(data):
+    if 'subcategory' not in data.columns:
+        data = categorize_transactions(data)
+
+    # 1. Get loan inflows
+    loans = data[data['subcategory'] == 'Loans'].copy()
+    loans['source'] = loans['name_y'].str.lower().str.strip()
+    loan_sources = loans.groupby('source')['amount'].sum()
+
+    # 2. Get debt repayments
+    repayments = data[data['subcategory'] == 'Debt Repayments'].copy()
+    repayments['recipient'] = repayments['name_y'].str.lower().str.strip()
+    repayment_targets = repayments.groupby('recipient')['amount'].sum()
+
+    # 3. Check for loan sources with no matching repayments
+    unmatched_lenders = []
+    matched_lenders = []
+
+    for lender in loan_sources.index:
+        if any(lender in rep_name for rep_name in repayment_targets.index):
+            matched_lenders.append(lender)
+        else:
+            unmatched_lenders.append(lender)
+
+    # 4. Format for display
+    loans_display = loan_sources.round(2).to_dict()
+    repayments_display = repayment_targets.round(2).to_dict()
+
+    return loans_display, repayments_display, unmatched_lenders
+
 
