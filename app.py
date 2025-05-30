@@ -64,7 +64,7 @@ def main():
                 json_data = json.load(uploaded_file)
                 data = process_json_data(json_data)
                 if data is not None:
-                    subtab1, subtab2, subtab3, subtab4 = st.tabs(["Overview", "Analysis", "Last 3 Months", "Last 6 Months"])
+                    subtab1, subtab3, subtab4, subtab2 = st.tabs(["Overview", "Last 3 Months", "Last 6 Months", "Analysis"])
 
                     with subtab1:
                         st.write("Transaction Data", data)
