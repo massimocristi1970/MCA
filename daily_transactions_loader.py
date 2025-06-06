@@ -52,6 +52,10 @@ def get_data_from_uploaded_file(uploaded_file, start_date=None, end_date=None):
                 'transactions': transactions
             })
 
+            if categorized_data is None or categorized_data.empty:
+                raise ValueError("process_json_data() returned no data")
+
+            # Add routing/account metadata
             categorized_data['is_authorised_account'] = categorized_data['account_id'].apply(
                 lambda x: x in routing_data
             )
@@ -65,12 +69,14 @@ def get_data_from_uploaded_file(uploaded_file, start_date=None, end_date=None):
                 lambda x: routing_data.get(x, {}).get('account_name', 'Unnamed Account')
             )
 
+            # Rename for consistency
             if 'name_y' in categorized_data.columns and 'name' not in categorized_data.columns:
                 categorized_data = categorized_data.rename(columns={'name_y': 'name'})
 
         except Exception as e:
             st.error("process_json_data() failed")
-            st.exception(e)  # Logs the traceback in Streamlit
+            st.exception(e)
+
 
 
             txn_data = []
