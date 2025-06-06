@@ -4,28 +4,30 @@ import streamlit as st
 
 # Function to process JSON data
 def process_json_data(json_data):
-    try:
-        accounts_df = pd.json_normalize(json_data['accounts'])
-        transactions_df = pd.json_normalize(json_data['transactions'])
+        try:
+        accounts = json_data.get('accounts', [])
+        transactions = json_data.get('transactions', [])
+
+        if not accounts or not transactions:
+            raise ValueError("Missing accounts or transactions in uploaded JSON.")
+
+        accounts_df = pd.json_normalize(accounts)
+        transactions_df = pd.json_normalize(transactions)
+
+        if 'account_id' not in accounts_df.columns or 'account_id' not in transactions_df.columns:
+            raise KeyError("Missing 'account_id' in one of the data tables.")
 
         data = pd.merge(accounts_df, transactions_df, on="account_id", how="left")
 
         selected_columns = [
-            'account_id',
-            'balances.available',
-            'amount',
-            'merchant_name',
-            'website',
-            'name_y',
-            'authorized_date',
-            'authorized_datetime',
-            'category',
-            'date',
-            'payment_channel',
-            'personal_finance_category.confidence_level',
-            'personal_finance_category.detailed',
+            'account_id', 'balances.available', 'amount', 'merchant_name', 'website', 'name_y',
+            'authorized_date', 'authorized_datetime', 'category', 'date', 'payment_channel',
+            'personal_finance_category.confidence_level', 'personal_finance_category.detailed',
             'personal_finance_category.primary'
         ]
+        missing_cols = [col for col in selected_columns if col not in data.columns]
+        if missing_cols:
+            raise KeyError(f"Missing expected columns after merge: {missing_cols}")
 
         data = data[selected_columns]
         data["date"] = pd.to_datetime(data["date"], errors='coerce')
@@ -34,11 +36,9 @@ def process_json_data(json_data):
         # Recalculate balance
         current_balance = data.iloc[0]['balances.available']
         updated_balances = [current_balance]
-
         for index in range(1, len(data)):
             current_balance += data.iloc[index]['amount']
             updated_balances.append(current_balance)
-
         data['balances.available'] = updated_balances
 
         data['amount_1'] = data['amount']
@@ -49,8 +49,9 @@ def process_json_data(json_data):
         return data
 
     except Exception as e:
-        st.error(f"Error processing JSON data: {e}")
-        return None
+        st.exception(e)  # logs the traceback in Streamlit
+        raise  # propagate the error to catch in higher-level logic
+
 
 # Categorisation function
 def map_transaction_category(transaction):
