@@ -4,7 +4,7 @@ import streamlit as st
 
 # Function to process JSON data
 def process_json_data(json_data):
-        try:
+    try:
         accounts = json_data.get('accounts', [])
         transactions = json_data.get('transactions', [])
 
@@ -51,6 +51,8 @@ def process_json_data(json_data):
     except Exception as e:
         st.exception(e)  # logs the traceback in Streamlit
         raise  # propagate the error to catch in higher-level logic
+
+
 
 
 # Categorisation function
