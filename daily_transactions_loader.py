@@ -16,10 +16,17 @@ def get_data_from_uploaded_file(uploaded_file, start_date=None, end_date=None):
 
         # ✅ Filter by date
         if start_date and end_date:
-            transactions = [
-                txn for txn in transactions
-                if 'date' in txn and start_date <= pd.to_datetime(txn['date']).date() <= end_date
-            ]
+            filtered_transactions = []
+            for txn in transactions:
+                try:
+                    txn_date = pd.to_datetime(txn.get('date')).date()
+                    if start_date <= txn_date <= end_date:
+                        filtered_transactions.append(txn)
+                except Exception as e:
+                    st.warning(f"Skipping transaction due to invalid date: {txn.get('date')} ({e})")
+
+            transactions = filtered_transactions
+
             
         # 🧠 Optional sanity check
         st.write(f"Transactions in date range: {len(transactions)}")
