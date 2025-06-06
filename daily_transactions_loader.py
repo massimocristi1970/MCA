@@ -69,7 +69,9 @@ def get_data_from_uploaded_file(uploaded_file, start_date=None, end_date=None):
                 categorized_data = categorized_data.rename(columns={'name_y': 'name'})
 
         except Exception as e:
-            st.error(f"Error in processing transaction data: {str(e)}")
+            st.error("process_json_data() failed")
+            st.exception(e)  # Logs the traceback in Streamlit
+
 
             txn_data = []
             for txn in transactions:
