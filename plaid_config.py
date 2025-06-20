@@ -11,20 +11,20 @@ import streamlit as st
 
 
 COMPANY_ACCESS_TOKENS = dict(sorted({
-    "Bound Studios": "access-production-c96f81d2-206f-4e6a-b442-a18d102b3870",
-    "Moving Ewe": "access-production-31009602-a97b-42db-bf7c-ca7db185eac1",
-    "Sanitaire Ltd": "access-production-9d27e5a4-3f09-4deb-8d7c-58b2ea014578",
-    "Ellevate limited": "access-production-a93de1cc-4c56-4e4f-a92d-6dd000d00d85",
-    "Boiler Solution Cover UK": "access-production-b8b19025-2c67-4364-b7ee-ac6c236764f1"
+    "Bound Studios": 
+    "Moving Ewe": 
+    "Sanitaire Ltd": 
+    "Ellevate limited": 
+    "Boiler Solution Cover UK": 
 }.items()))
 
 
 
 def get_plaid_data_by_company(company_name, access_token, start_date, end_date):
     # Plaid credentials
-    PLAID_CLIENT_ID = "649ec08315ff560018b268cd"
-    PLAID_SECRET = "1759b2f1f5a085506186f1396430fa"
-    PLAID_ENV = "production"
+    PLAID_CLIENT_ID = 
+    PLAID_SECRET = 
+    PLAID_ENV = 
 
     # Environment setup
     host_url = {
