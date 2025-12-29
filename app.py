@@ -29,8 +29,8 @@ def main():
 
     # Create two main tabs
     main_tab1, main_tab2, main_tab3 = st.tabs([
-        "Overview and Analysis", 
-        "Bank Account and Payment Processing", 
+        "Overview and Analysis",
+        "Bank Account and Payment Processing",
         "Upload Transaction File"
     ])
 
@@ -201,11 +201,11 @@ def main():
         else:
             st.info("Please upload a JSON file to view financial analysis.")
 
-    
+
     with main_tab2:
         # Create subtabs for Bank Account and Payment Processing
         subtab5, subtab6 = st.tabs(["Bank Account Information", "Daily MCA Payment Processing"])
-        
+
         with subtab5:
             st.header("Bank Account Information")
 
@@ -270,7 +270,7 @@ def main():
                 except Exception as e:
                     st.error(f"Error fetching data: {str(e)}")
 
-        
+
         with subtab6:
             st.header("Daily MCA Payment Processing")
             companies = COMPANY_ACCESS_TOKENS
@@ -401,4 +401,4 @@ def main():
                     st.warning("No usable transactions or 'subcategory' column missing from processed data.")
 
 if __name__ == "__main__":
-        main()
+main()
