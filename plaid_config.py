@@ -9,22 +9,21 @@ from datetime import datetime, timedelta
 from data_processing import process_json_data
 import streamlit as st
 
-
+# FIXED 1: Added placeholder values and trailing commas for valid dictionary syntax
 COMPANY_ACCESS_TOKENS = dict(sorted({
-    "Bound Studios": 
-    "Moving Ewe": 
-    "Sanitaire Ltd": 
-    "Ellevate limited": 
-    "Boiler Solution Cover UK": 
-}.items()))
-
+                                        "Bound Studios": "ACCESS_TOKEN_HERE",
+                                        "Moving Ewe": "ACCESS_TOKEN_HERE",
+                                        "Sanitaire Ltd": "ACCESS_TOKEN_HERE",
+                                        "Ellevate limited": "ACCESS_TOKEN_HERE",
+                                        "Boiler Solution Cover UK": "ACCESS_TOKEN_HERE"
+                                    }.items()))
 
 
 def get_plaid_data_by_company(company_name, access_token, start_date, end_date):
-    # Plaid credentials
-    PLAID_CLIENT_ID = 
-    PLAID_SECRET = 
-    PLAID_ENV = 
+    # FIXED 2: Assigned empty strings/defaults to prevent variable assignment syntax errors
+    PLAID_CLIENT_ID = "YOUR_CLIENT_ID_HERE"
+    PLAID_SECRET = "YOUR_SECRET_HERE"
+    PLAID_ENV = "sandbox"  # Must be 'sandbox', 'development', or 'production'
 
     # Environment setup
     host_url = {
@@ -32,7 +31,7 @@ def get_plaid_data_by_company(company_name, access_token, start_date, end_date):
         "development": "https://development.plaid.com",
         "production": "https://production.plaid.com"
     }[PLAID_ENV]
- 
+
     config = Configuration(
         host=host_url,
         api_key={
@@ -92,13 +91,13 @@ def get_plaid_data_by_company(company_name, access_token, start_date, end_date):
         })
 
     account_df = pd.DataFrame(account_summaries)
-    
+
     # Create JSON structure for process_json_data function
     json_structure = {
         'accounts': accounts,
         'transactions': transactions
     }
-    
+
     # Process data using the existing process_json_data function
     try:
         categorized_data = process_json_data(json_structure)
@@ -106,17 +105,17 @@ def get_plaid_data_by_company(company_name, access_token, start_date, end_date):
             categorized_data['is_authorised_account'] = categorized_data['account_id'].apply(
                 lambda x: x in routing_data
             )
-            
+
         if 'sort_code' not in categorized_data.columns:
             categorized_data['sort_code'] = categorized_data['account_id'].apply(
                 lambda x: routing_data.get(x, {}).get('sort_code', 'N/A')
             )
-            
+
         if 'account_number' not in categorized_data.columns:
             categorized_data['account_number'] = categorized_data['account_id'].apply(
                 lambda x: routing_data.get(x, {}).get('account_number', 'N/A')
             )
-            
+
         if 'account_name' not in categorized_data.columns:
             categorized_data['account_name'] = categorized_data['account_id'].apply(
                 lambda x: routing_data.get(x, {}).get('account_name', 'Unnamed Account')
@@ -124,15 +123,15 @@ def get_plaid_data_by_company(company_name, access_token, start_date, end_date):
 
         if 'name_y' in categorized_data.columns and 'name' not in categorized_data.columns:
             categorized_data = categorized_data.rename(columns={'name_y': 'name'})
-            
+
     except Exception as e:
         st.error(f"Error in process_json_data: {str(e)}")
-        
+
         txn_data = []
         for txn in transactions:
             acct_id = txn['account_id']
             route_info = routing_data.get(acct_id, {})
-            
+
             txn_data.append({
                 'date': txn['date'],
                 'name': txn['name'],
@@ -146,7 +145,7 @@ def get_plaid_data_by_company(company_name, access_token, start_date, end_date):
                 # Simple subcategory fallback
                 'subcategory': 'Income' if txn['amount'] < 0 else 'Expenses'
             })
-            
+
         categorized_data = pd.DataFrame(txn_data)
 
     return account_df, categorized_data
