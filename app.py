@@ -401,4 +401,4 @@ def main():
                     st.warning("No usable transactions or 'subcategory' column missing from processed data.")
 
 if __name__ == "__main__":
-main()
+    main()
